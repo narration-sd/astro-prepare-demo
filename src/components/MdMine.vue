@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Here from MD</h2>
-    <MD :source="source" breaks=true />
+    <MD :source="source" breaks />
     <h2>Datapicker</h2>
     <Datepicker v-model="picked" />
   </div>

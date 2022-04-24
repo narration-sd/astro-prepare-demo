@@ -7,6 +7,7 @@ import '../styles/home.css';
 import VueCounter from '../components/VueCounter.vue';
 import MdMine from '../components/MdMine.vue'
 import { Debug } from 'astro/components';
+import Navbar from '../components/Navbar.vue';
 
 // Component Script:
 // You can write any JavaScript/TypeScript that you'd like here.
@@ -59,6 +60,7 @@ const source = '## Let\'s ***Vue*** some \n- *fresh*\n- **Markdown**,\n\n also..
 <body>
 	<main>
 		<header>
+       <Navbar name="two">
 			<div>
 				<Logo width={60} height={80} />
 				<h1>Welcome to <a href="https://astro.build/">Astro</a></h1>
@@ -66,28 +68,11 @@ const source = '## Let\'s ***Vue*** some \n- *fresh*\n- **Markdown**,\n\n also..
 		</header>
 
 		<article>
-		  <h2>An article here, or a tour?</h2>
-			<OneContent />
-		</article>
-
-		<article>
 		  <h2>Another article here, or a tour?</h2>
 			<TwoContent />
 		</article>
 
-		<!--
-
-		You can also use imported framework components directly in your markup!
-
-		Note: by default, these components are NOT interactive on the client.
-		The `client:visible` directive tells Astro to make it interactive.
-
-		See https://docs.astro.build/core-concepts/component-hydration/
-
-		-->
-
-      <VueCounter client:visible />
-<br>
+      <br>
       Debug(sourceval="{source}"/>
       <br>
       <MdMine source={source} client:visible >
