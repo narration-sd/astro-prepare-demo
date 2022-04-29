@@ -1,19 +1,22 @@
 <template>
   <div>
-    <h2>Here from MD</h2>
+    <NoLibs />
+<!--    <h2>Here from MD</h2>-->
     <MD :source="source" breaks />
-    <h2>Datapicker</h2>
-    <Datepicker v-model="picked" />
+<!--    <h2>Datapicker</h2>-->
+<!--    <Datepicker v-model="picked" />-->
   </div>
 </template>
 <script setup>
-// note we can't even import here, much less set up children - out of order somehow
+import MD from 'vue3-markdown-it'
+import Datepicker from 'vue3-datepicker'
+import NoLibs from "../components/NoLibs.vue";
+
+import { ref } from 'vue'
 </script>
 
 <script>
-import MD from 'vue3-markdown-it'
-import Datepicker from 'vue3-datepicker'
-import { ref } from 'vue'
+
 // const picked = ref(new Date())
 
 export default {
@@ -32,6 +35,5 @@ export default {
   created() {
     console.log('source prop is: '+ this.source)
   },
-  components: { MD, Datepicker }
 }
 </script>
