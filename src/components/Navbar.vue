@@ -23,6 +23,7 @@ export default {
         { name:'home', path: '/' },
         { name:'one', path: '/one' },
         { name:'two', path: '/two' },
+        { name:'framer', path: '/framer' },
       ],
     }
   },
