@@ -12,7 +12,7 @@ yarn-error.log*
 pnpm-debug.log*
 
 .idea/
-
+!.idea/shelf
 
 # environment variables
 .env
