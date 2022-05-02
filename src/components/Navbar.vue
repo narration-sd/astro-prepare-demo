@@ -24,6 +24,7 @@ export default {
         { name:'one', path: '/one' },
         { name:'two', path: '/two' },
         { name:'framer', path: '/framer' },
+        { name:'framer2', path: '/framer2' },
       ],
     }
   },

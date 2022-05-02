@@ -63,6 +63,7 @@ const source = '## Let\'s ***Vue*** some \n- *fresh*\n- **Markdown**,\n\n also..
 	</style>
 </head>
 <body>
+<turbo-frame id="frame_two">
 	<main>
 		<header>
        <Navbar name="two" client:load>
@@ -86,5 +87,6 @@ const source = '## Let\'s ***Vue*** some \n- *fresh*\n- **Markdown**,\n\n also..
       <!-- <MdMine source={source} client:load /> -->
     </article>
 	</main>
+	</turbo-frame>
 </body>
 </html>
