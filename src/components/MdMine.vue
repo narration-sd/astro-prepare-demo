@@ -1,23 +1,19 @@
 <template>
   <div>
     <NoLibs />
-<!--    <h2>Here from MD</h2>-->
     <MD :source="source" breaks />
-<!--    <h2>Datapicker</h2>-->
-<!--    <Datepicker v-model="picked" />-->
+    <Datepicker v-model="theDate" />
   </div>
 </template>
+
 <script setup>
 import MD from 'vue3-markdown-it'
 import Datepicker from 'vue3-datepicker'
 import NoLibs from "../components/NoLibs.vue";
-
-import { ref } from 'vue'
 </script>
 
 <script>
-
-// const picked = ref(new Date())
+import { ref } from 'vue' // *todo* here?
 
 export default {
   name: 'MdMine',
@@ -26,14 +22,25 @@ export default {
       type: String,
       default: 'no source prop yet!'
     },
+    date: {
+      type: Object,
+      // default: function () { return  ref(new Date()) }
+      default: function () { return  new Date() }
+    }
   },
   data: function () {
     return {
-      picked: ref(new Date())
+      // date: ref(new Date()),
+      // theDate: ref(this.date),
+      theDate: ref(new Date("2022-05-01T19:28:17.736Z")),
     }
   },
   created() {
     console.log('source prop is: '+ this.source)
+    console.log('date prop is: '+ JSON.stringify(this.date))
+    console.log('typeof date prop is: '+ typeof this.date)
+    console.log('theDate data is: '+ JSON.stringify(this.theDate))
+    console.log('typeof theDate data is: '+ typeof this.theDate)
   },
 }
 </script>

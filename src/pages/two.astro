@@ -22,6 +22,14 @@ const source = '## Let\'s ***Vue*** some \n- *fresh*\n- **Markdown**,\n\n also..
 ---
 <script>
 // import MdMine from '../components/MdMine.vue'
+
+export default {
+  data: function () {
+    return {
+      date: new Date()
+    }
+  }
+}
 </script>
 
 <html lang="en">
@@ -80,10 +88,10 @@ const source = '## Let\'s ***Vue*** some \n- *fresh*\n- **Markdown**,\n\n also..
 
     <article>
       <br>
-      Debug(sourceval="{source}"/>
+      <!-- Debug(sourceval="{source}"/> -->
       <br>
       <!-- <MdMine source={source} client:only="MdMine" /> -->
-      <MdMine source={source} client:only="Vue" />
+      <MdMine source={source} :date="date" client:only="Vue" />
       <!-- <MdMine source={source} client:load /> -->
     </article>
 	</main>
