@@ -1,0 +1,22 @@
+---
+import MdMine from '../components/MdMine.vue'
+const source = '## Let\'s ***Vue*** some \n- *fresh*\n- **Markdown**,\n\n also...';
+---
+<html>
+<body>
+<turbo-frame id="frame_two">
+	<main>
+		<article>
+		  <h2>Another article here, or a tour?</h2>
+		</article>
+
+    <article>
+    <p>only one real article at first</p>
+      <!-- <MdMine source={source} client:only="MdMine" /> -->
+      <MdMine source={source} client:only="Vue" />
+      <!-- <MdMine source={source} client:load /> -->
+    </article>
+	</main>
+</turbo-frame>
+</body>
+</html>

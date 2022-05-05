@@ -5,9 +5,10 @@ import Logo from '../components/Logo.astro';
 import '../styles/global.css';
 import '../styles/home.css';
 import VueCounter from '../components/VueCounter.vue';
-import MdMine from '../components/MdMine.vue'
-import { Debug } from 'astro/components';
 import Navbar from '../components/Navbar.vue';
+import MdMine from '../components/MdMine.vue'
+
+import { Debug } from 'astro/components';
 
 // Component Script:
 // You can write any JavaScript/TypeScript that you'd like here.
@@ -19,6 +20,18 @@ const source = '## Let\'s ***Vue*** some \n- *fresh*\n- **Markdown**,\n\n also..
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
 ---
+<script>
+// import MdMine from '../components/MdMine.vue'
+
+export default {
+  data: function () {
+    return {
+      date: new Date()
+    }
+  }
+}
+</script>
+
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -58,9 +71,10 @@ const source = '## Let\'s ***Vue*** some \n- *fresh*\n- **Markdown**,\n\n also..
 	</style>
 </head>
 <body>
+<turbo-frame id="frame_two">
 	<main>
 		<header>
-       <Navbar name="two">
+       <Navbar name="two" client:load>
 			<div>
 				<Logo width={60} height={80} />
 				<h1>Welcome to <a href="https://astro.build/">Astro</a></h1>
@@ -72,10 +86,15 @@ const source = '## Let\'s ***Vue*** some \n- *fresh*\n- **Markdown**,\n\n also..
 			<TwoContent />
 		</article>
 
+    <article>
       <br>
-      Debug(sourceval="{source}"/>
+      <!-- Debug(sourceval="{source}"/> -->
       <br>
-      <MdMine source={source} client:visible >
+      <!-- <MdMine source={source} client:only="MdMine" /> -->
+      <MdMine source={source} :date="date" client:only="Vue" />
+      <!-- <MdMine source={source} client:load /> -->
+    </article>
 	</main>
+	</turbo-frame>
 </body>
 </html>

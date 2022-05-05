@@ -1,20 +1,34 @@
 ---
-import {Content as OneContent} from '../content/One.md';
-import Logo from '../components/Logo.astro';
 import '../styles/global.css';
 import '../styles/home.css';
-import VueCounter from '../components/VueCounter.vue';
+import Logo from '../components/Logo.astro';
 import Navbar from '../components/Navbar.vue';
 
 // Component Script:
 // You can write any JavaScript/TypeScript that you'd like here.
 // It will run during the build, but never in the browser.
 // All variables are available to use in the HTML template below.
-let title = 'My Astro Site';
+let title = 'My Astro Site: Framer';
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
 ---
+<script>
+  console.log('we\'re here...two');
+if (typeof window !== 'undefined') {
+  console.log('we\'re here...three');
+  window.addEventListener('load', function() {
+      console.log('All assets are loaded')
+  })
+  window.addEventListener('turbolinks:load', function() {
+      console.log('turbolinks...')
+  })
+  window.addEventListener('turbo:load', function() {
+      console.log('turbo...')
+  })
+}
+</script>
+
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -56,30 +70,26 @@ let title = 'My Astro Site';
 <body>
 	<main>
 		<header>
-      <Navbar name="one" client:load>
+       <Navbar name="framer" client:load>
 			<div>
 				<Logo width={60} height={80} />
 				<h1>Welcome to <a href="https://astro.build/">Astro</a></h1>
+				<h2>Framer</h2>
 			</div>
 		</header>
 
-		<article>
-		  <h2>An article here, or a tour?</h2>
-			<OneContent />
-		</article>
+		<turbo-frame id="frame_one" src="/one">
+		   <p>!! one this should be replaced !!</p>
+		</turbo=frame>
 
-		<!--
-
-		You can also use imported framework components directly in your markup!
-
-		Note: by default, these components are NOT interactive on the client.
-		The `client:visible` directive tells Astro to make it interactive.
-
-		See https://docs.astro.build/core-concepts/component-hydration/
-
-		-->
-
-		<VueCounter client:visible />
+    <!-- <turbo-frame id="frame_two" src="/two_content_b"> -->
+    <turbo-frame id="two_content">
+      <p>!! two this should be replaced !!</p>
+      <a href="/two_content" data-turbo-frame="two_content">
+          Following link will replace this frame.
+        </a>
+    </turbo-frame>
 	</main>
 </body>
 </html>
+

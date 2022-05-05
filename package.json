@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
+    "check": "astro check",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview"
@@ -14,6 +15,9 @@
     "vue": "^3.2.33"
   },
   "dependencies": {
+    "@astrojs/turbolinks": "^0.1.2",
+    "@types/markdown-it": "^12.2.3",
+    "install-local": "^3.0.1",
     "vue3-datepicker": "^0.3.3",
     "vue3-markdown-it": "^1.0.10"
   }

@@ -5,6 +5,7 @@ import '../styles/global.css';
 import '../styles/home.css';
 import VueCounter from '../components/VueCounter.vue';
 import Navbar from '../components/Navbar.vue';
+import MdMine from '../components/MdMine.vue'
 
 // Component Script:
 // You can write any JavaScript/TypeScript that you'd like here.
@@ -56,7 +57,7 @@ let title = 'My Astro Site';
 <body>
 	<main>
 		<header>
-      <Navbar name="home">
+      <Navbar name="home" client:load>
 			<div>
 				<Logo width={60} height={80} />
 				<h1>Welcome to <a href="https://astro.build/">Astro</a></h1>
@@ -64,10 +65,10 @@ let title = 'My Astro Site';
 		</header>
 
 		<article>
-			<div class="banner">
+	<!--				<div class="banner">
 				<p><strong>🧑‍🚀 Seasoned astronaut?</strong> Delete this template and have fun!</p>
 			</div>
-			<TourContent />
+	<TourContent /> -->
 		</article>
 
 		<!--
@@ -79,9 +80,12 @@ let title = 'My Astro Site';
 
 		See https://docs.astro.build/core-concepts/component-hydration/
 
-		-->
 
-		<VueCounter client:visible />
+
+		<VueCounter client:visible />	-->
+		<div>
+		  <p>We're a little shy of content here, but not for long, and it is the first page...</p>
+    </div>
 	</main>
 </body>
 </html>
