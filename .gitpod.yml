@@ -5,4 +5,5 @@
 tasks:
   - init: npm install && npm run build
     command: npm run start
-
+    # add a "Review in Gitpod" button to the pull request's description (defaults to false)
+    addBadge: false
