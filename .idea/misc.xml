@@ -16,6 +16,10 @@
           <option name="fileUrl" value="file://$PROJECT_DIR$/README.md" />
         </OpenedFileInfo>
         <OpenedFileInfo>
+          <option name="caretOffset" value="360" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/package.json" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
           <option name="caretOffset" value="0" />
           <option name="fileUrl" value="file://$PROJECT_DIR$/src/pages/two_content.astro" />
         </OpenedFileInfo>
@@ -30,10 +34,6 @@
         <OpenedFileInfo>
           <option name="caretOffset" value="1929" />
           <option name="fileUrl" value="file://$PROJECT_DIR$/src/pages/two.astro" />
-        </OpenedFileInfo>
-        <OpenedFileInfo>
-          <option name="caretOffset" value="0" />
-          <option name="fileUrl" value="file://$PROJECT_DIR$/package.json" />
         </OpenedFileInfo>
       </list>
     </option>
