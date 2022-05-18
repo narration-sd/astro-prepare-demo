@@ -17,10 +17,6 @@
         </OpenedFileInfo>
         <OpenedFileInfo>
           <option name="caretOffset" value="0" />
-          <option name="fileUrl" value="file://$PROJECT_DIR$/package.json" />
-        </OpenedFileInfo>
-        <OpenedFileInfo>
-          <option name="caretOffset" value="0" />
           <option name="fileUrl" value="file://$PROJECT_DIR$/src/pages/two_content.astro" />
         </OpenedFileInfo>
         <OpenedFileInfo>
@@ -34,6 +30,10 @@
         <OpenedFileInfo>
           <option name="caretOffset" value="1929" />
           <option name="fileUrl" value="file://$PROJECT_DIR$/src/pages/two.astro" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="0" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/package.json" />
         </OpenedFileInfo>
       </list>
     </option>
