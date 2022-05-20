@@ -17,6 +17,7 @@
   "dependencies": {
     "@types/markdown-it": "^12.2.3",
     "install-local": "^3.0.1",
+    "swup": "^2.0.14",
     "vue3-datepicker": "^0.3.4",
     "vue3-markdown-it": "^1.0.10"
   }
