@@ -4,7 +4,7 @@
 </template>
 
 <script setup>
-let msg = 'though I do have message...'
+let msg = 'though I do a have message...'
 </script>
 
 <script>
