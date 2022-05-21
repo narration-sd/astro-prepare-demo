@@ -23,6 +23,9 @@ const source = '## Let\'s ***Vue*** some \n- *fresh*\n- **Markdown**,\n\n also..
 <script>
 // import MdMine from '../components/MdMine.vue'
 
+import Swup from 'swup';
+const swup = new Swup();
+
 export default {
   data: function () {
     return {
@@ -71,20 +74,19 @@ export default {
 	</style>
 </head>
 <body>
-<turbo-frame id="frame_two">
-	<main>
-		<header>
+    <main id="swup">
+        <header>
        <Navbar name="two" client:load>
-			<div>
-				<Logo width={60} height={80} />
-				<h1>Welcome to <a href="https://astro.build/">Astro</a></h1>
-			</div>
-		</header>
+            <div>
+                <Logo width={60} height={80} />
+                <h1>Welcome to <a href="https://astro.build/">Astro</a></h1>
+            </div>
+        </header>
 
-		<article>
-		  <h2>An article sans turbolinks, what do you think?</h2>
-			<TwoContent />
-		</article>
+        <article>
+          <h2>An article sans turbolinks, what do you think?</h2>
+            <TwoContent />
+        </article>
 
     <article>
       <br>
@@ -94,7 +96,6 @@ export default {
       <MdMine source={source} :date="date" client:only="Vue" />
       <!-- <MdMine source={source} client:load /> -->
     </article>
-	</main>
-	</turbo-frame>
+    </main>
 </body>
 </html>

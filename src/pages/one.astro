@@ -15,6 +15,11 @@ let title = 'My Astro Site';
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
 ---
+<script>
+import Swup from 'swup';
+const swup = new Swup();
+</script>
+
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -54,7 +59,7 @@ let title = 'My Astro Site';
 	</style>
 </head>
 <body>
-	<main>
+	<main id="swup">
 		<header>
       <Navbar name="one" client:load>
 			<div>
