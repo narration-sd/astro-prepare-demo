@@ -19,7 +19,10 @@ let title = 'My Astro Site';
 import Swup from 'swup';
 import SwupScriptsPlugin from '@swup/scripts-plugin';
 const swup = new Swup({
-    plugins: [new SwupScriptsPlugin()]
+    plugins: [new SwupScriptsPlugin({
+                                      head: false,
+                                      body: true
+                                    })]
 });
 </script>
 

@@ -26,7 +26,10 @@ const source = '## Let\'s ***Vue*** some \n- *fresh*\n- **Markdown**,\n\n also..
 import Swup from 'swup';
 import SwupScriptsPlugin from '@swup/scripts-plugin';
 const swup = new Swup({
-    plugins: [new SwupScriptsPlugin()]
+    plugins: [new SwupScriptsPlugin({
+                                      head: false,
+                                      body: true
+                                    })]
 });
 
 export default {
