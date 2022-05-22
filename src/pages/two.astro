@@ -24,7 +24,10 @@ const source = '## Let\'s ***Vue*** some \n- *fresh*\n- **Markdown**,\n\n also..
 // import MdMine from '../components/MdMine.vue'
 
 import Swup from 'swup';
-const swup = new Swup();
+import SwupScriptsPlugin from '@swup/scripts-plugin';
+const swup = new Swup({
+    plugins: [new SwupScriptsPlugin()]
+});
 
 export default {
   data: function () {
