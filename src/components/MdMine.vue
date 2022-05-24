@@ -1,14 +1,14 @@
 <template>
   <div>
-    <!-- <NoLibs />
-    <MD :source="source" breaks /> -->
-    <p>source is: {{ source }}</p>
+    <NoLibs />
+    <Mkdown :source="source" breaks />
+    <!-- <p>source is: {{ source }}</p> -->
     <Datepicker v-model="theDate" />
   </div>
 </template>
 
 <script setup>
-import MD from 'vue3-markdown-it'
+import Mkdown from 'vue3-markdown-it'
 import Datepicker from 'vue3-datepicker'
 import NoLibs from "../components/NoLibs.vue";
 </script>
