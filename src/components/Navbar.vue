@@ -1,3 +1,18 @@
+---
+<!--<script>-->
+
+import Swup from 'swup';
+import SwupScriptsPlugin from '@swup/scripts-plugin';
+
+const swup = new Swup({
+  plugins: [
+    new SwupScriptsPlugin({
+      head: true, // hmm
+      body: true
+    })]
+});
+
+---
 <template>
   <nav>
     <menu>
@@ -12,6 +27,20 @@
 </template>
 
 <script>
+
+// import Swup from 'swup';
+// import SwupScriptsPlugin from '@swup/scripts-plugin';
+//
+// if (typeof window !== 'undefined') {
+//   const swup = new Swup({
+//     plugins: [
+//       new SwupScriptsPlugin({
+//         head: true, // hmm
+//         body: true
+//       })]
+//   });
+// }
+
 export default {
   name: "Navbar",
   props: {

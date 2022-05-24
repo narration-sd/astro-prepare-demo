@@ -7,6 +7,9 @@ import '../styles/home.css';
 import VueCounter from '../components/VueCounter.vue';
 import Navbar from '../components/Navbar.vue';
 import MdMine from '../components/MdMine.vue'
+// import MDown from 'vue3-markdown-it'
+
+// const MDoo = new MDown()
 
 import { Debug } from 'astro/components';
 
@@ -22,15 +25,6 @@ const source = '## Let\'s ***Vue*** some \n- *fresh*\n- **Markdown**,\n\n also..
 ---
 <script>
 // import MdMine from '../components/MdMine.vue'
-
-import Swup from 'swup';
-import SwupScriptsPlugin from '@swup/scripts-plugin';
-const swup = new Swup({
-    plugins: [new SwupScriptsPlugin({
-                                      head: false,
-                                      body: true
-                                    })]
-});
 
 export default {
   data: function () {
@@ -101,6 +95,7 @@ export default {
       <!-- <MdMine source={source} client:only="MdMine" /> -->
       <!-- <MdMine source={source} :date="date" client:only="Vue" /> -->
       <MdMine source={source} :date="date" client:load />
+      <!-- <MDo source="{{source}}" breaks client:load /> -->
     </article>
     </main>
 </body>

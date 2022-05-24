@@ -15,17 +15,6 @@ let title = 'My Astro Site';
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
 ---
-<script>
-import Swup from 'swup';
-import SwupScriptsPlugin from '@swup/scripts-plugin';
-const swup = new Swup({
-    plugins: [new SwupScriptsPlugin({
-                                      head: false,
-                                      body: true
-                                    })]
-});
-</script>
-
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -90,7 +79,7 @@ const swup = new Swup({
 
 		-->
 
-		<VueCounter client:load />
+		<VueCounter client:visible />
 	</main>
 </body>
 </html>

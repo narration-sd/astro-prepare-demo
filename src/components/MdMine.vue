@@ -2,6 +2,7 @@
   <div>
     <NoLibs />
     <MD :source="source" breaks />
+    <p>source is: {{ source }}</p>
     <Datepicker v-model="theDate" />
   </div>
 </template>
