@@ -2,8 +2,10 @@
   <div>
     <NoLibs />
     <Mkdown :source="source" breaks />
-    <!-- <p>source is: {{ source }}</p> -->
+  </div>
+  <div>
     <Datepicker v-model="theDate" />
+    <h4>...and we're done</h4>
   </div>
 </template>
 
