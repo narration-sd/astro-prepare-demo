@@ -1,27 +1,19 @@
 ---
-import {Content as OneContent} from '../content/One.md';
 import {Content as TwoContent} from '../content/Two.md';
-import Logo from '../components/Logo.astro';
 import '../styles/global.css';
 import '../styles/home.css';
-import VueCounter from '../components/VueCounter.vue';
-import Navbar from '../components/Navbar.vue';
+import MenuLayout from '../layouts/MenuLayout.vue'
 import MdMine from '../components/MdMine.vue'
-// import MDown from 'vue3-markdown-it'
 
-// const MDoo = new MDown()
-
-import { Debug } from 'astro/components';
-
+// following statement is confusion. imports need to be here, for component:load only...???
 // Component Script:
 // You can write any JavaScript/TypeScript that you'd like here.
 // It will run during the build, but never in the browser.
 // All variables are available to use in the HTML template below.
-let title = 'My Astro Site';
+
+let title = 'My Astro Two';
 const source = '## Let\'s ***Vue*** some \n- *fresh*\n- **Markdown**,\n\n also...';
 
-// Full Astro Component Syntax:
-// https://docs.astro.build/core-concepts/astro-components/
 ---
 <script>
 // import MdMine from '../components/MdMine.vue'
@@ -74,29 +66,23 @@ export default {
 	</style>
 </head>
 <body>
-    <main id="swup">
-        <header>
-       <Navbar name="two" client:load>
-            <div>
-                <Logo width={60} height={80} />
-                <h1>Welcome to <a href="https://astro.build/">Astro</a></h1>
-            </div>
-        </header>
+    <MenuLayout id="swup" client:load>
+        <main>
+            <header>
+                <div>
+                    <h1>Welcome to <a href="https://astro.build/">Astro</a></h1>
+                </div>
+            </header>
 
-        <article>
-          <h2>An article with Swup; what do you think?</h2>
-            <TwoContent />
-        </article>
+            <article>
+              <h2>An article with Swup; what do you think?</h2>
+                <TwoContent />
+            </article>
 
-    <article>
-      <br>
-      <!-- Debug(sourceval="{source}"/> -->
-      <br>
-      <!-- <MdMine source={source} client:only="MdMine" /> -->
-      <MdMine source={source} :date="date" client:only="Vue" />
-      <!-- <MdMine source={source} :date="date" client:load /> -->
-      <!-- <MDo source="{{source}}" breaks client:load /> -->
-    </article>
-    </main>
+            <article>
+              <MdMine source={source} :date="date" client:only="Vue" />
+            </article>
+        </main>
+    </MenuLayout>
 </body>
 </html>

@@ -1,20 +1,10 @@
 ---
-import {Content as TourContent} from '../content/Tour.md';
 import Logo from '../components/Logo.astro';
 import '../styles/global.css';
 import '../styles/home.css';
-import VueCounter from '../components/VueCounter.vue';
-import Navbar from '../components/Navbar.vue';
-import MdMine from '../components/MdMine.vue'
+import MenuLayout from '../layouts/MenuLayout.vue'
 
-// Component Script:
-// You can write any JavaScript/TypeScript that you'd like here.
-// It will run during the build, but never in the browser.
-// All variables are available to use in the HTML template below.
 let title = 'My Astro Site';
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/core-concepts/astro-components/
 ---
 <html lang="en">
 <head>
@@ -55,37 +45,20 @@ let title = 'My Astro Site';
 	</style>
 </head>
 <body>
-	<main id="swup">
-		<header>
-      <Navbar name="home" client:load>
-			<div>
-				<Logo width={60} height={80} />
-				<h1>Welcome to <a href="https://astro.build/">Astro</a></h1>
-			</div>
-		</header>
+    <MenuLayout id="swup" client:load>
+        <main>
+            <header>
+                <div>
+                    <Logo width={60} height={80} />
+                    <h1>Welcome to <a href="https://astro.build/">Astro</a></h1>
+                </div>
+            </header>
 
-		<article>
-	<!--				<div class="banner">
-				<p><strong>🧑‍🚀 Seasoned astronaut?</strong> Delete this template and have fun!</p>
-			</div>
-	<TourContent /> -->
-		</article>
-
-		<!--
-
-		You can also use imported framework components directly in your markup!
-
-		Note: by default, these components are NOT interactive on the client.
-		The `client:visible` directive tells Astro to make it interactive.
-
-		See https://docs.astro.build/core-concepts/component-hydration/
-
-
-
-		<VueCounter client:visible />	-->
-		<div>
-		  <p>We're a little shy of content here, but not for long, and it is the first page...</p>
-    </div>
-	</main>
+            <article>
+              <p>We're a little shy of content here, but not for long, and it is the first page...</p>
+            </article>
+        </div>
+        </main>
+	</MenuLayout>
 </body>
 </html>

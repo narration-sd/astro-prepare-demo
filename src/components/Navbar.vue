@@ -1,17 +1,5 @@
 ---
 
-/*
-import Swup from 'swup';
-import SwupScriptsPlugin from '@swup/scripts-plugin';
-
-const swup = new Swup({
-  plugins: [
-    new SwupScriptsPlugin({
-      head: true, // hmm
-      body: true
-    })]
-});
-*/
 
 ---
 <template>
@@ -29,22 +17,10 @@ const swup = new Swup({
 
 <script>
 
-import Swup from 'swup';
-import SwupScriptsPlugin from '@swup/scripts-plugin';
-
-if (typeof window !== 'undefined') {
-  const swup = new Swup({
-    plugins: [
-      new SwupScriptsPlugin({
-        head: true, // hmm
-        body: true
-      })]
-  });
-}
-
 export default {
   name: "Navbar",
   props: {
+    // *todo* have to change this to computed pulled from window path
     name: { type: String, default: 'one'}
   },
   data: function () {
@@ -53,8 +29,6 @@ export default {
         { name:'home', path: '/' },
         { name:'one', path: '/one' },
         { name:'two', path: '/two' },
-        // { name:'framer', path: '/framer' },
-        // { name:'framer2', path: '/framer2' },
       ],
     }
   },

@@ -1,19 +1,11 @@
 ---
 import {Content as OneContent} from '../content/One.md';
-import Logo from '../components/Logo.astro';
 import '../styles/global.css';
 import '../styles/home.css';
 import VueCounter from '../components/VueCounter.vue';
-import Navbar from '../components/Navbar.vue';
+import MenuLayout from '../layouts/MenuLayout.vue'
 
-// Component Script:
-// You can write any JavaScript/TypeScript that you'd like here.
-// It will run during the build, but never in the browser.
-// All variables are available to use in the HTML template below.
-let title = 'My Astro Site';
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/core-concepts/astro-components/
+let title = 'My Astro One';
 ---
 <html lang="en">
 <head>
@@ -54,32 +46,21 @@ let title = 'My Astro Site';
 	</style>
 </head>
 <body>
-	<main id="swup">
-		<header>
-      <Navbar name="one" client:load>
-			<div>
-				<Logo width={60} height={80} />
-				<h1>Welcome to <a href="https://astro.build/">Astro</a></h1>
-			</div>
-		</header>
+    <MenuLayout id="swup" client:load>
+        <main>
+            <header>
+                <div>
+                    <h1>Welcome to <a href="https://astro.build/">Astro</a></h1>
+                </div>
+            </header>
 
-		<article>
-		  <h2>An article here, or a tour?</h2>
-			<OneContent />
-		</article>
+            <article>
+              <h2>An article here, or a tour?</h2>
+                <OneContent />
+            </article>
 
-		<!--
-
-		You can also use imported framework components directly in your markup!
-
-		Note: by default, these components are NOT interactive on the client.
-		The `client:visible` directive tells Astro to make it interactive.
-
-		See https://docs.astro.build/core-concepts/component-hydration/
-
-		-->
-
-		<VueCounter client:visible />
-	</main>
+            <VueCounter client:visible />
+        </main>
+	</MenuLayout>
 </body>
 </html>
