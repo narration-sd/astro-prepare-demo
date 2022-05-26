@@ -4,6 +4,7 @@ import '../styles/global.css';
 import '../styles/home.css';
 import MenuLayout from '../layouts/MenuLayout.vue'
 import MdMine from '../components/MdMine.vue'
+import VueCounter from '../components/VueCounter.vue';
 
 // following statement is confusion. imports need to be here, for component:load only...???
 // Component Script:
@@ -66,7 +67,8 @@ export default {
 	</style>
 </head>
 <body>
-    <MenuLayout id="swup" client:load>
+    <MenuLayout client:load>
+     <div id="swup">
         <main>
             <header>
                 <div>
@@ -80,9 +82,10 @@ export default {
             </article>
 
             <article>
-              <MdMine source={source} :date="date" client:only="Vue" />
+              <MdMine source={source} :date="date" client:load />
             </article>
         </main>
+        </div>
     </MenuLayout>
 </body>
 </html>

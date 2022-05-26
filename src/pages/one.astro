@@ -4,6 +4,7 @@ import '../styles/global.css';
 import '../styles/home.css';
 import VueCounter from '../components/VueCounter.vue';
 import MenuLayout from '../layouts/MenuLayout.vue'
+import MdMine from '../components/MdMine.vue'
 
 let title = 'My Astro One';
 ---
@@ -46,7 +47,8 @@ let title = 'My Astro One';
 	</style>
 </head>
 <body>
-    <MenuLayout id="swup" client:load>
+    <MenuLayout client:load>
+     <div id="swup">
         <main>
             <header>
                 <div>
@@ -59,8 +61,9 @@ let title = 'My Astro One';
                 <OneContent />
             </article>
 
-            <VueCounter client:visible />
+            <VueCounter client:load />
         </main>
+	</div>
 	</MenuLayout>
 </body>
 </html>
