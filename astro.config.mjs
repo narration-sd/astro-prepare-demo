@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import vue from '@astrojs/vue';
+// import vue from './src/integrations/vue/dist/index.js';
 // import md from 'integrations/md'
 // import turbolinks from "@astrojs/turbolinks";
 

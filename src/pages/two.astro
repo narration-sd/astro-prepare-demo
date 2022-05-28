@@ -4,7 +4,6 @@ import '../styles/global.css';
 import '../styles/home.css';
 import MenuLayout from '../layouts/MenuLayout.vue'
 import MdMine from '../components/MdMine.vue'
-import VueCounter from '../components/VueCounter.vue';
 
 // following statement is confusion. imports need to be here, for component:load only...???
 // Component Script:
@@ -13,19 +12,21 @@ import VueCounter from '../components/VueCounter.vue';
 // All variables are available to use in the HTML template below.
 
 let title = 'My Astro Two';
-const source = '## Let\'s ***Vue*** some \n- *fresh*\n- **Markdown**,\n\n also...';
+const source = '## Lets ***Vue*** some \n- *fresh*\n- **Markdown**,\n\n also...';
 
 ---
 <script>
 // import MdMine from '../components/MdMine.vue'
 
 export default {
+
   data: function () {
     return {
       date: new Date()
     }
   }
 }
+
 </script>
 
 <html lang="en">
@@ -68,7 +69,7 @@ export default {
 </head>
 <body>
     <MenuLayout client:load>
-     <div id="swup">
+     <div id="myswup">
         <main>
             <header>
                 <div>
@@ -82,7 +83,8 @@ export default {
             </article>
 
             <article>
-              <MdMine source={source} :date="date" client:load />
+              <!-- <MdMine source={source} :date="date" client:only="vue" /> -->
+              <MdMine source={source} client:only="vue" />
             </article>
         </main>
         </div>
