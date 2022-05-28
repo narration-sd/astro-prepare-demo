@@ -11,10 +11,11 @@
   },
   "devDependencies": {
     "@astrojs/vue": "^0.1.4",
-    "astro": "^1.0.0-beta.31",
+    "astro": "^1.0.0-beta.36",
     "vue": "^3.2.36"
   },
   "dependencies": {
+    "@swup/debug-plugin": "^1.0.3",
     "@swup/scripts-plugin": "^1.1.0",
     "@types/markdown-it": "^12.2.3",
     "install-local": "^3.0.1",

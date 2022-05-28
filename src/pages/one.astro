@@ -48,7 +48,7 @@ let title = 'My Astro One';
 </head>
 <body>
     <MenuLayout client:load>
-     <div id="swup">
+     <div id="myswup">
         <main>
             <header>
                 <div>
@@ -61,7 +61,7 @@ let title = 'My Astro One';
                 <OneContent />
             </article>
 
-            <VueCounter client:load />
+            <VueCounter  client:only="vue" />
         </main>
 	</div>
 	</MenuLayout>
