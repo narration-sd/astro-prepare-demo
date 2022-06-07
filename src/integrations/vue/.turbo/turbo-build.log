@@ -1,0 +1,5 @@
+@astrojs/vue:build: cache hit, replaying output [2m6dc85baab208aa62[0m
+[33m@astrojs/vue:build: [0m
+[33m@astrojs/vue:build: [0m> @astrojs/vue@0.1.4 build C:\vagrant\release\astro\astro\packages\integrations\vue
+[33m@astrojs/vue:build: [0m> astro-scripts build "src/**/*.ts" && tsc
+[33m@astrojs/vue:build: [0m
