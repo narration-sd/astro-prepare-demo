@@ -1,1 +1,0 @@
-alias "astro-scripts"="esbuild"
