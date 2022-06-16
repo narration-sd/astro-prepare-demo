@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "@astrojs/vue": "^0.1.5",
-    "astro": "^1.0.0-beta.44",
+    "astro": "^1.0.0-beta.47",
     "vue": "^3.2.37"
   },
   "dependencies": {
@@ -19,7 +19,7 @@
     "@swup/scripts-plugin": "^1.1.0",
     "@types/markdown-it": "^12.2.3",
     "install-local": "^3.0.1",
-    "swup": "^2.0.14",
+    "swup": "^2.0.15",
     "vite": "^2.9.12",
     "vue3-datepicker": "^0.3.4",
     "vue3-markdown-it": "^1.0.10"
