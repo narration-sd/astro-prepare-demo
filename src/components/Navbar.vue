@@ -5,8 +5,8 @@
 <template>
   <nav>
     <menu>
-      <li v-for="nav in navs" :class="{ menuitem: true, active: nav.name === name }">
-        <a :href="nav.path">{{ nav.name }}</a>
+      <li v-for="nav in navs" :class="{ menuitem: true, active: nav.name === currentPagename }">
+        <a :href="nav.path" v-on:click="pageNow(nav.name)">{{ nav.name }}</a>
       </li>
     </menu>
     <br>
@@ -21,10 +21,11 @@ export default {
   name: "Navbar",
   props: {
     // *todo* have to change this to computed pulled from window path
-    name: { type: String, default: 'one'}
+    name: { type: String, default: 'home'}
   },
   data: function () {
     return {
+      currentPagename: this.name,
       navs: [
         { name:'home', path: '/' },
         { name:'one', path: '/one' },
@@ -32,6 +33,12 @@ export default {
       ],
     }
   },
+  methods: {
+    pageNow: function (pagename) {
+      console.log('setting page: ' + pagename)
+      this.currentPagename = pagename
+    }
+  }
 }
 </script>
 
