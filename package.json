@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@swup/debug-plugin": "^1.0.3",
+    "@swup/head-plugin": "^1.2.0",
     "@swup/scripts-plugin": "^1.1.0",
     "@types/markdown-it": "^12.2.3",
     "install-local": "^3.0.1",
