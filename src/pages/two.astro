@@ -12,7 +12,7 @@ import MdMine from '../components/MdMine.vue'
 // All variables are available to use in the HTML template below.
 
 let title = 'My Astro Two';
-const source = '## Lets ***Vue*** some \n- *fresh*\n- **Markdown**,\n\n also...';
+const source = '## Lets ***Vue*** some \n- freshly *own-module-formatted*\n- **Markdown**,\n\n also...';
 
 ---
 <script>import '../modules/swup.ts' </script>
@@ -85,7 +85,7 @@ export default {
 
             <article>
               <!-- <MdMine source={source} :date="date" client:only="vue" /> -->
-              <MdMine source={source} client:only="vue" />
+              <MdMine source={source} client:only="vue" :date="date"/>
             </article>
         </main>
     </MenuLayout>

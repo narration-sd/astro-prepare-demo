@@ -4,7 +4,8 @@
     <Mkdown :source="source" breaks />
   </div>
   <div>
-    <Datepicker v-model="theDate" />
+    <p>last date we had: {{theDate}}</p>
+      <Datepicker v-model="theDate" />
     <h4>...and we're done</h4>
   </div>
 </template>
@@ -34,8 +35,9 @@ export default {
   data: function () {
     return {
       // date: ref(new Date()),
-      // theDate: ref(this.date),
-      theDate: ref(new Date("2022-05-01T19:28:17.736Z")),
+      baseDate: this.date,
+      theDate: this.date, // ref(this.baseDate),
+      // theDate: ref(new Date("2022-05-01T19:28:17.736Z")),
     }
   },
   created() {
