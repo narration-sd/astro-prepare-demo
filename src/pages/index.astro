@@ -3,10 +3,20 @@ import Logo from '../components/Logo.astro';
 import '../styles/global.css';
 import '../styles/home.css';
 import MenuLayout from '../layouts/MenuLayout.vue'
+import TurboSuspense from '../components/TurboSuspense.vue';
 
 let title = 'My Astro Site';
 ---
-<script>import '../modules/swup.ts' </script>
+<script>
+const getTurbo = async function () {
+	// import * as Turbo from "@hotwired/turbo"
+	if (typeof window !== 'undefined') {
+		const wut = await import ("@hotwired/turbo")
+		console.log('hot turbo in...')
+	}
+}
+getTurbo()
+</script>
 
 <html lang="en">
 <head>
@@ -47,7 +57,7 @@ let title = 'My Astro Site';
 	</style>
 </head>
 <body>
-    <div id="myswup">
+    <div>
     <MenuLayout client:load>
         <main>
             <header>

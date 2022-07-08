@@ -4,6 +4,7 @@ import '../styles/global.css';
 import '../styles/home.css';
 import MenuLayout from '../layouts/MenuLayout.vue'
 import MdMine from '../components/MdMine.vue'
+//import TurboSuspense from '../components/TurboSuspense.vue';
 
 // following statement is confusion. imports need to be here, for component:load only...???
 // Component Script:
@@ -13,21 +14,16 @@ import MdMine from '../components/MdMine.vue'
 
 let title = 'My Astro Two';
 const source = '## Lets ***Vue*** some \n- freshly *own-module-formatted*\n- **Markdown**,\n\n also...';
-
 ---
-<script>import '../modules/swup.ts' </script>
-
 <script>
-
-export default {
-
-  data: function () {
-    return {
-      date: new Date()
-    }
-  }
+const getTurbo = async function () {
+	// import * as Turbo from "@hotwired/turbo"
+	if (typeof window !== 'undefined') {
+		const wut = await import ("@hotwired/turbo")
+		console.log('hot turbo in...')
+	}
 }
-
+getTurbo()
 </script>
 
 <html lang="en">
@@ -67,9 +63,10 @@ export default {
 			padding: 1rem;
 		}
 	</style>
+	 <meta name="turbo-visit-control" content="reload">
 </head>
 <body>
-    <div id="myswup">
+    <div>
     <MenuLayout client:load>
         <main>
             <header>
@@ -79,16 +76,16 @@ export default {
             </header>
 
             <article>
-              <h2>An article with Swup; what do you think?</h2>
+              <h2>An article with Turbo, maybe; what do you think?</h2>
                 <TwoContent />
             </article>
 
             <article>
-              <!-- <MdMine source={source} :date="date" client:only="vue" /> -->
-              <MdMine source={source} client:only="vue" :date="date"/>
+              <MdMine source={source} client:only="vue" />
+              <!-- <MdMine source={source} client:only="turbo" /> -->
             </article>
         </main>
     </MenuLayout>
-    </div>
+	</div>
 </body>
 </html>

@@ -1,12 +1,12 @@
 ---
-
-
 ---
 <template>
   <nav>
     <menu>
       <li v-for="nav in navs" :class="{ menuitem: true, active: nav.name === currentPagename }">
-        <a :href="nav.path" v-on:click="pageNow(nav.name)">{{ nav.name }}</a>
+        <a :href="nav.path"
+           v-on:click="pageNow(nav.name)"
+           data-turbo-action="replace" >{{ nav.name }} </a>
       </li>
     </menu>
     <br>

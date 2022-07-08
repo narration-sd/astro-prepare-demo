@@ -4,11 +4,20 @@ import '../styles/global.css';
 import '../styles/home.css';
 import MenuLayout from '../layouts/MenuLayout.vue'
 import VueCounter from '../components/VueCounter.vue';
+import TurboSuspense from '../components/TurboSuspense.vue';
 
 let title = 'My Astro One';
 ---
-<script>import '../modules/swup.ts' </script>
-
+<script>
+const getTurbo = async function () {
+	// import * as Turbo from "@hotwired/turbo"
+	if (typeof window !== 'undefined') {
+		const wut = await import ("@hotwired/turbo")
+		console.log('hot turbo in...')
+	}
+}
+getTurbo()
+</script>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -48,7 +57,7 @@ let title = 'My Astro One';
 	</style>
 </head>
 <body>
-    <div id="myswup">
+    <div>
     <MenuLayout client:load>
         <main>
             <header>
@@ -62,7 +71,7 @@ let title = 'My Astro One';
                 <OneContent />
             </article>
 
-            <VueCounter  client:only="vue" />
+            <VueCounter client:only="vue" />
         </main>
 	</MenuLayout>
 	</div>

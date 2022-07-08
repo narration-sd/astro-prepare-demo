@@ -4,8 +4,8 @@
     <br>
     <Mkdown :source="source" breaks />
     <br>
-  </div>
-  <div>
+<!--  </div>
+  <div>-->
     <h2>Last, we have a date, pinia persisted:</h2>
     <p>date in store: {{dateStore.date}}</p>
     <Datepicker v-model="dateStore.date" />

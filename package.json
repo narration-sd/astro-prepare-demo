@@ -15,12 +15,16 @@
     "vue": "^3.2.37"
   },
   "dependencies": {
+    "@hotwired/turbo": "^7.1.0",
     "@swup/debug-plugin": "^1.0.3",
     "@swup/head-plugin": "^1.2.0",
     "@swup/scripts-plugin": "^1.1.0",
     "@types/markdown-it": "^12.2.3",
     "@vuepic/vue-datepicker": "^3.3.1",
     "install-local": "^3.0.1",
+    "pinia": "^2.0.14",
+    "pinia-plugin-persist": "^1.0.0",
+    "serialize-javascript": "^6.0.0",
     "swup": "^2.0.15",
     "vite": "^2.9.12",
     "vue3-markdown-it": "^1.0.10"
