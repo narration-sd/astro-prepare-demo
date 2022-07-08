@@ -1,23 +1,31 @@
 <template>
   <div>
     <NoLibs />
+    <br>
     <Mkdown :source="source" breaks />
+    <br>
   </div>
   <div>
-    <p>last date we had: {{theDate}}</p>
-      <Datepicker v-model="theDate" />
+    <h2>Last, we have a date, pinia persisted:</h2>
+    <p>date in store: {{dateStore.date}}</p>
+    <Datepicker v-model="dateStore.date" />
     <h4>...and we're done</h4>
   </div>
 </template>
 
 <script setup>
 import Mkdown from 'vue3-markdown-it'
-import Datepicker from 'vue3-datepicker'
+import Datepicker from '@vuepic/vue-datepicker'
+import '@vuepic/vue-datepicker/dist/main.css'
 import NoLibs from "../components/NoLibs.vue";
+import { useDateStore } from "../stores/dateStore.ts"
+import {ref} from "vue";
+
+const dateStore = useDateStore()
+
 </script>
 
 <script>
-import { ref } from 'vue' // *todo* here?
 
 export default {
   name: 'MdMine',
@@ -30,22 +38,19 @@ export default {
       type: Object,
       // default: function () { return  ref(new Date()) }
       default: function () { return  new Date() }
-    }
+    },
   },
   data: function () {
     return {
-      // date: ref(new Date()),
-      baseDate: this.date,
-      theDate: this.date, // ref(this.baseDate),
-      // theDate: ref(new Date("2022-05-01T19:28:17.736Z")),
     }
   },
-  created() {
-    console.log('source prop is: '+ this.source)
-    console.log('date prop is: '+ JSON.stringify(this.date))
-    console.log('typeof date prop is: '+ typeof this.date)
-    console.log('theDate data is: '+ JSON.stringify(this.theDate))
-    console.log('typeof theDate data is: '+ typeof this.theDate)
+  methods: {
   },
+  computed: {
+  },
+  created: function () {
+  },
+  mounted() {
+  }
 }
 </script>
