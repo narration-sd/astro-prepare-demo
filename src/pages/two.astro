@@ -15,17 +15,6 @@ import MdMine from '../components/MdMine.vue'
 let title = 'My Astro Two';
 const source = '## Lets ***Vue*** some \n- freshly *own-module-formatted*\n- **Markdown**,\n\n also...';
 ---
-<script>
-const getTurbo = async function () {
-	// import * as Turbo from "@hotwired/turbo"
-	if (typeof window !== 'undefined') {
-		const wut = await import ("@hotwired/turbo")
-		console.log('hot turbo in...')
-	}
-}
-getTurbo()
-</script>
-
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -63,7 +52,8 @@ getTurbo()
 			padding: 1rem;
 		}
 	</style>
-	 <meta name="turbo-visit-control" content="reload">
+	<!-- *todo* x in or out depending if turbo works on this page w/astro -->
+	 <xmeta name="turbo-visit-control" content="reload">
 </head>
 <body>
     <div>

@@ -23,7 +23,7 @@ const useDateStore = defineStore('dateStore', {
         enabled: true,
         strategies: [
             {
-                key: 'user',
+                key: 'astroblog',
                 storage: localStorage,
             },
         ],
