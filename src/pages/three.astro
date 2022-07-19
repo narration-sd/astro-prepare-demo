@@ -1,9 +1,9 @@
 ---
-import {Content as TwoContent} from '../content/Two.md';
+import {Content as ThreeContent} from '../content/Three.md';
 import '../styles/global.css';
 import '../styles/home.css';
 import MenuLayout from '../layouts/MenuLayout.vue'
-import MdMine from '../components/MdMine.vue'
+import MdThree from '../components/MdThree.vue'
 //import TurboSuspense from '../components/TurboSuspense.vue';
 
 // following statement is confusion. imports need to be here, for component:load only...???
@@ -23,7 +23,7 @@ return {
 const { id } = Astro.params
 const { post } = Astro.props
 
-let title = 'My Astro Two';
+let title = 'My Astro Three';
 const source = '## Lets ***Vue*** some \n- freshly *own-module-formatted*\n- **Markdown**,\n\n also...';
 ---
 <html lang="en">
@@ -81,11 +81,11 @@ const source = '## Lets ***Vue*** some \n- freshly *own-module-formatted*\n- **M
 
             <article>
               <h2>An article with Turbo, maybe; what do you think?</h2>
-                <TwoContent />
+                <ThreeContent />
             </article>
 
             <article>
-              <MdMine source={source} client:only="vue" />
+              <MdThree source={source} client:only="vue" />
               <!-- <MdMine source={source} client:only="turbo" /> -->
             </article>
         </main>

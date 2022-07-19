@@ -7,6 +7,7 @@ const useDateStore = defineStore('dateStore', {
     state: () => {
         return {
             date: new Date(),
+            date3: new Date(),
             count: 0
         }
     },

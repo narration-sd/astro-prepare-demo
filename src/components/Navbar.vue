@@ -30,6 +30,7 @@ export default {
         { name:'home', path: '/' },
         { name:'one', path: '/one' },
         { name:'two', path: '/two' },
+        { name:'three', path: '/three' },
       ],
     }
   },
