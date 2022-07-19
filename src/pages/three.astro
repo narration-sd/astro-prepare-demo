@@ -6,6 +6,20 @@ import MenuLayout from '../layouts/MenuLayout.vue'
 import MdThree from '../components/MdThree.vue'
 //import TurboSuspense from '../components/TurboSuspense.vue';
 
+// try this generated routes thing
+export async function getStaticPaths() {
+const post = { id: 1, text: 'something for a param' }
+return [
+    {
+      params: { id: post.id },
+      props: { post },
+    },
+    {
+      params: { id: post.id + 1},
+      props: { post },
+    }
+];
+}
 // following statement is confusion. imports need to be here, for component:load only...???
 // Component Script:
 // You can write any JavaScript/TypeScript that you'd like here.
@@ -13,15 +27,19 @@ import MdThree from '../components/MdThree.vue'
 // All variables are available to use in the HTML template below.
 console.error ('astroProps: ' + JSON.stringify(Astro.props))
 const astroProps = JSON.stringify(Astro.props)
-export async function getStaticPaths() {
-const post = { id: 23, text: 'something for a param' }
-return {
-  params: { id: post.id },
-  props: { post },
-};
-}
+
 const { id } = Astro.params
 const { post } = Astro.props
+console.log('Astro.params: ' + JSON.stringify(Astro.params))
+console.log('Astro.props: ' + JSON.stringify(Astro.props))
+console.log('Astro.props.funk: ' + JSON.stringify(Astro.props.funk))
+// const funk = new Function(Astro.props.funk)()
+const { dofunk = '"no funk!"' } = Astro.props
+console.log('dofunk is: ' + dofunk)
+// n.b. must have the return, or there isn't one, thus...boom
+const funknow = new Function ('return ' +  dofunk)
+console.log('funknow(): ' + funknow())
+
 
 let title = 'My Astro Three';
 const source = '## Lets ***Vue*** some \n- freshly *own-module-formatted*\n- **Markdown**,\n\n also...';
@@ -75,6 +93,7 @@ const source = '## Lets ***Vue*** some \n- freshly *own-module-formatted*\n- **M
                     <h1>Welcome to <a href="https://astro.build/">Astro</a></h1>
                     <h2>This is { title }</h2>
                     <h2>Astro.props are { astroProps }</h2>
+                    <h2>How we are now, is { funknow }</h2>
                     <h2>id is { id }, post is { post }</h2>
                 </div>
             </header>
