@@ -7,17 +7,23 @@ const preparePinia = function (app) {
             console.log ('then createPinia: ' + typeof createPinia)
             // const { default:piniaPersist } = import ('pinia-plugin-persist')
             // const piniaPersist = import ('pinia-plugin-persist')
+            // *todo* messy but necessary; see note just below on array, object altternative
             piniaCreator = createPinia
             return import ('pinia-plugin-persist')
-            // return [ createPinia, import ('pinia-plugin-persist') ]
-            // return [ createPinia, piniaPersist ]
+            //
+            // // *todo* nota very bene: this will not work, doesn't cause Promise wait
+            // //  *todo* on import(). Doing this way passing an object instead of array makes
+            // //  *todo* no difference, same problem
+            // // return [ import ('pinia-plugin-persist'), createPinia ]
+            // return [ import ('pinia-plugin-persist'), createPinia ]
+            // // return [ createPinia, piniaPersist ]
         })
         .catch (err => {
             console.error('import pinia-plugin-persist failed: ' + err)
         })
         .then ((piniaPersist) => {
             const createPinia = piniaCreator
-        // .then (([ createPinia, piniaPersist ]) => {
+        // .then (([ piniaPersist, createPinia ]) => {
 
             console.log('then2 typeof createPinia: ' + typeof createPinia)
             console.dir(createPinia)
