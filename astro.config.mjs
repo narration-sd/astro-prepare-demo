@@ -1,5 +1,8 @@
 import { defineConfig } from 'astro/config';
 import vue from '@astrojs/vue';
+
+import prepare from './src/modules/ext-vue-prepare.mjs'
+
 // import vue from './src/integrations/vue/dist/index.js';
 // import md from 'integrations/md'
 // import turbolinks from "@astrojs/turbolinks";
@@ -34,7 +37,6 @@ import vue from '@astrojs/vue';
 // import { createPinia } from 'pinia'
 // const { createPinia } = import('pinia')
 // const piniaPersist = 99 // { piniaPersist } = import ('pinia-plugin-persist')
-console.log('runnning config')
 const preparePinia = function (app) {
     console.log ('initial createPinia: ' + typeof createPinia)
     console.log ('initial piniaPersist: ' + typeof piniaPersist)
@@ -72,7 +74,10 @@ const preparePinia = function (app) {
     })
 }
 
+// console.log('runnning config')
 // preparePinia() // try first here
+console.log ('trying module prepare...')
+prepare(null, 'up-front test')
 
 // https://astro.build/config
 export default defineConfig({
