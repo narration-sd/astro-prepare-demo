@@ -1,5 +1,5 @@
 <template>
-<h2>NoLibs: I just don't have js libs</h2>
+<h3>NoLibs: I just don't have js libs</h3>
   <p>{{ msg }}</p>
 </template>
 

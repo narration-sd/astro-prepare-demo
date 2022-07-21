@@ -57,6 +57,9 @@ const source = '## Lets ***Vue*** some \n- freshly *own-module-formatted*\n- **M
 			padding-left: 0.75em;
 			border-radius: 4px;
 		}
+		h3 {
+		    font-size: 12pt
+		}
 	</style>
 	<style is:global>
 		pre {
@@ -73,14 +76,14 @@ const source = '## Lets ***Vue*** some \n- freshly *own-module-formatted*\n- **M
             <header>
                 <div>
                     <h1>Welcome to <a href="https://astro.build/">Astro</a></h1>
-                    <h2>This is { title }</h2>
-                    <h2>Astro.props are { astroProps }</h2>
-                    <h2>id is { id }, post is { post }</h2>
+                    <h3>This is { title }</h3>
+                    <h3>Astro.props are { astroProps }</h3>
+                    <h3>id is { id }, post is { post }</h3>
                 </div>
             </header>
 
             <article>
-              <h2>An article with Turbo, maybe; what do you think?</h2>
+              <h3>An article with Turbo, maybe; what do you think?</h2>
                 <TwoContent />
             </article>
 
