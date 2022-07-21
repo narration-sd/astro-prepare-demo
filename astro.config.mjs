@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 import vue from '@astrojs/vue';
 
-import prepare from './src/modules/ext-vue-prepare.mjs'
+// import prepare from './src/modules/ext-vue-prepare.mjs'
 
 // import vue from './src/integrations/vue/dist/index.js';
 // import md from 'integrations/md'
@@ -76,8 +76,8 @@ const preparePinia = function (app) {
 
 // console.log('runnning config')
 // preparePinia() // try first here
-console.log ('trying module prepare...')
-prepare(null, 'up-front test')
+// console.log ('trying module prepare...')
+// prepare(null, 'up-front test')
 
 // https://astro.build/config
 export default defineConfig({
