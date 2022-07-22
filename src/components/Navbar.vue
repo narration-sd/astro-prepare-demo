@@ -3,10 +3,11 @@
 <template>
   <nav>
     <menu>
-      <li v-for="nav in navs" :class="{ menuitem: true, active: nav.name === currentPagename }">
+      <li v-for="nav in navs" :class="{ menuitem: true, active: active(nav.path) }">
+        <p>path {{ currentPath }}, {{ nav.path }}, {{ thePath }}, <br> {{ nav.path === thePath }} ,{{ active(nav.path) }}</p>
         <a :href="nav.path"
            v-on:click="pageNow(nav.name)"
-           data-turbo-action="advance" >{{ nav.name }} </a>
+           data-turbo-action="advance" :class="pathActive">{{ nav.name }} </a>
       </li>
     </menu>
     <br>
@@ -15,7 +16,21 @@
   <br>
 </template>
 
+<!--<script setup>-->
+<!--import {onBeforeMount, ref, reactive} from "vue";-->
+
+<!--const aPath = ref('nope')-->
+<!--const thePath = reactive(aPath)-->
+
+<!--onBeforeMount( () => {-->
+<!--  console.log('onPath: ' + ((typeof window === 'undefined') ? '/' : window.location.pathname))-->
+<!--  aPath.value = ((typeof window === 'undefined') ? '/' : window.location.pathname)-->
+<!--})-->
+<!--</script>-->
+
 <script>
+import { nextTick } from 'vue'
+import {onBeforeMount, ref, reactive} from "vue";
 
 export default {
   name: "Navbar",
@@ -23,9 +38,24 @@ export default {
     // *todo* have to change this to computed pulled from window path
     name: { type: String, default: 'home'}
   },
+  setup () {
+    const aPath = ref('nope')
+    const thePath = reactive(aPath)
+
+    onBeforeMount( () => {
+      console.log('onPath: ' + ((typeof window === 'undefined') ? '/' : window.location.pathname))
+      aPath.value = ((typeof window === 'undefined') ? '/' : window.location.pathname)
+    })
+
+    return {
+      // *todo* except, how do we do this in a <script setup>, as commented out above??
+      thePath
+    }
+  },
   data: function () {
     return {
       currentPagename: this.name,
+      currentPath: '/two',
       navs: [
         { name:'home', path: '/' },
         { name:'one', path: '/one' },
@@ -35,10 +65,17 @@ export default {
     }
   },
   methods: {
+    menuActive: function (path) { return { menuitem: true, active: this.active(path) }},
+    active: function (path) { return path === this.thePath /*this.currentPath*/ },
+    pathNow: function () { return (typeof window === 'undefined') ? '/' : window.location.pathname },
     pageNow: function (pagename) {
       console.log('setting page: ' + pagename)
-      this.currentPagename = pagename
-    }
+      this.currentPagename = pagename;
+      // this.$nextTick(() => { this.currentPath = this.pathNow() })
+    },
+  },
+  computed: {
+    pathActive: function () { return { menuitem: true, active: true } }
   }
 }
 </script>
