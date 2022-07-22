@@ -67,7 +67,6 @@ const source = '## Lets ***Vue*** some \n- freshly *own-module-formatted*\n- **M
 		}
 	</style>
 	<!-- *todo* x in or out depending if turbo works on this page w/astro -->
-	 <xmeta name="turbo-visit-control" content="reload">
 </head>
 <body>
     <div>
@@ -89,7 +88,6 @@ const source = '## Lets ***Vue*** some \n- freshly *own-module-formatted*\n- **M
 
             <article>
               <MdMine source={source} client:only="vue" />
-              <!-- <MdMine source={source} client:only="turbo" /> -->
             </article>
         </main>
     </MenuLayout>

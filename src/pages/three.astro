@@ -7,6 +7,15 @@ import MdThree from '../components/MdThree.vue'
 // import TurboSuspense from '../components/TurboSuspense.vue';
 // import prepare from '../../../modules/ext-vue-prepare.mjs'
 
+const turbish = function () {
+    if (typeof window !== 'undefined') {
+        const Turbo = import ('@hotwired/turbo')
+           .then ((res) => { return res })
+       Turbo ()
+    }
+}
+turbish()
+
 // try this generated routes thing
 export async function getStaticPaths() {
 const post = { id: 1, text: 'something for a param' }
@@ -86,7 +95,6 @@ const source = '## Let\'s ***Vue*** some \n- freshly *own-module-formatted*\n- *
 		}
 	</style>
 	<!-- *todo* x in or out depending if turbo works on this page w/astro -->
-	 <xmeta name="turbo-visit-control" content="reload">
 </head>
 <body>
     <div>
@@ -109,7 +117,6 @@ const source = '## Let\'s ***Vue*** some \n- freshly *own-module-formatted*\n- *
 
             <article>
               <MdThree source={source} client:only="vue" />
-              <!-- <MdMine source={source} client:only="turbo" /> -->
             </article>
         </main>
     </MenuLayout>

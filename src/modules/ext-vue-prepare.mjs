@@ -1,6 +1,33 @@
+// integration prepares should be mjs, and will be found if present
+// in the modules folder. ext-vue-prepare.mjs is the one that the Astro
+// vue integration would use. Don't forget install the libraries these
+// prepares use into the Astro app's node_modules.
+//
+// prepares are expected to run after an integration's basis exists,
+// but before it is mounted, so that plugins etc. can be added.
+
+// some routines to be run, each with some specialties
+
+// *todo* really, this ought to go in a very simple hotwiredTurbo integration...
+// Our first addtion is Hotwired Turbo, so that we get SPA speed pages,
+// or could add animations. Just importing Turbo fires it off; if it's not
+// tolerant unless in browserland.  Wee do have to await the import(),
+// however, without await. As well, Turbo doesn't prefer to be reinitialized
+// rapidly, while Astro will try it, so we protect against that, as well.
+const prepareTurbo = function () {
+    if (typeof window !== 'undefined' 
+        && typeof window.Turbo === 'undefined') {
+        import ('@hotwired/turbo')
+            .then (() => {})
+    }
+}
+
+// Pinia needs to be use()ed as a plugin by the Vue initial app,
+// while having its own plugins to be use()ed internally first.
+// there are issues here, all handled. The one that can't be
+// taken care of is that running in Astro dev somehow upsets
+// Turbo enough that though it's there, it simply doesn't run.
 const preparePinia = function (app) {
-    console.log ('initial createPinia: ' + typeof createPinia)
-    console.log ('initial piniaPersist: ' + typeof piniaPersist)
     let piniaCreator
     return import('pinia')
         .then (({ createPinia }) => {
@@ -33,6 +60,23 @@ const preparePinia = function (app) {
             console.dir(piniaPersist.default)
             // console.log('then2 piniaPersist: ' + piniaPersist)
 
+            // *todo* notes here for explaining how Promise.all does not work
+            // and that there are other advantages to the split: that we can
+            // individual catch a failed import, and also log to console natures of retunns
+            // that this whole thing is a systems-level exercise, so shoudl have
+            // the thougthfulness and coverage of error possibilities, not to say
+            // discovery for unexpected cases during development or fixing for library
+            // changes causing reversions.
+
+            // now, the real problem:
+            // something about the nature of import()ed wrong lib types
+            // so that piniaPersist.default doesn't work in that case
+            // const createPinia = import('pinia')
+            // const piniaPersist = import ('pinia-plugin-persist')
+            // return Promise.all ([createPinia, piniaPersist])
+            //     .then (([ createPinia, piniaPersist ]) => {
+            //
+            // a checking
             // return Promise.all ([ createPinia, piniaPersist ])
             //   .then ((values) => {
             //       console.log (' values: '+ JSON.stringify(values))
@@ -62,6 +106,8 @@ const prepare = function (app, extension = 'not named') {
     console.log ('Entering prepare using: ' + typeof app)
     // console.log ('current folder: ' + process.cwd())
     console.log ('About to prepare for extension: ' + extension)
+
+    prepareTurbo()
 
     return preparePinia(app)
         .then (result => {
