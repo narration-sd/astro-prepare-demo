@@ -2,20 +2,11 @@
 import {Content as ThreeContent} from '../content/Three.md';
 import '../styles/global.css';
 import '../styles/home.css';
-import MenuLayout from '../layouts/MenuLayout.vue'
+// import MenuLayout from '../layouts/MenuLayout.vue'
+import MenuLayout from '../layouts/MenuLayout.astro'
 import MdThree from '../components/MdThree.vue'
 // import TurboSuspense from '../components/TurboSuspense.vue';
 // import prepare from '../../../modules/ext-vue-prepare.mjs'
-
-const turbish = function () {
-    if (typeof window !== 'undefined') {
-        const Turbo = import ('@hotwired/turbo')
-           .then ((res) => { return res })
-       Turbo ()
-    }
-}
-turbish()
-
 // try this generated routes thing
 export async function getStaticPaths() {
 const post = { id: 1, text: 'something for a param' }

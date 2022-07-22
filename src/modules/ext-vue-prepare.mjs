@@ -107,7 +107,7 @@ const prepare = function (app, extension = 'not named') {
     // console.log ('current folder: ' + process.cwd())
     console.log ('About to prepare for extension: ' + extension)
 
-    // prepareTurbo()
+    prepareTurbo()
 
     return preparePinia(app)
         .then (result => {

@@ -3,11 +3,10 @@
 <template>
   <nav>
     <menu>
-      <li v-for="nav in navs" :class="{ menuitem: true, active: active(nav.path) }">
-        <p>path {{ currentPath }}, {{ nav.path }}, {{ thePath }}, <br> {{ nav.path === thePath }} ,{{ active(nav.path) }}</p>
+      <li v-for="(nav, index) in navs" :class="{ menuitem: true, active: cactive(nav.path) }">
         <a :href="nav.path"
            v-on:click="pageNow(nav.name)"
-           data-turbo-action="advance" :class="pathActive">{{ nav.name }} </a>
+           data-turbo-action="advance">{{ nav.name }}{{ index }} </a>
       </li>
     </menu>
     <br>
@@ -41,6 +40,9 @@ export default {
   setup () {
     const aPath = ref('nope')
     const thePath = reactive(aPath)
+    const pathname = new URL(Astro.request.url).pathname;
+    const currentPath = pathname.slice(1); // remove the first "/"
+    const menuClass = (path) => { return (path === pathname) ? "menuitem active" : "menuitem" }
 
     onBeforeMount( () => {
       console.log('onPath: ' + ((typeof window === 'undefined') ? '/' : window.location.pathname))
@@ -49,7 +51,8 @@ export default {
 
     return {
       // *todo* except, how do we do this in a <script setup>, as commented out above??
-      thePath
+      thePath,
+      pathname
     }
   },
   data: function () {
@@ -67,6 +70,7 @@ export default {
   methods: {
     menuActive: function (path) { return { menuitem: true, active: this.active(path) }},
     active: function (path) { return path === this.thePath /*this.currentPath*/ },
+    cactive: function (path) { return path === this.pathname },
     pathNow: function () { return (typeof window === 'undefined') ? '/' : window.location.pathname },
     pageNow: function (pagename) {
       console.log('setting page: ' + pagename)

@@ -1,0 +1,99 @@
+---
+import '../styles/global.css';
+import '../styles/home.css';
+const navs = [
+         { name:'home', path: '/' },
+         { name:'one', path: '/one' },
+         { name:'two', path: '/two' },
+         { name:'three', path: '/threewrap' },
+       ];
+const pathname = new URL(Astro.request.url).pathname;
+---
+	<style>
+    li a.active.menuitem {
+      color: lightgoldenrodyellow;
+    }
+    li a.menuitem {
+      color: blue;
+      padding: 0 25px;
+    }
+    li a {
+      text-decoration: none;
+    }
+    nav {
+      display: flex;
+    }
+    menu {
+      display: flex;
+      justify-content: space-around;
+      list-style: none;
+      padding: 20px 40px;
+      width: 100%;
+    }
+    li {
+      flex-grow: 1;
+      text-align: center;
+      text-decoration: none;
+    }
+    hr {
+      border: none;
+      height: 2px;
+      background-color: blue;
+      color: blue;
+    }
+
+		header {
+			display: flex;
+			flex-direction: column;
+			gap: 1em;
+			max-width: min(100%, 68ch);
+		}
+		article {
+			padding-top: 2em;
+			line-height: 1.5;
+			display: flex;
+			flex-direction: column;
+			gap: 1em;
+			max-width: 70ch;
+		}
+		.banner {
+			text-align: center;
+			font-size: 1.2rem;
+			background: var(--color-light);
+			padding: 1em 1.5em;
+			padding-left: 0.75em;
+			border-radius: 4px;
+		}
+	</style>
+	<style is:global>
+		pre {
+			padding: 1rem;
+		}
+	</style>
+
+<html>
+<body>
+<div>
+  <nav>
+    <menu>
+      {navs.map((nav) => (
+
+      <li>
+        <a href={nav.path}
+          data-turbo-action="advance"
+          class={ pathname === nav.path ? "menuitem active" : "menuitem" }>
+            {nav.name}
+        </a>
+      </li>
+
+      ))}
+    </menu>
+    <br>
+  </nav>
+  <hr>
+  <br>
+</div>
+</body>
+</html>
+
+
