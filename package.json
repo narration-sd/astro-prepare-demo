@@ -12,6 +12,7 @@
   "devDependencies": {
     "@astrojs/vue": "^0.2.1",
     "astro": "^1.0.0-beta.47",
+    "sass": "^1.54.0",
     "vue": "^3.2.37"
   },
   "dependencies": {
@@ -27,6 +28,7 @@
     "serialize-javascript": "^6.0.0",
     "swup": "^2.0.15",
     "vite": "^2.9.12",
+    "vite-plugin-pug": "^0.3.1",
     "vue3-markdown-it": "^1.0.10"
   }
 }

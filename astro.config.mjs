@@ -1,6 +1,10 @@
 import { defineConfig } from 'astro/config';
 import vue from '@astrojs/vue';
 
+// *todo* not  here yet, need to make an Astro integration...
+import pkg from 'vite-plugin-pug';
+const { pugPlugin } = pkg;
+
 // import prepare from './src/modules/ext-vue-prepare.mjs'
 
 // import vue from './src/integrations/vue/dist/index.js';
@@ -84,5 +88,6 @@ export default defineConfig({
   // integrations: [vue(), turbolinks(), md()]
   // integrations: [vue(), turbolinks()]
   // integrations: [vue()]
-  integrations: [vue({}, [ preparePinia ])]
+    integrations: [vue({}, [ preparePinia ])]
+  //   integrations: [vue({}, [ preparePinia ]), pugPlugin()]
 });

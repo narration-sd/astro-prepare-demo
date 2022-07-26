@@ -4,8 +4,8 @@ import '../styles/global.css';
 import '../styles/home.css';
 // import MenuLayout from '../layouts/MenuLayout.vue'
 import MenuLayout from '../layouts/MenuLayout.astro'
-import TurboSuspense from '../components/TurboSuspense.vue';
-
+import TurboSuspense from '../components/TurboSuspense.vue'
+import NsdMicroLogo from '../components/NsdMicroLogo.vue'
 let title = 'My Astro Site';
 ---
 <html lang="en">
@@ -54,6 +54,7 @@ let title = 'My Astro Site';
                 <div>
                     <Logo width={60} height={80} />
                     <h1>Welcome to <a href="https://astro.build/">Astro</a></h1>
+                    <NsdMicroLogo />
                 </div>
             </header>
 
