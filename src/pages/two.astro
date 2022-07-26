@@ -5,6 +5,8 @@ import '../styles/home.css';
 // import MenuLayout from '../layouts/MenuLayout.vue'
 import MenuLayout from '../layouts/MenuLayout.astro'
 import MdMine from '../components/MdMine.vue'
+import NsdMicroLogo from '../components/NsdMicroLogo.vue'
+
 //import TurboSuspense from '../components/TurboSuspense.vue';
 
 // following statement is confusion. imports need to be here, for component:load only...???
@@ -79,6 +81,7 @@ const source = '## Lets ***Vue*** some \n- freshly *own-module-formatted*\n- **M
                     <h3>This is { title }</h3>
                     <h3>Astro.props are { astroProps }</h3>
                     <h3>id is { id }, post is { post }</h3>
+                    <NsdMicroLogo catchline="more fish with good bait..."/>
                 </div>
             </header>
 

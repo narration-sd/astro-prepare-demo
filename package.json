@@ -25,10 +25,10 @@
     "install-local": "^3.0.1",
     "pinia": "^2.0.14",
     "pinia-plugin-persist": "^1.0.0",
+    "pug": "^3.0.2",
     "serialize-javascript": "^6.0.0",
     "swup": "^2.0.15",
     "vite": "^2.9.12",
-    "vite-plugin-pug": "^0.3.1",
     "vue3-markdown-it": "^1.0.10"
   }
 }

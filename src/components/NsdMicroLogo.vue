@@ -1,4 +1,6 @@
+<!--
 <template>
+-->
 <!--
 <template lang="pug">
   v-container(grid-list-md fill-height)
@@ -11,7 +13,18 @@
             h3.logo-subtitle.mini-subtitle(v-if="catchline") {{ catchline }}
 -->
 <!-- Let's just see if the rest will run, before Vuetify... -->
-<img :src="iconUrl">
+<!--
+<img class="logo-mini-img" :src="iconUrl">
+</template>
+-->
+<template lang="pug">
+div.fill-height.stamp-box
+  a(:href="href")
+    div.title-row
+      img.logo-mini-img(alt="logo" :src="iconUrl")
+      div.title-box
+        h1.logo-title.mini-title {{ title }}
+        h3.logo-subtitle.mini-subtitle(v-if="catchline") {{ catchline }}
 </template>
 
 <script setup>
@@ -25,11 +38,15 @@ export default {
   props: {
     title: {
       type: String,
-      default: 'Narration SDz'
+      default: 'Narration SD'
     },
     catchline: {
       type: String,
       default: null
+    },
+    href: {
+      type: String,
+      default: '/'
     },
     heading: {
       type: String,
@@ -46,6 +63,9 @@ export default {
 
 <style lang="sass" scoped>
 
+h1
+  font-size: larger !important
+
 a
   text-decoration: none
 
@@ -54,12 +74,16 @@ a
   margin-left: 0px
   width: fit-content
 
+.title-row
+  display: flex
+  flex-direction: row
+
 .title-box
   padding-left: 10% !important
   white-space: nowrap
 
 .logo-title
-  font-size: 3.5rem
+  font-size: 2rem
   white-space: nowrap
   color: darkblue
   font-weight: 600
@@ -82,6 +106,13 @@ a
   padding-bottom: 0
   padding-left: 0
   color: darkblue
+
+.logo-mini-img
+  width: 150px !important
+  height: 150px !important
+
+.stamp-box
+  margin: 20px
 
 .logo-subtitle
   font-size: 1.5rem

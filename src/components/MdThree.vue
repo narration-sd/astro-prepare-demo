@@ -6,7 +6,7 @@
     <br>
 <!--  </div>
   <div>-->
-    <h2>Last, we have a date, pinia persisted:</h2>
+    <h2>Last, we have a date, pinia persisted, also per page:</h2>
     <p>date in store: {{dateStore.date3}}</p>
     <Datepicker v-model="dateStore.date3" />
     <h4>...and we're done</h4>
