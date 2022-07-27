@@ -36,7 +36,7 @@ const preparePinia = function (app) {
             // const piniaPersist = import ('pinia-plugin-persist')
             // *todo* messy but necessary; see note just below on array, object altternative
             piniaCreator = createPinia
-            return import ('pinia-plugin-persist')
+            return import ('../../../pinia-plugin-persist')
             //
             // // *todo* nota very bene: this will not work, doesn't cause Promise wait
             // //  *todo* on import(). Doing this way passing an object instead of array makes
