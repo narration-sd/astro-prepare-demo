@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 // @ts-ignore
 import piniaPersist from "pinia-plugin-persist"   //need this to type the extra persist config...
-import parseISO from 'date-fns/fp/parseISO'
+// import parseISO from 'date-fns/fp/parseISO'
 
 const useDateStore = defineStore('dateStore', {
     state: () => {
@@ -14,6 +14,9 @@ const useDateStore = defineStore('dateStore', {
     actions: {
         increment() {
             this.count++
+        },
+        decrement() {
+            this.count--
         },
         setDate(newDate: Date) {
             this.date = newDate

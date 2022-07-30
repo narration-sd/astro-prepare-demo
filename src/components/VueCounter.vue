@@ -1,24 +1,48 @@
 <template>
-  <div id="vue" class="counter">
-      <button @click="subtract()">-</button>
-      <pre>{{ count }}</pre>
-      <button @click="add()">+</button>
+  <div>
+    <br>
+    <h3>Do notice there's something different about this counter...</h3>
+    <p>(when you go to another page, and come back to see its value)</p>
+    <div id="vue" class="counter">
+      <button @click="dataStore.decrement()">-</button>
+      <pre>{{ dataStore.count }}</pre>
+      <button @click="dataStore.increment()">+</button>
+    </div> to
   </div>
 </template>
 
 <script>
-import { ref } from 'vue';
+
+import { useDateStore } from "../stores/dateStore.ts"
+import {onBeforeMount, onBeforeUnmount, onMounted, onUnmounted} from "vue";
+
 export default {
   setup() {
-    const count = ref(0)
-    const add = () => count.value = count.value + 1;
-    const subtract = () => count.value = count.value - 1;
+    console.log('setup() VueCounter')
+    // beforeCreate (() =>{
+    //   console.log('beforeCreate VueCounter')
+    // })
+    onBeforeMount (() =>{
+      console.log('onBeforeMount VueCounter')
+    })
+    onMounted (() =>{
+      console.log('onMounted VueCounter')
+    })
+    onBeforeUnmount (() =>{
+      console.log('onBeforeUnmount VueCounter')
+    })
+    onUnmounted (() =>{
+      console.log('onUnmounted VueCounter')
+    })
+
+    const dataStore = useDateStore()
 
     return {
-      count,
-      add,
-      subtract
+      dataStore
     }
+  },
+  created: function () {
+    console.log('created VueCounter')
   }
 }
 </script>

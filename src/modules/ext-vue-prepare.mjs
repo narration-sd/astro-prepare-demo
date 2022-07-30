@@ -15,10 +15,17 @@
 // however, without await. As well, Turbo doesn't prefer to be reinitialized
 // rapidly, while Astro will try it, so we protect against that, as well.
 const prepareTurbo = function () {
-    if (typeof window !== 'undefined' 
+    if (typeof window !== 'undefined'
         && typeof window.Turbo === 'undefined') {
-        import ('@hotwired/turbo')
-            .then (() => {})
+        return import ('@hotwired/turbo')
+            .then (() => {
+                console.log ('@hotwired/turbo installed')
+                return true
+            })
+            .catch(err =>  {
+                console.log('import(@hotwired/turbo:failed: ' + err)
+                return false
+            })
     }
 }
 
@@ -36,7 +43,7 @@ const preparePinia = function (app) {
             // const piniaPersist = import ('pinia-plugin-persist')
             // *todo* messy but necessary; see note just below on array, object altternative
             piniaCreator = createPinia
-            return import ('../../../pinia-plugin-persist')
+            return import ('pinia-plugin-persist')
             //
             // // *todo* nota very bene: this will not work, doesn't cause Promise wait
             // //  *todo* on import(). Doing this way passing an object instead of array makes
@@ -46,15 +53,17 @@ const preparePinia = function (app) {
             // // return [ createPinia, piniaPersist ]
         })
         .catch (err => {
-            console.error('import pinia-plugin-persist failed: ' + err)
+            console.log('import(pinia-plugin-persist):failed: ' + err)
+            return false
         })
         .then ((piniaPersist) => {
             const createPinia = piniaCreator
-        // .then (([ piniaPersist, createPinia ]) => {
+            // .then (([ piniaPersist, createPinia ]) => {
 
             console.log('then2 typeof createPinia: ' + typeof createPinia)
             console.dir(createPinia)
             console.log('then2 typeof piniaPersist: ' + typeof piniaPersist)
+            console.log('then2 typeof piniaPersist.default: ' + typeof piniaPersist.default)
             // console.log('then2 piniaPersist-strg: ' + JSON.stringify(piniaPersist))
             console.dir(piniaPersist)
             console.dir(piniaPersist.default)
@@ -84,21 +93,24 @@ const preparePinia = function (app) {
 
 
             const pinia = createPinia()
+            console.log('PINIA INSTALLING persist: ' + JSON.stringify(piniaPersist))
             pinia.use(piniaPersist.default)
             console.log('PINIA CREATED: ' + JSON.stringify(pinia))
-
-            console.log('INSTALLING PlUGIN: '/* + JSON.stringify(pinia)*/)
             return pinia
         })
         .catch (err => {
             console.error('pinia.use pinia-plugin-persist failed: ' + err)
+            return false
         })
         .then((pinia) => {
+            console.log('INSTALLING PINIA: '/* + JSON.stringify(pinia)*/)
             app.use(pinia)
             console.log ('PINIA INSTALLED: ' + pinia) // becomes circular
+            return true
         })
         .catch ((err) => {
             console.error ('in addPlugins:err: ' + err)
+            return false
         })
 }
 
@@ -107,15 +119,20 @@ const prepare = function (app, extension = 'not named') {
     // console.log ('current folder: ' + process.cwd())
     console.log ('About to prepare for extension: ' + extension)
 
-    prepareTurbo()
-
     return preparePinia(app)
         .then (result => {
+            return result
+        })
+        // .then (() => {
+        //     return prepareTurbo()
+        // })
+        .then (result => {
             console.log(extension + ':prepare result: ' + result)
-            console.log ('completed prepare for extension: ' + extension)
+            return result
         })
         .catch ((err) => {
             console.error ('Prepare failed for: ' + extension + ': ' + err)
+            return false
         })
 }
 

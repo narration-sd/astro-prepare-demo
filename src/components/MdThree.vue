@@ -28,7 +28,7 @@ const dateStore = useDateStore()
 <script>
 
 export default {
-  name: 'MdMine',
+  name: 'MdThree',
   props: {
     source: {
       type: String,

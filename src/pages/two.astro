@@ -4,7 +4,7 @@ import '../styles/global.css';
 import '../styles/home.css';
 // import MenuLayout from '../layouts/MenuLayout.vue'
 import MenuLayout from '../layouts/MenuLayout.astro'
-import MdMine from '../components/MdMine.vue'
+import MdTwo from '../components/MdTwo.vue'
 import NsdMicroLogo from '../components/NsdMicroLogo.vue'
 
 //import TurboSuspense from '../components/TurboSuspense.vue';
@@ -86,12 +86,12 @@ const source = '## Lets ***Vue*** some \n- freshly *own-module-formatted*\n- **M
             </header>
 
             <article>
-              <h3>An article with Turbo, maybe; what do you think?</h2>
+              <h3>An article with Turbo, maybe; what do you think?</h3>
                 <TwoContent />
             </article>
 
             <article>
-              <MdMine source={source} client:only="vue" />
+              <MdTwo source={source} client:only="vue" />
             </article>
         </main>
     </MenuLayout>
