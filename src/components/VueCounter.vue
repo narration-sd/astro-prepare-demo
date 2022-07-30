@@ -7,7 +7,7 @@
       <button @click="dataStore.decrement()">-</button>
       <pre>{{ dataStore.count }}</pre>
       <button @click="dataStore.increment()">+</button>
-    </div> to
+    </div>
   </div>
 </template>
 
