@@ -9,6 +9,9 @@ package-lock.json
 yalc.lock
 pnpm-lock.yaml
 
+# backups
+*.bak
+
 # logs
 npm-debug.log*
 yarn-debug.log*

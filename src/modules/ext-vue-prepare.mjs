@@ -14,6 +14,8 @@
 // tolerant unless in browserland.  Wee do have to await the import(),
 // however, without await. As well, Turbo doesn't prefer to be reinitialized
 // rapidly, while Astro will try it, so we protect against that, as well.
+import {createApp} from "vue";
+
 const prepareTurbo = function () {
     if (typeof window !== 'undefined'
         && typeof window.Turbo === 'undefined') {
@@ -34,7 +36,7 @@ const prepareTurbo = function () {
 // there are issues here, all handled. The one that can't be
 // taken care of is that running in Astro dev somehow upsets
 // Turbo enough that though it's there, it simply doesn't run.
-const preparePinia = function (app) {
+const preparePinia = function () {
     let piniaCreator
     return import('pinia')
         .then (({ createPinia }) => {
@@ -100,38 +102,39 @@ const preparePinia = function (app) {
         })
         .catch (err => {
             console.error('pinia.use pinia-plugin-persist failed: ' + err)
-            return false
-        })
-        .then((pinia) => {
-            console.log('INSTALLING PINIA: '/* + JSON.stringify(pinia)*/)
-            app.use(pinia)
-            console.log ('PINIA INSTALLED: ' + pinia) // becomes circular
-            return true
-        })
-        .catch ((err) => {
-            console.error ('in addPlugins:err: ' + err)
-            return false
+            return null
         })
 }
 
-const prepare = function (app, extension = 'not named') {
-    console.log ('Entering prepare using: ' + typeof app)
-    // console.log ('current folder: ' + process.cwd())
-    console.log ('About to prepare for extension: ' + extension)
+// this version creates and returns the app, once the essentials are in place for it
+const prepare = function (name = 'not named', createArgs) {
 
-    return preparePinia(app)
-        .then (result => {
-            return result
-        })
+    console.log ('About to prepare for: ' + name)
+
+    prepareTurbo() // *todo* move back to chain, check chain intermediate catch semantics, use re-throws to unify
+
+    return preparePinia()
+        // .then (result => {
+        //     return result
+        // })
         // .then (() => {
         //     return prepareTurbo()
         // })
-        .then (result => {
-            console.log(extension + ':prepare result: ' + result)
-            return result
+        .then (pinia => {
+            console.log ('prepare creating app for: ' + name)
+
+            const { h, Component, props, slots} = createArgs
+            const app = createApp({ name, render: () => h(Component, props, slots) })
+            console.log ('crsated app for: ' + name)
+            console.log ('resulting app, uncirularly: ' + app)
+            // *todo* we'll do uses from a list, after testing on the one
+            // the point being, all is ready before the create, like pinia itself
+            app.use (pinia)
+            console.log ('persisted pinia is now in use for: ' + name)
+            return app
         })
         .catch ((err) => {
-            console.error ('Prepare failed for: ' + extension + ': ' + err)
+            console.error ('Prepare failed for: ' + name + ': ' + err)
             return false
         })
 }

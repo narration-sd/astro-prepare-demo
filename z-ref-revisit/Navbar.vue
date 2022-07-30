@@ -12,7 +12,6 @@
     <br>
   </nav>
   <hr>
-  <br>
 </template>
 
 <!--<script setup>-->

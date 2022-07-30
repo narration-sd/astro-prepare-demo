@@ -2,7 +2,7 @@
 import Logo from '../components/Logo.astro';
 import '../styles/global.css';
 import '../styles/home.css';
-// import MenuLayout from '../layouts/MenuLayout.vue'
+import {Content as IndexContent} from '../content/Index.md';
 import MenuLayout from '../layouts/MenuLayout.astro'
 import TurboSuspense from '../components/TurboSuspense.vue'
 let title = 'My Astro Site';
@@ -59,6 +59,14 @@ let title = 'My Astro Site';
             <article>
               <p>We're a little shy of content here, but not for long, and it is the first page...</p>
             </article>
+
+            <article>
+                <br>
+                <br>
+                <br>
+                <IndexContent />
+            </article>
+
         </div>
         </main>
 	</MenuLayout>

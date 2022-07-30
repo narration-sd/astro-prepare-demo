@@ -77,16 +77,19 @@ a
 .title-row
   display: flex
   flex-direction: row
+  justify-content: center
+  align-content: center
 
 .title-box
   padding-left: 10% !important
   white-space: nowrap
 
 .logo-title
-  font-size: 2rem
+  font-size: 1.3rem
   white-space: nowrap
   color: darkblue
   font-weight: 600
+  padding-top: 4%
   padding-left: 10%
   padding-bottom: 1rem
   line-height: 1.25
@@ -99,7 +102,7 @@ a
     max-width: 35px
 
 .mini-title
-  font-size: 1.75em
+  font-size: 1.75rem !important
   @media(max-width: 960px)
     font-size: 1.6rem
   margin-bottom: 0.15em
@@ -108,14 +111,14 @@ a
   color: darkblue
 
 .logo-mini-img
-  width: 150px !important
-  height: 150px !important
+  width: 100px !important
+  height: 100px !important
 
 .stamp-box
-  margin: 20px
+  margin: 1.2% 20px 4% 20px
 
 .logo-subtitle
-  font-size: 1.5rem
+  font-size: 1.3rem
   font-weight: 400
   color: #8b0000
   margin-top: 1em
@@ -129,9 +132,9 @@ a
   .logo-box
     margin-left: auto
   .logo-title
-    font-size: 2em
+    //font-size: 1.2em !important
   .logo-subtitle
-    font-size: 1.25em
+    font-size: 0,7em
   .mini-title
     font-size: 1.5em
 

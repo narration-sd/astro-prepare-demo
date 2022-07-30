@@ -41,6 +41,7 @@ export default {
       dataStore
     }
   },
+  name: 'VueCounter-plus',
   created: function () {
     console.log('created VueCounter')
   }

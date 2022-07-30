@@ -1,5 +1,5 @@
 <template>
-<h3>NoLibs: I just don't have js libs</h3>
+<h3>NoLibs: I'm a Vue subcomponent, I just don't have active js,</h3>
   <p>{{ msg }}</p>
 </template>
 

@@ -45,7 +45,7 @@ console.log('funknow(): ' + funknow())
 
 
 let title = 'My Astro Three';
-const source = '## Let\'s ***Vue*** some \n- freshly *own-module-formatted*\n- **Markdown**,\n\n also...';
+const source = '## Let\'s ***Vue*** some more, from\n- our entirely *separate-module-formatted*\n- **Markdown** text,\n\n also...';
 ---
 <html lang="en">
 <head>
@@ -95,18 +95,16 @@ const source = '## Let\'s ***Vue*** some \n- freshly *own-module-formatted*\n- *
         <main>
             <header>
                 <div>
-                    <!-- <h1>Welcome to <a href="https://astro.build/">Astro</a></h1> -->
-                    <NsdMicroLogo catchline="more tasty fish with good bait..."/>
-                    <h3>This is { title }</h3>
+                    <NsdMicroLogo catchline="more fish with good bait..."/>
                     <h3>Astro.props are { astroProps }</h3>
-                    <h3>How we are now, is { funknow }</h3>
-                    <h3>id is { id }, post is { post }</h3>
+                    <h3>How we are now, is { funknow }, on { title }</h3>
+                    <!-- <h3>id is { id }, post is { post }</h3> -->
                 </div>
             </header>
 
             <article>
-              <h3>An article with Turbo, maybe; what do you think?</h3>
-                <ThreeContent />
+              <h3>The whole site is  with Turbo, now; how does it seem when you switch pages again?</h3>
+                <!-- <ThreeContent />  -->
             </article>
 
             <article>
