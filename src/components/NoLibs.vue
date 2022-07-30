@@ -1,6 +1,6 @@
 <template>
 <h3>NoLibs: I'm a Vue subcomponent, I just don't have active js,</h3>
-  <p>{{ msg }}</p>
+  <p class="indenta">{{ msg }}</p>
 </template>
 
 <script setup>
@@ -16,5 +16,8 @@ export default {
 <style scoped>
 h3 {
   color: darkblue !important;
+}
+.indenta {
+  margin-left: 15px;
 }
 </style>

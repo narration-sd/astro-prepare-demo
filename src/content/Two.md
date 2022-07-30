@@ -2,5 +2,5 @@
 
 ### We could have some better Markdown
 
-But shorter...
+<p class="indenta">But shorter...</p>
 
