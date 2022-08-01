@@ -26,6 +26,9 @@ const prepareTurbo = function () {
     return new Promise ((resolve, reject) => {
 
         // we don't want to multiple-create, per component or page...
+        // thus the tricky reason also that we insist on dynamic import(), conditioned here,
+        // as import creates it. Window check because build would try it w/o browser
+
         if (typeof window !== 'undefined'
             && typeof window.Turbo === 'undefined') {
             return import ('@hotwired/turbo')
@@ -55,8 +58,7 @@ const preparePinia = function () {
         return new Promise ((resolve, reject) => {
                 try {
                     const pinia = createPinia()
-                    console.log('PINIA INSTALLING persist: ' + JSON.stringify(piniaPersist))
-                    // pinia.use(piniaPersist.default)
+                    console.log('PINIA INSTALLING persist: ' + piniaPersist)
                     pinia.use(piniaPersist)
                     console.log('PINIA CREATED: ' + JSON.stringify(pinia))
                     resolve(pinia)
@@ -82,7 +84,7 @@ const prepare = function (name = 'not named', createArgs) {
             const { h, Component, props, slots} = createArgs
             const app = createApp({ name, render: () => h(Component, props, slots) })
             console.log ('crsated app for: ' + name)
-            console.log ('resulting app, uncirularly: ' + app)
+            console.log ('resulting app, un-circularly: ' + app)
             // *todo* we'll do uses from a list, after testing on the one
             // the point being, all is ready before the create, like pinia itself
             app.use (pinia)
