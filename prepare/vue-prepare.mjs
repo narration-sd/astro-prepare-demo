@@ -113,18 +113,20 @@ const prepare = function (name = 'not named', createArgs) {
         .then (() => {
             console.log ('prepare creating app for: ' + name)
             const { h, Component, props, slots} = createArgs
+            console.log ('props: ' + JSON.stringify(props))
+            console.log ('slots: ' + JSON.stringify(slots))
             const app = createApp({ name, render: () => h(Component, props, slots) })
             console.log ('created app for: ' + name)
             return app
         })
         .then (app => {
-            return preparePinia (app, name)
             console.log ('resulting app, un-circularly: ' + app)
+            return preparePinia (app, name)
             // *todo* we'll do uses from a list, maybe, after testing on these
         })
         .then (app => {
-            return prepareVuetify(app, name)
             console.log('resulting app, un-circularly: ' + app)
+            return prepareVuetify(app, name)
         })
         .catch ((err) => {
             console.error ('Prepare failed for: ' + name + ': ' + err)

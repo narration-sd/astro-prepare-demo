@@ -12,9 +12,9 @@ v-container(grid-list-md fill-height)
 </template>
 -->
 <template>
-  <v-container grid-list-md fill-height>
+<!--  <v-container grid-list-md fill-height>-->
     <h2>HelloWorld NsdMicroLogo, before any v-anything but with presence of vuetify</h2>
-  </v-container>
+<!--  </v-container>-->
 </template>
 <!--<template>-->
 <!--  <v-app>-->
