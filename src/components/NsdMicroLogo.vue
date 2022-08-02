@@ -1,22 +1,40 @@
 <!--
-<template>
--->
-<!--
 <template lang="pug">
-  v-container(grid-list-md fill-height)
-    v-layout(column justify-center)
-      a(href="/")
-        v-layout.mini-box(row align-center nowrap justify-start)
-          v-img.micro-logo(alt="logo" :src="iconUrl")
-          v-flex.title-box(column justify-space-evenly)
-            h1.logo-title.mini-title {{ title }}
-            h3.logo-subtitle.mini-subtitle(v-if="catchline") {{ catchline }}
--->
-<!-- Let's just see if the rest will run, before Vuetify... -->
-<!--
-<img class="logo-mini-img" :src="iconUrl">
+v-container(grid-list-md fill-height)
+  v-layout(column justify-center)
+    a(href="/")
+      v-layout.mini-box(row align-center nowrap justify-start)
+        v-img.micro-logo(alt="logo" :src="iconUrl")
+        v-flex.title-box(column justify-space-evenly)
+          h1.logo-title.mini-title {{ title }}
+          h3.logo-subtitle.mini-subtitle(v-if="catchline") {{ catchline }}
+&lt;!&ndash; Let's just see if the rest will run, before Vuetify... &ndash;&gt;
 </template>
 -->
+<template>
+  <v-container grid-list-md fill-height>
+    <h2>HelloWorld NsdMicroLogo, before any v-anything but with presence of vuetify</h2>
+  </v-container>
+</template>
+<!--<template>-->
+<!--  <v-app>-->
+<!--    <v-main>-->
+<!--      <h2>HelloWorld NsdMicroLogo</h2>-->
+<!--    </v-main>-->
+<!--  </v-app>-->
+<!--</template>-->
+<!--<template>-->
+<!--<v-container grid-list-md fill-height>-->
+<!--  v-layout(column justify-center)-->
+<!--    a(href="/")-->
+<!--      v-layout.mini-box(row align-center nowrap justify-start)-->
+<!--        v-img.micro-logo(alt="logo" :src="iconUrl")-->
+<!--        v-flex.title-box(column justify-space-evenly)-->
+<!--          h1.logo-title.mini-title {{ title }}-->
+<!--          h3.logo-subtitle.mini-subtitle(v-if="catchline") {{ catchline }}-->
+<!--&lt;!&ndash; Let's just see if the rest will run, before Vuetify... &ndash;&gt;-->
+<!--</template>-->
+<!--
 <template lang="pug">
 div.fill-height.stamp-box
   a(:href="href")
@@ -26,6 +44,7 @@ div.fill-height.stamp-box
         h1.logo-title.mini-title {{ title }}
         h3.logo-subtitle.mini-subtitle(v-if="catchline") {{ catchline }}
 </template>
+-->
 
 <script setup>
 import iconUrl from '../static/avatar100.png'

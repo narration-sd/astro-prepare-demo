@@ -21,6 +21,7 @@
 import {createApp} from "vue";
 import { createPinia } from 'pinia'
 import piniaPersist from 'pinia-plugin-persist'
+import { createVuetify } from 'vuetify'
 
 const prepareTurbo = function () {
     return new Promise ((resolve, reject) => {
@@ -48,48 +49,82 @@ const prepareTurbo = function () {
     })
 }
 
+// vuetify, if it will...at least at initial level.
+// we have yet to consider their loading of fonts, styles
+const prepareVuetify = function (app, name) {
+
+    return new Promise((resolve, reject) => {
+            try {
+                const vuetify = createVuetify()
+                console.log('Vuetify CREATED: ' + JSON.stringify(vuetify))
+                /*
+                *  *todo* think we are going to have to introduce Vuetify's
+                *    v-app and v-main into the picture above the app for this to work.
+                *    Which probably means offsetting slots and likely props from their
+                *    provided arrays. Which will need to take place in a more special
+                *    call to prepareVuetify, which occurs before the creation of the app.
+                *    Special handling indeed...without which, big bang about 'weak map keys',
+                *    on any v-vuetify-something template use.
+                * */
+                console.log ('vuetify is now in use for: ' + name)
+                resolve(app)
+            } catch (err) {
+                const reason = 'vuetify prepare failed: ' + err
+                console.error(reason)
+                reject(reason)
+            }
+        }
+    )
+}
+
+
 // Pinia needs to be use()ed as a plugin by the Vue initial app,
 // while having its own plugins to be use()ed internally first.
 // there are issues here, all handled. The one that can't be
 // taken care of is that running in Astro dev somehow upsets
 // Turbo enough that though it's there, it simply doesn't run.
-const preparePinia = function () {
+const preparePinia = function (app, name) {
 
-        return new Promise ((resolve, reject) => {
-                try {
-                    const pinia = createPinia()
-                    console.log('PINIA INSTALLING persist: ' + piniaPersist)
-                    pinia.use(piniaPersist)
-                    console.log('PINIA CREATED: ' + JSON.stringify(pinia))
-                    resolve(pinia)
-                } catch (err) {
-                    const reason = 'pinia with pinia-plugin-persist failed: ' + err
-                    console.error(reason)
-                    reject(reason)
-                }
+    return new Promise((resolve, reject) => {
+            try {
+                const pinia = createPinia()
+                console.log('PINIA INSTALLING persist: ' + piniaPersist)
+                pinia.use(piniaPersist)
+                console.log('PINIA CREATED: ' + JSON.stringify(pinia))
+                app.use (pinia)
+                console.log ('persisted pinia is now in use for: ' + name)
+                resolve(app)
+            } catch (err) {
+                const reason = 'pinia with pinia-plugin-persist failed: ' + err
+                console.error(reason)
+                reject(reason)
             }
-        )
-
+        }
+    )
 }
 
 // this version creates and returns the app, once the essentials are in place for it
+// mounting still takes place in client.mjs, so it can recover to basis if a prepare step fails
 const prepare = function (name = 'not named', createArgs) {
 
     console.log ('About to prepare for: ' + name)
 
     return prepareTurbo()
-        .then (() => preparePinia())
-        .then (pinia => {
+        .then (() => {
             console.log ('prepare creating app for: ' + name)
             const { h, Component, props, slots} = createArgs
             const app = createApp({ name, render: () => h(Component, props, slots) })
-            console.log ('crsated app for: ' + name)
-            console.log ('resulting app, un-circularly: ' + app)
-            // *todo* we'll do uses from a list, after testing on the one
-            // the point being, all is ready before the create, like pinia itself
-            app.use (pinia)
-            console.log ('persisted pinia is now in use for: ' + name)
+            console.log ('created app for: ' + name)
             return app
+        })
+        .then (app => {
+            return preparePinia (app, name)
+            console.log ('resulting app, un-circularly: ' + app)
+            // *todo* we'll do uses from a list, maybe, after testing on these
+        })
+        .then (app => {
+            return prepareVuetify(app, name)
+            console.log('resulting app, un-circularly: ' + app)
         })
         .catch ((err) => {
             console.error ('Prepare failed for: ' + name + ': ' + err)
