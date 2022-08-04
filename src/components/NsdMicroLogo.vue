@@ -1,36 +1,3 @@
-<!--
-<template lang="pug">
-v-container(grid-list-md fill-height)
-  v-layout(column justify-center)
-    a(href="/")
-      v-layout.mini-box(row align-center nowrap justify-start)
-        v-img.micro-logo(alt="logo" :src="iconUrl")
-        v-flex.title-box(column justify-space-evenly)
-          h1.logo-title.mini-title {{ title }}
-          h3.logo-subtitle.mini-subtitle(v-if="catchline") {{ catchline }}
-&lt;!&ndash; Let's just see if the rest will run, before Vuetify... &ndash;&gt;
-</template>
--->
-<!--
-<template>
-  <div v-if="formatted">
-    <v-container grid-list-md fill-height>
-      <h2>HelloWorld NsdMicroLogo, before any v-anything but with presence of vuetify</h2>
-    </v-container>
-  </div>
-  <div v-else>
-    <h2>HelloWorld NsdMicroLogo, just on its own, with no presence of vuetify</h2>
-  </div>
-</template>
--->
-<!--<template>-->
-<!--  <v-app>-->
-<!--    <v-main>-->
-<!--      <h2>HelloWorld NsdMicroLogo</h2>-->
-<!--    </v-main>-->
-<!--  </v-app>-->
-<!--</template>-->
-<!--
 <template lang="pug">
 div(v-if="formatted")
   v-app
@@ -39,43 +6,15 @@ div(v-if="formatted")
         v-layout(column justify-center)
           a(href="/")
             v-layout.mini-box(row align-center nowrap justify-start)
-              v-img.micro-logo(alt="logo" :src="iconUrl")
+              v-img.mini-logo(alt="logo" :src="iconUrl")
               v-flex.title-box(column justify-space-evenly)
                 h1.logo-title.mini-title {{ title }}
                 h3.logo-subtitle.mini-subtitle(v-if="catchline") {{ catchline }}
-                h6(style="font-size: 8pt;") A little thing about me, is that I am all vuetify...and pug...
+                h6(style="font-size: 8pt;") A little thing about me, that I'm put...and vuetify...
 div(v-else)
   h1 I'm just a free agent here...
-&lt;!&ndash; Let's just see if the rest will run, before Vuetify... &ndash;&gt;
 </template>
--->
-<!--
-<template>
-
-  <div v-if="formatted">
-    <v-container grid-list-md fill-height>
-      <v-layout column justify-center>
-        <a href="/">
-          <v-layout class="mini-box" row align-center nowrap justify-start>
-&lt;!&ndash;            <v-img class="micro-logo" alt="logo" :src="iconUrl" />&ndash;&gt;
-            <img class="micro-logo" alt="logo" :src="iconUrl" />
-            <v-flex class="title-box" column justify-space-evenly>
-              <h1 class="logo-title.mini-title">{{ title }}</h1>
-              <h3 class="logo-subtitle.mini-subtitle">{{ catchline }}</h3>
-              <h6 style="font-size: 8pt;">A little thing about me, is that I am all vuetify...</h6>
-            </v-flex>
-          </v-layout>
-        </a>
-      </v-layout>
-    </v-container>
-  </div>
-  <div v-else>
-    <h2> I'm just a free agent here...</h2>
-  </div>
-  &lt;!&ndash; Let's just see if the rest will run, before Vuetify... &ndash;&gt;
-</template>
--->
-<template lang="pug">
+<!--<template lang="pug">
 div.fill-height.stamp-box(v-if="formatted")
   a(:href="href")
     div.title-row
@@ -86,7 +25,7 @@ div.fill-height.stamp-box(v-if="formatted")
         h6(style="font-size: 8pt;") A little thing about me, so far, is that I am all pug...
 div(v-else)
   h3 What are we doing here?
-</template>
+</template>-->
 
 <script setup>
 import urlPath from '../static/avatar100.png'
@@ -133,7 +72,17 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
+
+.v-application__wrap
+  min-height: unset !important
+
+//body
+//  font-size: 16px !important
+
+</style>
+
+<style lang="sass">
 
 h1
   font-size: larger !important
@@ -165,6 +114,13 @@ a
   padding-left: 10%
   padding-bottom: 1rem
   line-height: 1.25
+
+.mini-logo
+  width: 100px
+  max-width: 100px
+  @media(max-width: 640px)
+    width: 65px
+    max-width: 65px
 
 .micro-logo
   width: 40px
