@@ -10,7 +10,7 @@ div(v-if="formatted")
               v-flex.title-box(column justify-space-evenly)
                 h1.logo-title.mini-title {{ title }}
                 h3.logo-subtitle.mini-subtitle(v-if="catchline") {{ catchline }}
-                h6(style="font-size: 8pt;") A little thing about me, that I'm put...and vuetify...
+                h6(style="font-size: 8pt;") A little thing about me, that I'm pug...and vuetify...
 div(v-else)
   h1 I'm just a free agent here...
 </template>
@@ -102,7 +102,7 @@ a
   align-content: center
 
 .title-box
-  padding-left: 10% !important
+  //margin-left: 10%
   white-space: nowrap
 
 .logo-title
@@ -110,7 +110,7 @@ a
   white-space: nowrap
   color: darkblue
   font-weight: 600
-  padding-top: 4%
+  padding-top: 1%
   padding-left: 10%
   padding-bottom: 1rem
   line-height: 1.25
@@ -118,9 +118,11 @@ a
 .mini-logo
   width: 100px
   max-width: 100px
+  margin-right: 20px
   @media(max-width: 640px)
     width: 65px
     max-width: 65px
+    margin-right: 12px
 
 .micro-logo
   width: 40px
