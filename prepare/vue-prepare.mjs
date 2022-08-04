@@ -66,6 +66,7 @@ const prepareVuetify = function (app, name) {
                 *    Special handling indeed...without which, big bang about 'weak map keys',
                 *    on any v-vuetify-something template use.
                 * */
+                app.use(vuetify)
                 console.log ('vuetify is now in use for: ' + name)
                 resolve(app)
             } catch (err) {
@@ -105,7 +106,7 @@ const preparePinia = function (app, name) {
 
 // this version creates and returns the app, once the essentials are in place for it
 // mounting still takes place in client.mjs, so it can recover to basis if a prepare step fails
-const prepare = function (name = 'not named', createArgs) {
+const prepare = function (name = 'not named', createProper, createArgs) {
 
     console.log ('About to prepare for: ' + name)
 
@@ -115,7 +116,7 @@ const prepare = function (name = 'not named', createArgs) {
             const { h, Component, props, slots} = createArgs
             console.log ('props: ' + JSON.stringify(props))
             console.log ('slots: ' + JSON.stringify(slots))
-            const app = createApp({ name, render: () => h(Component, props, slots) })
+            const app = createProper({ name, render: () => h(Component, props, slots) })
             console.log ('created app for: ' + name)
             return app
         })
@@ -125,8 +126,12 @@ const prepare = function (name = 'not named', createArgs) {
             // *todo* we'll do uses from a list, maybe, after testing on these
         })
         .then (app => {
-            console.log('resulting app, un-circularly: ' + app)
+            console.log('resulting pinia\'d app, un-circularly: ' + app)
             return prepareVuetify(app, name)
+        })
+        .then (app => {
+            console.log('resulting vuetified app, un-circularly: ' + app)
+            return app
         })
         .catch ((err) => {
             console.error ('Prepare failed for: ' + name + ': ' + err)

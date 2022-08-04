@@ -99,7 +99,10 @@ const source = '## Let\'s ***Vue*** some more, from\n- our entirely *separate-mo
         <main>
             <header>
                 <div>
-                    <NsdMicroLogo catchline="more fish with good bait..."/>
+                    <NsdMicroLogo
+                      catchline="more fish with good bait..."
+                      formatted="{formatted}"
+                      client:only="vue" />
                     <h3>Astro.props are { astroProps }</h3>
                     <h3>How we are now, is { funknow }, on { title }</h3>
                     <!-- <h3>id is { id }, post is { post }</h3> -->
