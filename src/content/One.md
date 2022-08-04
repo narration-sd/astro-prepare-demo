@@ -9,5 +9,5 @@
   - indented list
 - non-indent items also
 
-<p>and a <a href="https://narrationsd.com" 
-   target="_blank">link in another tab</a> also</p>
+<p>and a markdown <a href="https://narrationsd.com" 
+   target="_blank">link to another site</a> also</p>

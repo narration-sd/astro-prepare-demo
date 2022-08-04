@@ -83,7 +83,7 @@ div.fill-height.stamp-box(v-if="formatted")
       div.title-box
         h1.logo-title.mini-title {{ title }}
         h3.logo-subtitle.mini-subtitle(v-if="catchline") {{ catchline }}
-        h6(style="font-size: 8pt;") A little thing about me, is that I am all pug...
+        h6(style="font-size: 8pt;") A little thing about me, so far, is that I am all pug...
 div(v-else)
   h3 What are we doing here?
 </template>

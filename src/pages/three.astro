@@ -36,12 +36,12 @@ const { post } = Astro.props
 console.log('Astro.params: ' + JSON.stringify(Astro.params))
 console.log('Astro.props: ' + JSON.stringify(Astro.props))
 console.log('Astro.props.funk: ' + JSON.stringify(Astro.props.funk))
-// const funk = new Function(Astro.props.funk)()
-const { dofunk = '"no funk!"' } = Astro.props
-console.log('dofunk is: ' + dofunk)
+const { doFunk = '"no funk!"' } = Astro.props
+console.log('doFunk is: ' + doFunk)
 // n.b. must have the return, or there isn't one, thus...boom
-const funknow = new Function ('return ' +  dofunk)
-console.log('funknow(): ' + funknow())
+const funkNow = new Function ('return ' +  doFunk)
+console.log('funkNow(): ' + funkNow())
+const { something } = Astro.props
 
 
 let title = 'My Astro Three';
@@ -104,13 +104,13 @@ const source = '## Let\'s ***Vue*** some more, from\n- our entirely *separate-mo
                       formatted="{formatted}"
                       client:only="vue" />
                     <h3>Astro.props are { astroProps }</h3>
-                    <h3>How we are now, is { funknow }, on { title }</h3>
+                    <h3>How we are now, is { funkNow }, about { something }, on { title }</h3>
                     <!-- <h3>id is { id }, post is { post }</h3> -->
                 </div>
             </header>
 
             <article>
-              <h3>The whole site is  with Turbo, now; how does it seem when you switch pages again?</h3>
+              <h3>The whole site is on Turbo, now; how does it seem when you switch between pages?</h3>
                 <!-- <ThreeContent />  -->
             </article>
 
