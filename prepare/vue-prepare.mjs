@@ -106,7 +106,7 @@ const preparePinia = function (app, name) {
 
 // this version creates and returns the app, once the essentials are in place for it
 // mounting still takes place in client.mjs, so it can recover to basis if a prepare step fails
-const prepare = function (name = 'not named', createProper, createArgs) {
+const prepare = function (createProper, createArgs, name = 'not named') {
 
     console.log ('About to prepare for: ' + name)
 

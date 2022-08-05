@@ -90,6 +90,6 @@ function vuetifyIntegration (options) {
 }
 
 export default defineConfig({
-  integrations: [vue(), vuetifyIntegration()]
-  // integrations: [vue()]
+  // integrations: [vue(), vuetifyIntegration()]
+  integrations: [vue()]
 })

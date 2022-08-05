@@ -1,3 +1,4 @@
+<!--
 <template lang="pug">
 div(v-if="formatted")
   v-app
@@ -10,30 +11,34 @@ div(v-if="formatted")
               v-flex.title-box(column justify-space-evenly)
                 h1.logo-title.mini-title {{ title }}
                 h3.logo-subtitle.mini-subtitle(v-if="catchline") {{ catchline }}
-                h6(style="font-size: 8pt;") A little thing about me, that I'm pug...and vuetify...
+                h6.mini-note A little thing about me, that I'm pug...and vuetify...
 div(v-else)
   h1 I'm just a free agent here...
 </template>
-<!--<template lang="pug">
+-->
+<template lang="pug">
 div.fill-height.stamp-box(v-if="formatted")
   a(:href="href")
     div.title-row
-      img.logo-mini-img(alt="logo" :src="iconUrl")
+      img.mini-logo(alt="logo" :src="iconUrl")
       div.title-box
         h1.logo-title.mini-title {{ title }}
         h3.logo-subtitle.mini-subtitle(v-if="catchline") {{ catchline }}
-        h6(style="font-size: 8pt;") A little thing about me, so far, is that I am all pug...
+        h6.mini-note A little thing about me, so far, is that I'm sass, and all pug...
 div(v-else)
   h3 What are we doing here?
-</template>-->
+</template>
 
 <script setup>
+import { defineProps } from "vue";
 import urlPath from '../static/avatar100.png'
 const iconUrl = urlPath
-
+// *todo* use this later, but must define all props. Match then question on formatted in client.js
+// defineProps ({
+//   thisWay: { type: Boolean, required: false, default: false },
+// })
 import {onBeforeMount} from "vue";
 onBeforeMount(() => {
-  // console.log('onBeforeMount:formaatted: ' + formatted)
   console.log('iconUrl is: '+ iconUrl)
 })
 </script>
@@ -61,14 +66,9 @@ export default {
     },
     formatted: {
       type: Boolean,
-      default: false
+      default: true // *todo* true disables this feature while considering Vuetify further needs
     }
   },
-  // data () {
-  //   return {
-  //     iconUrl: './static/avatar100.png',
-  //   }
-  // }
 }
 </script>
 
@@ -100,9 +100,9 @@ a
   flex-direction: row
   justify-content: center
   align-content: center
+  margin-bottom: 1rem
 
 .title-box
-  //margin-left: 10%
   white-space: nowrap
 
 .logo-title
@@ -117,10 +117,12 @@ a
 
 .mini-logo
   width: 100px
+  height: 100px
   max-width: 100px
   margin-right: 20px
   @media(max-width: 640px)
     width: 65px
+    height: 65px
     max-width: 65px
     margin-right: 12px
 
@@ -133,8 +135,9 @@ a
 
 .mini-title
   font-size: 1.75rem !important
-  @media(max-width: 960px)
-    font-size: 1.6rem
+  @media(max-width: 640px)
+    font-size: 1.2rem !important
+    padding-top: 0
   margin-bottom: 0.15em
   padding-bottom: 0
   padding-left: 0
@@ -143,6 +146,7 @@ a
 .logo-mini-img
   width: 100px !important
   height: 100px !important
+  margin-right: 15px
 
 .stamp-box
   margin: 1.2% 20px 4% 20px
@@ -154,9 +158,17 @@ a
   margin-top: 1em
   margin-left: auto
   margin-right: auto
+  @media(max-width: 640px)
+    font-size: 1.1rem !important
+    margin-top: 0
 
 .mini-subtitle
   margin-top: 0
+
+.mini-note
+  font-size: 8pt !important
+  @media (max-width: 640px)
+    font-size: 6pt !important
 
 @media (max-width: 640px)
   .logo-box

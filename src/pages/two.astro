@@ -74,7 +74,16 @@ const source = '## Lets ***Vue*** some \n- freshly *own-module-formatted*\n- **M
         .experiment-para {
           margin-top: -12px;
         }
-	</style>
+        strong {
+            color: red;
+        }
+        em {
+            color: green;
+        }
+        li ul li {
+            color: purple;
+        }
+    </style>
 	<!-- *todo* x in or out depending if turbo works on this page w/astro -->
 </head>
 <body>
@@ -94,7 +103,7 @@ const source = '## Lets ***Vue*** some \n- freshly *own-module-formatted*\n- **M
             </article>
 
             <article>
-              <MdTwo source={source} client:only="vue" />
+              <MdTwo source={source} client:load />
             </article>
         </main>
     </MenuLayout>

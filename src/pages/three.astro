@@ -45,7 +45,9 @@ const { something } = Astro.props
 
 
 let title = 'My Astro Three';
-const source = '## Let\'s ***Vue*** some more, from\n- our entirely *separate-module-formatted*\n- **Markdown** text,\n\n also...';
+const source = '## Let\'s ***Vue*** some more, from\n- our entirely ' +
+            '*separate-module-formatted*\n- **Markdown** text, also... ' +
+            '\n\n  - (the extra module costs a lot in weight, but is an easy proof)';
 ---
 <html lang="en">
 <head>
@@ -79,8 +81,12 @@ const source = '## Let\'s ***Vue*** some more, from\n- our entirely *separate-mo
 			border-radius: 4px;
 		}
 		h3 {
-		    font-size: 11pt
+		    font-size: 11pt;
 		}
+        h3.props-talk {
+            font-size: 9pt;
+            color: #be833b
+        }
 	</style>
 	<style is:global>
 		h2 {
@@ -90,7 +96,16 @@ const source = '## Let\'s ***Vue*** some more, from\n- our entirely *separate-mo
 		pre {
 			padding: 1rem;
 		}
-	</style>
+        strong {
+            color: red;
+        }
+        em {
+            color: green;
+        }
+        li ul li {
+            color: purple;
+        }
+    </style>
 	<!-- *todo* x in or out depending if turbo works on this page w/astro -->
 </head>
 <body>
@@ -101,10 +116,10 @@ const source = '## Let\'s ***Vue*** some more, from\n- our entirely *separate-mo
                 <div>
                     <NsdMicroLogo
                       catchline="more fish with good bait..."
-                      formatted="{formatted}"
                       client:load />
-                    <h3>Astro.props are { astroProps }</h3>
-                    <h3>How we are now, is { funkNow }, about { something }, on { title }</h3>
+                    <h3 class="props-talk">Astro.props are { astroProps }</h3>
+                    <h3 class="props-talk">How we are now, is { funkNow },
+                        about { something }, on { title }</h3>
                     <!-- <h3>id is { id }, post is { post }</h3> -->
                 </div>
             </header>
@@ -115,7 +130,7 @@ const source = '## Let\'s ***Vue*** some more, from\n- our entirely *separate-mo
             </article>
 
             <article>
-              <MdThree source={source} client:only="vue" />
+              <MdThree source={source} client:load />
             </article>
         </main>
     </MenuLayout>

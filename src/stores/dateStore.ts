@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 import piniaPersist from "pinia-plugin-persist"   //need this to type the extra persist config...
 // import parseISO from 'date-fns/fp/parseISO'
 
+
 const useDateStore = defineStore('dateStore', {
     state: () => {
         return {
@@ -21,6 +22,12 @@ const useDateStore = defineStore('dateStore', {
         setDate(newDate: Date) {
             this.date = newDate
             console.log('setDate new Date: ' + this.date)
+        },
+        getDateString() {
+            return new Date(this.date).toString()
+        },
+        getDate3String() {
+            return new Date(this.date3).toString()
         }
     },
     persist: {
