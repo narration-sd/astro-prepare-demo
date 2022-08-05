@@ -103,7 +103,7 @@ const source = '## Lets ***Vue*** some \n- freshly *own-module-formatted*\n- **M
             </article>
 
             <article>
-              <MdTwo source={source} client:load />
+              <MdTwo source={source} client:only="vue" />
             </article>
         </main>
     </MenuLayout>

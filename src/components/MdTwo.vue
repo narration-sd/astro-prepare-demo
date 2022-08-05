@@ -2,7 +2,7 @@
   <div>
     <NoLibs />
     <div class="espace">
-      <Mkdown :source="source" breaks />
+      <Mkdown :source="source" breaks client:load />
     </div>
     <div class="espace">
       <h2>Last, we have a date, pinia persisted, per page:</h2>
