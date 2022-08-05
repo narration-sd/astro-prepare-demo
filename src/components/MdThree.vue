@@ -2,13 +2,13 @@
   <div>
     <NoLibs />
     <div class="espace">
-      <Mkdown :source="source" breaks client:only="vue" />
+      <Mkdown :source="source" breaks />
     </div>
     <div class="espace">
       <h2>Last, we have a date, pinia persisted, also per page:</h2>
       <p>date in store: {{ dateStoreDate }}</p>
     </div>
-    <Datepicker v-model="dateStore.date3" client:only="vue"/>
+    <Datepicker v-model="dateStore.date3" />
     <h4>...and we're done</h4>
   </div>
 </template>

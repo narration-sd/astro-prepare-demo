@@ -89,7 +89,7 @@ const preparePinia = function (app, name) {
     return new Promise((resolve, reject) => {
             try {
                 const pinia = createPinia()
-                console.log('PINIA INSTALLING persist: ' + piniaPersist)
+                console.log('PINIA INSTALLING persist: ' + (piniaPersist ? true : false))
                 pinia.use(piniaPersist)
                 console.log('PINIA CREATED: ' + JSON.stringify(pinia))
                 app.use (pinia)

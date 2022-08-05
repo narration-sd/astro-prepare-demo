@@ -3,9 +3,9 @@ import '../styles/global.css';
 import '../styles/home.css';
 const navs = [
          { name:'home', path: '/' },
-         { name:'one', path: '/one' },
-         { name:'two', path: '/two' },
-         { name:'three', path: '/threewrap' },
+         { name:'one', path: '/one/' },
+         { name:'two', path: '/two/' },
+         { name:'three', path: '/threewrap/' },
        ];
 const pathname = new URL(Astro.request.url).pathname;
 ---
@@ -81,7 +81,7 @@ const pathname = new URL(Astro.request.url).pathname;
       <li>
         <a href={nav.path}
           data-turbo-action="advance"
-          class={ pathname === nav.path ? "menuitem active" : "menuitem" }>
+          class={ (pathname === nav.path || (pathname + '/') === nav.path) ? "menuitem active" : "menuitem" }>
             {nav.name}
         </a>
       </li>

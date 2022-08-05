@@ -1,11 +1,11 @@
 ## Here we have One
 
-### We could have some Markdown (this is from a doc)
+### We could have some Markdown (this is astro md, from a doc)
 
 - for example,
   - bullets
   - in an 
-    - indented list 
+    - indented list
 
 <p>Here's an in-markdown html <a href="https://combatcovid.equipment" 
     target="_blank">link to another site</a>, which can show some nature 

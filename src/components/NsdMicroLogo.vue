@@ -17,7 +17,9 @@ div(v-else)
 </template>
 -->
 <template lang="pug">
-div.fill-height.stamp-box(v-if="formatted")
+<!-- Only need this if having vuetify build problems -->
+<!--div.fill-height.stamp-box(v-if="formatted")-->
+div.fill-height.stamp-box
   a(:href="href")
     div.title-row
       img.mini-logo(alt="logo" :src="iconUrl")
@@ -25,8 +27,8 @@ div.fill-height.stamp-box(v-if="formatted")
         h1.logo-title.mini-title {{ title }}
         h3.logo-subtitle.mini-subtitle(v-if="catchline") {{ catchline }}
         h6.mini-note A little thing about me, so far, is that I'm sass, and all pug...
-div(v-else)
-  h3 What are we doing here?
+<!--div(v-else)-->
+<!--  h3 What are we doing here?-->
 </template>
 
 <script setup>

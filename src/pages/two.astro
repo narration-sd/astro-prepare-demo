@@ -5,8 +5,8 @@ import '../styles/home.css';
 import MenuLayout from '../layouts/MenuLayout.astro'
 import MdTwo from '../components/MdTwo.vue'
 import NsdMicroLogo from '../components/NsdMicroLogo.vue'
-
 //import TurboSuspense from '../components/TurboSuspense.vue';
+import MkDown from '../components/MkDown.vue'
 
 // following statement is confusion. imports need to be here, for component:load only...???
 // Component Script:
@@ -26,8 +26,11 @@ const { id } = Astro.params
 const { post } = Astro.props
 
 let title = 'My Astro Two';
-const source = '## Lets ***Vue*** some \n- freshly *own-module-formatted*\n- **Markdown**,\n\n also...';
+const source = '## Let\'s ***Vue*** some \n- freshly *own-module-formatted*\n- **Markdown**,\n\n also...';
 ---
+<script setup>
+</script>
+
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -60,7 +63,7 @@ const source = '## Lets ***Vue*** some \n- freshly *own-module-formatted*\n- **M
 			border-radius: 4px;
 		}
 		h3 {
-		    font-size: 12pt
+		    font-size: 11pt
 		}
 
 	</style>
@@ -68,7 +71,10 @@ const source = '## Lets ***Vue*** some \n- freshly *own-module-formatted*\n- **M
 		pre {
 			padding: 1rem;
 		}
-		.indenta {
+        h2 {
+            font-size: large !important;
+            color: darkblue;
+        }		.indenta {
           margin-left: 15px;
         }
         .experiment-para {
@@ -103,7 +109,11 @@ const source = '## Lets ***Vue*** some \n- freshly *own-module-formatted*\n- **M
             </article>
 
             <article>
-              <MdTwo source={source} client:only="vue" />
+                <MkDown source={source} extraattr extra="extra prop" client:load/>
+            </article>
+
+            <article>
+              <MdTwo source={source} client:idle:only="vue" />
             </article>
         </main>
     </MenuLayout>

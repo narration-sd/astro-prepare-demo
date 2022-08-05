@@ -1,9 +1,9 @@
 <template>
   <div>
     <NoLibs />
-    <div class="espace">
-      <Mkdown :source="source" breaks client:load />
-    </div>
+<!--    <div class="espace">-->
+<!--      <Mkdown :source="source" breaks />-->
+<!--    </div>-->
     <div class="espace">
       <h2>Last, we have a date, pinia persisted, per page:</h2>
       <p>date in store: {{ dateStoreDate }}</p>
@@ -21,7 +21,7 @@
 </style>
 
 <script setup>
-import Mkdown from 'vue3-markdown-it'
+// import Mkdown from 'vue3-markdown-it'
 import Datepicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
 import NoLibs from "../components/NoLibs.vue";
