@@ -72,24 +72,24 @@ function vuetifyIntegration (options) {
           }
         });
       },
-      'astro:build:setup': ({ vite, target }) => {
-        if (target === 'server') {
-          if (!vite.ssr) {
-            vite.ssr = {};
-          }
-          if (!vite.ssr.noExternal) {
-            vite.ssr.noExternal = [];
-          }
-          if (Array.isArray(vite.ssr.noExternal)) {
-            vite.ssr.noExternal.push('vuetify');
-          }
-        }
-      },
+      // 'astro:build:setup': ({ vite, target }) => {
+      //   if (target === 'server') {
+      //     if (!vite.ssr) {
+      //       vite.ssr = {};
+      //     }
+      //     if (!vite.ssr.noExternal) {
+      //       vite.ssr.noExternal = [];
+      //     }
+      //     if (Array.isArray(vite.ssr.noExternal)) {
+      //       vite.ssr.noExternal.push('vuetify');
+      //     }
+      //   }
+      // },
     },
   };
 }
 
 export default defineConfig({
   integrations: [vue(), vuetifyIntegration()]
-  integrations: [vue()]
+  // integrations: [vue()]
 })
