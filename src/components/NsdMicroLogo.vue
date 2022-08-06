@@ -1,4 +1,3 @@
-<!--
 <template lang="pug">
 div(v-if="formatted")
   v-app
@@ -15,10 +14,10 @@ div(v-if="formatted")
 div(v-else)
   h1 I'm just a free agent here...
 </template>
--->
+<!--
 <template lang="pug">
-<!-- Only need this if having vuetify build problems -->
-<!--div.fill-height.stamp-box(v-if="formatted")-->
+&lt;!&ndash; Only need this if having vuetify build problems &ndash;&gt;
+&lt;!&ndash;div.fill-height.stamp-box(v-if="formatted")&ndash;&gt;
 div.fill-height.stamp-box
   a(:href="href")
     div.title-row
@@ -27,9 +26,10 @@ div.fill-height.stamp-box
         h1.logo-title.mini-title {{ title }}
         h3.logo-subtitle.mini-subtitle(v-if="catchline") {{ catchline }}
         h6.mini-note A little thing about me, so far, is that I'm sass, and all pug...
-<!--div(v-else)-->
-<!--  h3 What are we doing here?-->
+&lt;!&ndash;div(v-else)&ndash;&gt;
+&lt;!&ndash;  h3 What are we doing here?&ndash;&gt;
 </template>
+-->
 
 <script setup>
 import { defineProps } from "vue";
