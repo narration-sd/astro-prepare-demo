@@ -109,11 +109,11 @@ const source = '## Let\'s ***Vue*** some \n- freshly *own-module-formatted*\n- *
             </article>
 
             <article>
-                <MkDown source={source} extraattr extra="extra prop" client:load/>
+                <MkDown source={source} extraattr extra="extra prop" client:only="vue"/>
             </article>
 
             <article>
-              <MdTwo source={source} client:idle:only="vue" />
+              <MdTwo source={source} client:only="vue" />
             </article>
         </main>
     </MenuLayout>
