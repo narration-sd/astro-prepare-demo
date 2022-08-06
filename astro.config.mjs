@@ -68,23 +68,29 @@ function vuetifyIntegration (options) {
       'astro:config:setup': ({ updateConfig }) => {
         updateConfig({
           vite: {
-            plugins: [vitePluginVuetify({autoImport: true})],
+            // can build or dev with autoImport: false. But no vuetify compents result
+            // should be true, but then we have teh build or during-serving-dev crashes.
+            plugins: [vitePluginVuetify({autoImport: false})],
           }
         });
       },
-      // 'astro:build:setup': ({ vite, target }) => {
-      //   if (target === 'server') {
-      //     if (!vite.ssr) {
-      //       vite.ssr = {};
-      //     }
-      //     if (!vite.ssr.noExternal) {
-      //       vite.ssr.noExternal = [];
-      //     }
-      //     if (Array.isArray(vite.ssr.noExternal)) {
-      //       vite.ssr.noExternal.push('vuetify');
-      //     }
-      //   }
-      // },
+      'astro:build:setup': ({ vite, target }) => {
+        console.log('astro.config:vite:vite: ' + JSON.stringify(vite))
+        console.log('astro.config:vite:target: ' + target)
+        // we can allow or disallow this - both error in build or dev, but differently
+        if (target === 'server') {
+          if (!vite.ssr) {
+            vite.ssr = {};
+          }
+          if (!vite.ssr.noExternal) {
+            vite.ssr.noExternal = [];
+          }
+          if (Array.isArray(vite.ssr.noExternal)) {
+            vite.ssr.noExternal.push('vuetify');
+          }
+          console.log ('astro.config:vite[noExternal]: ' + JSON.stringify(vite.ssr.noExternal))
+        }
+      },
     },
   };
 }
