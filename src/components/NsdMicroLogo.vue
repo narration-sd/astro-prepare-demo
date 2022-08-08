@@ -1,18 +1,15 @@
 <template lang="pug">
-div(v-if="formatted")
-  v-app
-    v-main
-      v-container(grid-list-md fill-height)
-        v-layout(column justify-center)
-          a(href="/")
-            v-layout.mini-box(row align-center nowrap justify-start)
-              v-img.mini-logo(alt="logo" :src="iconUrl")
-              v-flex.title-box(column justify-space-evenly)
-                h1.logo-title.mini-title {{ title }}
-                h3.logo-subtitle.mini-subtitle(v-if="catchline") {{ catchline }}
-                h6.mini-note A little thing about me, that I'm pug...and vuetify...
-div(v-else)
-  h1 I'm just a free agent here...
+v-app.logo-spaced
+  v-main
+    v-container(grid-list-md fill-height)
+      v-layout(column justify-center)
+        a(href="/")
+          v-layout.mini-box(row align-center nowrap justify-start)
+            v-img.mini-logo(alt="logo" :src="iconUrl")
+            v-flex.title-box(column justify-space-evenly)
+              h1.logo-title.mini-title {{ title }}
+              h3.logo-subtitle.mini-subtitle(v-if="catchline") {{ catchline }}
+              h6.mini-note A little thing about me, is that I'm pug...and vuetify...
 </template>
 <!--
 <template lang="pug">
@@ -106,6 +103,9 @@ a
 
 .title-box
   white-space: nowrap
+
+.logo-spaced
+  margin-bottom: 15px
 
 .logo-title
   font-size: 1.3rem

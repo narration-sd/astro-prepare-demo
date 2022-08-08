@@ -22,6 +22,8 @@ import {createApp} from "vue";
 import { createPinia } from 'pinia'
 import piniaPersist from 'pinia-plugin-persist'
 import { createVuetify } from 'vuetify'
+import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
 
 const prepareTurbo = function () {
     return new Promise ((resolve, reject) => {
@@ -55,7 +57,38 @@ const prepareVuetify = function (app, name) {
 
     return new Promise((resolve, reject) => {
             try {
-                const vuetify = createVuetify()
+                const vuetify = createVuetify({
+                    components,
+                    directives,
+                    // theme: {
+                    //     themes: {
+                    //         JLightTheme: {
+                    //             dark: false,
+                    //             colors: {
+                    //                 background: '#e3e4e0',
+                    //                 surface: '#FFFFFF',
+                    //                 primary: '#5A392D',
+                    //                 'primary-darken-1': '#3700B3',
+                    //                 secondary: '#4D5A58',
+                    //                 'secondary-darken-1': '#018786',
+                    //                 accent: '#e3e4e0',
+                    //                 error: '#B00020',
+                    //                 info: '#2196F3',
+                    //                 success: '#4CAF50',
+                    //                 warning: '#FB8C00',
+                    //             }
+                    //         },
+                    //     }
+                    // },
+                    // // icons: {
+                    // //     defaults: 'fa',
+                    // //     aliases,
+                    // //     sets: {
+                    // //         fa,
+                    // //         mdi
+                    // //     }
+                    // // }
+                })
                 console.log('Vuetify CREATED: ' + JSON.stringify(vuetify))
                 /*
                 *  *todo* think we are going to have to introduce Vuetify's
