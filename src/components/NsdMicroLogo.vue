@@ -1,32 +1,26 @@
 <template lang="pug">
-v-app.logo-spaced
-  v-main
-    v-container(grid-list-md fill-height)
-      v-layout(column justify-center)
-        a(href="/")
-          v-layout.mini-box(row align-center nowrap justify-start)
-            v-img.mini-logo(alt="logo" :src="iconUrl")
-            v-flex.title-box(column justify-space-evenly)
-              h1.logo-title.mini-title {{ title }}
-              h3.logo-subtitle.mini-subtitle(v-if="catchline") {{ catchline }}
-              h6.mini-note A little thing about me, is that I'm pug...and vuetify...
+div(v-if="true")
+  v-app.logo-spaced
+    v-main
+      v-container(grid-list-md fill-height)
+        v-col( justify-center)
+          a(href="/")
+            v-row.mini-box(align-center nowrap justify-start)
+              v-img.mini-logo(alt="logo" :src="iconUrl")
+              v-col.title-box(xcols="1" justify-space-evenly)
+                h1.logo-title.mini-title {{ title }}
+                h3.logo-subtitle.mini-subtitle(v-if="catchline") {{ catchline }}
+                h6.mini-note A little thing about me, is that I'm pug...and vuetify...
+div(v-else)
+  div.fill-height.stamp-box
+    a(:href="href")
+      div.title-row
+        img.mini-logo(alt="logo" :src="iconUrl")
+        div.title-box
+          h1.logo-title.mini-title {{ title }}
+          h3.logo-subtitle.mini-subtitle(v-if="catchline") {{ catchline }}
+          h6.mini-note A little thing about me, so far, is that I'm sass, and all pug...
 </template>
-<!--
-<template lang="pug">
-&lt;!&ndash; Only need this if having vuetify build problems &ndash;&gt;
-&lt;!&ndash;div.fill-height.stamp-box(v-if="formatted")&ndash;&gt;
-div.fill-height.stamp-box
-  a(:href="href")
-    div.title-row
-      img.mini-logo(alt="logo" :src="iconUrl")
-      div.title-box
-        h1.logo-title.mini-title {{ title }}
-        h3.logo-subtitle.mini-subtitle(v-if="catchline") {{ catchline }}
-        h6.mini-note A little thing about me, so far, is that I'm sass, and all pug...
-&lt;!&ndash;div(v-else)&ndash;&gt;
-&lt;!&ndash;  h3 What are we doing here?&ndash;&gt;
-</template>
--->
 
 <script setup>
 import { defineProps } from "vue";

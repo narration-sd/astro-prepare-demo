@@ -73,6 +73,7 @@ function vuetifyIntegration (options) {
       //       // can build or dev with autoImport: false. But no vuetify components result
       //       // should be true, but then we have teh build or during-serving-dev crashes.
       //       plugins: [vue(), vuetify({autoImport: true})],
+      //       transpile: ['vuetify', 'NsdMicroLogo.vue'],
       //     }
       //   })
       // },
@@ -80,6 +81,7 @@ function vuetifyIntegration (options) {
         // console.log('astro.config:vite:target: ' + target)
         updateConfig ({
           plugins: [ vue(), vuetify({autoImport: true}) ],
+          // transpile: ['vuetify', 'NsdMicroLogo.vue'],
         })
         if (target === 'server') {
           if (!vite.ssr) {
