@@ -139,7 +139,7 @@ const preparePinia = function (app, name) {
 
 // this version creates and returns the app, once the essentials are in place for it
 // mounting still takes place in client.mjs, so it can recover to basis if a prepare step fails
-const prepare = function (createProper, createArgs, name = 'not named') {
+const prepare = function (createProper, createArgs, isServer = false, name = 'not named') {
 
     console.log ('About to prepare for: ' + name)
 
@@ -149,7 +149,11 @@ const prepare = function (createProper, createArgs, name = 'not named') {
             const { h, Component, props, slots} = createArgs
             console.log ('props: ' + JSON.stringify(props))
             console.log ('slots: ' + JSON.stringify(slots))
-            const app = createProper({ name, render: () => h(Component, props, slots) })
+
+            const app = isServer  // no name for createSSRApp
+                ? createProper({ render: () => h(Component, props, slots) })
+                : createProper({ name, render: () => h(Component, props, slots) })
+
             console.log ('created app for: ' + name)
             return app
         })
