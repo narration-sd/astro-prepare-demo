@@ -163,6 +163,7 @@ a
 
 .mini-note
   font-size: 8pt !important
+  color: #005380
   @media (max-width: 640px)
     font-size: 6pt !important
 
