@@ -83,6 +83,9 @@ function vuetifyIntegration (options) {
           plugins: [ vue(), vuetify({autoImport: true}) ],
           // transpile: ['vuetify', 'NsdMicroLogo.vue'],
         })
+        // *todo* not needed, but left to indicate how wwe can hit rollupOptions
+        // vite.build.rollupOptions.external = [ "vuetify//components" ]
+        console.log ('VITE.build: ' + JSON.stringify(vite.build))
         if (target === 'server') {
           if (!vite.ssr) {
             vite.ssr = {};

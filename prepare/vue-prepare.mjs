@@ -18,11 +18,12 @@
 // in one integration -- this would be cleaner, and allow tracking its coming
 // capability releases.
 
-import {createApp} from "vue";
+// import {createApp} from "vue";
 import { createPinia } from 'pinia'
 import piniaPersist from 'pinia-plugin-persist'
 import { createVuetify } from 'vuetify'
-import * as components from 'vuetify/components'
+// import * as components from 'vuetify/components'
+import { VApp, VMain, VContainer, VRow, VCol, VImg } from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 
 const prepareTurbo = function () {
@@ -58,7 +59,12 @@ const prepareVuetify = function (app, name) {
     return new Promise((resolve, reject) => {
             try {
                 const vuetify = createVuetify({
-                    components,
+                    components: {
+                        // *todo* n.b. using this trick saves 200kB over including all components
+                        // we'll leave it in for now, at least to simplify investigating build structures.
+                        VApp, VMain, VContainer, VRow, VCol, VImg
+                    },
+                    // components,
                     directives,
                     // theme: {
                     //     themes: {

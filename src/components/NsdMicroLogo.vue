@@ -3,10 +3,10 @@ div(v-if="true")
   v-app.logo-spaced
     v-main
       v-container(grid-list-md fill-height)
-        v-col( justify-center)
+        v-col(justify-center)
           a(href="/")
             v-row.mini-box(align-center nowrap justify-start)
-              v-img.mini-logo(alt="logo" :src="iconUrl")
+              v-img.mini-logo(alt="logo" eager v-bind:src="iconUrl")
               v-col.title-box(xcols="1" justify-space-evenly)
                 h1.logo-title.mini-title {{ title }}
                 h3.logo-subtitle.mini-subtitle(v-if="catchline") {{ catchline }}
