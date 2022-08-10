@@ -57,31 +57,27 @@ let title = 'My Astro Site';
         }
 	</style>
 </head>
-<body>
-    <div>
-    <MenuLayout client:load>
-        <main>
-            <header>
-                <div>
-                    <Logo width={60} height={80} />
-                    <h1>Welcome to <a href="https://astro.build/">Astro</a></h1>
-                </div>
-            </header>
+    <body>
+        <MenuLayout>
+            <main>
+                <header>
+                    <div>
+                        <Logo width={60} height={80}/>
+                        <h1>Welcome to <a href="https://astro.build/">Astro</a></h1>
+                    </div>
+                </header>
 
-            <article>
-              <p>We're a little shy of content here, but not for long, and it is the first page...</p>
-            </article>
+                <article>
+                    <p>We're a little shy of content here, but not for long, and it is the first page...</p>
+                </article>
 
-            <article>
-                <br>
-                <br>
-                <br>
-                <IndexContent />
-            </article>
-
-        </div>
-        </main>
-	</MenuLayout>
-	</div>
-</body>
+                <article>
+                    <br>
+                    <br>
+                    <br>
+                    <IndexContent/>
+                </article>
+            </main>
+        </MenuLayout>
+    </body>
 </html>
