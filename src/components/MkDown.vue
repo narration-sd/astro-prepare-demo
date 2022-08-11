@@ -1,6 +1,6 @@
 <template>
 <!--  <p>Source is: {{ source }}</p>-->
-  <Mkdown :source="source" breaks />
+  <Mrkdown :source="source" breaks />
 </template>
 
 <!--<script setup>-->
@@ -10,8 +10,10 @@
 <!--})-->
 <!--// &lt;!&ndash;import Mkdown from 'vue3-markdown-it'&ndash;&gt;-->
 <!--</script>-->
+<script setup>
+import Mrkdown from 'vue3-markdown-it'
+</script>
 <script>
-import Mkdown from 'vue3-markdown-it'
 
 export default {
   setup (props, attrs) {
@@ -26,9 +28,9 @@ export default {
     source: { type: String, default: 'Mkdown, at your service...'},
     // extra: { type: String, default: 'Mkdown, at your service...'}
   },
-  components: {
-    Mkdown // abso necessary if import from here, not <script setup>
-  },
+  // components: {
+  //   Mrkdown // abso necessary if import from here, not <script setup>
+  // },
   name: "MkDown"
 }
 </script>

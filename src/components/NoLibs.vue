@@ -4,11 +4,13 @@
 </template>
 
 <script setup>
-let msg = 'though I do have a message...'
 </script>
 
 <script>
 export default {
+  props: {
+    msg: { type: String, default: 'though I do have a message...' }
+  },
   name: "NoLibs"
 }
 </script>

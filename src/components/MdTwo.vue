@@ -1,9 +1,6 @@
 <template>
   <div>
-    <NoLibs />
-<!--    <div class="espace">-->
-<!--      <Mkdown :source="source" breaks />-->
-<!--    </div>-->
+    <NoLibs msg="though I do have a message, that I and this Date Picker are client-only..."/>
     <div class="espace">
       <h2>Last, we have a date, pinia persisted, per page:</h2>
       <p>date in store: {{ dateStoreDate }}</p>

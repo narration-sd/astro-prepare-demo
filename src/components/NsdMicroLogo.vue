@@ -6,7 +6,7 @@ div(v-if="true")
         v-col(justify-center)
           a(href="/")
             v-row.mini-box(align-center nowrap justify-start)
-              v-img.mini-logo(alt="logo" eager v-bind:src="iconUrl")
+              img.mini-logo(alt="logo" eager v-bind:src="iconUrl")
               v-col.title-box(xcols="1" justify-space-evenly)
                 h1.logo-title.mini-title {{ title }}
                 h3.logo-subtitle.mini-subtitle(v-if="catchline") {{ catchline }}
@@ -23,7 +23,6 @@ div(v-else)
 </template>
 
 <script setup>
-import { defineProps } from "vue";
 import urlPath from '../static/avatar100.png'
 const iconUrl = urlPath
 // *todo* use this later, but must define all props. Match then question on formatted in client.js

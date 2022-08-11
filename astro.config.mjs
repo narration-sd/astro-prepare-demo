@@ -1,6 +1,5 @@
 import { defineConfig } from 'astro/config';
 import vue from '@astrojs/vue';
-// import vuetify from 'vuetify'
 import vuetify from 'vite-plugin-vuetify'
 
 // https://astro.build/config
@@ -66,25 +65,40 @@ function vuetifyIntegration (options) {
   return {
     name: 'vuetify',
     hooks: {
-      // 'astro:config:setup': ({ updateConfig }) => {
-      //   console.log('running astro:config:setup...')
-      //   updateConfig ({
-      //     vite: {
-      //       // can build or dev with autoImport: false. But no vuetify components result
-      //       // should be true, but then we have teh build or during-serving-dev crashes.
-      //       plugins: [vue(), vuetify({autoImport: true})],
-      //       transpile: ['vuetify', 'NsdMicroLogo.vue'],
-      //     }
-      //   })
-      // },
+      'astro:config:setup': ({ command, config, updateConfig }) => {
+        console.log('running astro:config:setup...')
+        console.log('command  is: ' + command)
+        console.log('config is: ' + JSON.stringify(config))
+        if (command === 'dev') {
+          // though none of this helps the dev with ssr problem, so far
+          updateConfig ({
+            vite: {
+              ssr: {
+                noExternal: [
+                  'v-app', 'v-main',
+                  'v-container', 'v-col',
+                  'v-row', 'v-img',
+                ]
+              },
+              template: {
+                compilerOptions: {
+                  isCustomElement: tag => tag.startsWith('v-') // vuetify web components
+                }
+              }
+            },
+            plugins: [vue(), vuetify({autoImport: true})],
+            transpile: ['vuetify', 'NsdMicroLogo.vue'],
+          })
+        }
+      },
       'astro:build:setup': ({ vite, target, updateConfig }) => {
-        // console.log('astro.config:vite:target: ' + target)
+        console.log('astro.config:VITE:TARGET: ' + target)
         updateConfig ({
           plugins: [ vue(), vuetify({autoImport: true}) ],
           // transpile: ['vuetify', 'NsdMicroLogo.vue'],
         })
         // *todo* not needed, but left to indicate how wwe can hit rollupOptions
-        // vite.build.rollupOptions.external = [ "vuetify//components" ]
+        // vite.build.rollupOptions.external = [ "vuetify/components" ]
         console.log ('VITE.build: ' + JSON.stringify(vite.build))
         if (target === 'server') {
           if (!vite.ssr) {

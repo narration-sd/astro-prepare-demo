@@ -23,6 +23,7 @@
     "@types/markdown-it": "^12.2.3",
     "@vuepic/vue-datepicker": "^3.4.0",
     "install-local": "^3.0.1",
+    "markdown-it": "^13.0.1",
     "pinia": "^2.0.17",
     "pinia-plugin-persist": "^1.0.0",
     "pug": "^3.0.2",

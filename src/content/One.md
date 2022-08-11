@@ -11,4 +11,4 @@
 
 <p>Here's an in-markdown html <a href="https://combatcovid.equipment" 
     target="_blank">link to another site</a>, which can show some nature 
-    of app capabilities that we're proving to accomplish here.</p>
+    of app capabilities that we're proving to accomplish in these pages.</p>

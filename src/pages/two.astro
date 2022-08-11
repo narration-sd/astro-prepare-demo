@@ -6,7 +6,8 @@ import MenuLayout from '../layouts/MenuLayout.astro'
 import MdTwo from '../components/MdTwo.vue'
 // import NsdMicroLogo from '../components/NsdMicroLogo.ce.vue'
 //import TurboSuspense from '../components/TurboSuspense.vue';
-import MkDown from '../components/MkDown.vue'
+// import MkDown from '../components/MkDown.vue'
+import NsdMarkdown from '../components/NsdMarkdown.vue'
 
 // following statement is confusion. imports need to be here, for component:load only...???
 // Component Script:
@@ -26,7 +27,8 @@ const { id } = Astro.params
 const { post } = Astro.props
 
 let title = 'My Astro Two';
-const source = '## Let\'s ***Vue*** some \n- freshly *own-module-formatted*\n- **Markdown**,\n\n also...';
+const source = '## Let\'s ***Vue*** some \n- freshly *own-module-formatted*\n' +
+  '- **Markdown**,\n\nemphasis, bullet list and plain text as well...';
 ---
 <script setup>
 </script>
@@ -104,12 +106,12 @@ const source = '## Let\'s ***Vue*** some \n- freshly *own-module-formatted*\n- *
             </header>
 
             <article>
-              <h3>An article with Turbo, maybe; what do you think?</h3>
                 <TwoContent />
             </article>
 
             <article>
-                <MkDown source={source} extraattr extra="extra prop" client:only="vue"/>
+                <h3>And here, Markdown from a non-Astro component, SSR also:</h3>
+                <NsdMarkdown source={source} />
             </article>
 
             <article>
