@@ -61,6 +61,21 @@ function myIntegration() {
 //   };
 // }
 
+// note that in both uses, this works because arrays are passed by reference in JS
+// which puts a kind of funny cast on updateConfig, but where usable, that's clearer,
+// while this is careful, and very safe.
+function clearVuetify(vite) {
+  if (!vite.ssr) {
+    vite.ssr = {};
+  }
+  if (!vite.ssr.noExternal) {
+    vite.ssr.noExternal = [];
+  }
+  if (Array.isArray(vite.ssr.noExternal)) {
+    vite.ssr.noExternal.push('vuetify');
+  }
+}
+
 function vuetifyIntegration (options) {
   return {
     name: 'vuetify',
@@ -71,24 +86,25 @@ function vuetifyIntegration (options) {
         console.log('config is: ' + JSON.stringify(config))
         if (command === 'dev') {
           // though none of this helps the dev with ssr problem, so far
+          console.log('dev, and is there ssr? : ' + JSON.stringify(config.vite.ssr))
           updateConfig ({
-            vite: {
-              ssr: {
-                noExternal: [
-                  'v-app', 'v-main',
-                  'v-container', 'v-col',
-                  'v-row', 'v-img',
-                ]
-              },
-              template: {
-                compilerOptions: {
-                  isCustomElement: tag => tag.startsWith('v-') // vuetify web components
-                }
-              }
-            },
+            // vite: {
+            //   ssr: {
+            //     noExternal: [
+            //         'vuetify'
+            //     ]
+            //   },
+            //   // template: {
+            //   //   compilerOptions: {
+            //   //     isCustomElement: tag => tag.startsWith('v-') // vuetify web components
+            //   //   }
+            //   // }
+            // },
+            // *todo* if we're going to do this, pass in vue and vuetify options...tbd
             plugins: [vue(), vuetify({autoImport: true})],
-            transpile: ['vuetify', 'NsdMicroLogo.vue'],
+            // transpile: ['vuetify', 'NsdMicroLogo.vue'],
           })
+          clearVuetify(config.vite)
         }
       },
       'astro:build:setup': ({ vite, target, updateConfig }) => {
@@ -99,17 +115,10 @@ function vuetifyIntegration (options) {
         })
         // *todo* not needed, but left to indicate how wwe can hit rollupOptions
         // vite.build.rollupOptions.external = [ "vuetify/components" ]
-        console.log ('VITE.build: ' + JSON.stringify(vite.build))
+        console.log ('VITE.build.setup: ' + JSON.stringify(vite.build))
+        console.log('VITE.build.setup.target: ' + target)
         if (target === 'server') {
-          if (!vite.ssr) {
-            vite.ssr = {};
-          }
-          if (!vite.ssr.noExternal) {
-            vite.ssr.noExternal = [];
-          }
-          if (Array.isArray(vite.ssr.noExternal)) {
-            vite.ssr.noExternal.push('vuetify');
-          }
+          clearVuetify(vite);
         }
       },
     },
