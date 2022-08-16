@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "@astrojs/vue": "^1.0.0",
-    "astro": "1.0.3",
+    "astro": "^1.0.6",
     "sass": "^1.54.3",
     "sass-loader": "^13.0.2",
     "vite": "^3.0.4",
@@ -21,7 +21,7 @@
   "dependencies": {
     "@hotwired/turbo": "^7.1.0",
     "@types/markdown-it": "^12.2.3",
-    "@vuepic/vue-datepicker": "3.4.0",
+    "@vuepic/vue-datepicker": "3.4.1",
     "install-local": "^3.0.1",
     "markdown-it": "^13.0.1",
     "pinia": "^2.0.17",
