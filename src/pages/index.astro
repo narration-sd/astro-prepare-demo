@@ -55,6 +55,20 @@ let title = 'My Astro Site';
         li ul li {
             color: purple;
         }
+        @media (prefers-color-scheme: dark) {
+            body {
+                color: darkgray !important;
+            }
+            h2, h3 {
+                color: #61b9e8;
+            }
+            li ul li {
+                color: #fd04fd;
+            }
+            button {
+                background-color: #bdbcbc;
+            }
+        }
 	</style>
 </head>
     <body>
@@ -72,9 +86,16 @@ let title = 'My Astro Site';
                 </article>
 
                 <article>
-                    <br>
-                    <br>
-                    <br>
+                    <p>It might be worth knowing that this was all developed in Dark Mode, using Dark Reader,
+                        so, depending on your eyesight, the colors will probably stand out the best there.</p>
+                    <p>As well, yes, locking the width not to alter between routes would make the presentation
+                        more stable on first load, or with slow graphics...</p>
+                    <p>But this is pre-development, and it's handy to be able to see consequences, where some
+                        components have to be client-only, unless there's a shadow frame to precede their
+                        active state.</p>
+                </article>
+
+                <article>
                     <IndexContent/>
                 </article>
             </main>

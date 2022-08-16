@@ -22,8 +22,9 @@
 import { createPinia } from 'pinia'
 import piniaPersist from 'pinia-plugin-persist'
 import { createVuetify } from 'vuetify'
-// import * as components from 'vuetify/components'
-import { VApp, VMain, VContainer, VRow, VCol, VImg } from 'vuetify/components'
+import * as components from 'vuetify/components'
+const { VApp, VMain, VContainer, VRow, VCol, VImg } = components
+// import { VApp, VMain, VContainer, VRow, VCol, VImg } from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 
 const prepareTurbo = function () {
@@ -36,9 +37,9 @@ const prepareTurbo = function () {
         if (typeof window !== 'undefined'
             && typeof window.Turbo === 'undefined') {
             return import ('@hotwired/turbo')
-                .then (() => {
+                .then (result => {
                     console.log ('@hotwired/turbo installed')
-                    return resolve()
+                    return resolve(result)
                 })
                 .catch(err =>  {
                     const reason = 'import(@hotwired/turbo:failed: ' + err
@@ -60,7 +61,7 @@ const prepareVuetify = function (app, name) {
             try {
                 const vuetify = createVuetify({
                     components: {
-                        // *todo* n.b. using this trick saves 200kB over including all components
+                        // *todo* n.b. using this trick saves 200kB zipped over including all components
                         // we'll leave it in for now, at least to simplify investigating build structures.
                         VApp, VMain, VContainer, VRow, VCol, VImg
                     },
@@ -128,8 +129,11 @@ const preparePinia = function (app, name) {
     return new Promise((resolve, reject) => {
             try {
                 const pinia = createPinia()
-                console.log('PINIA INSTALLING persist: ' + (piniaPersist ? true : false))
-                pinia.use(piniaPersist)
+                if (typeof window !== 'undefined') {
+                    // allow for no SessionStorage, without a browser, as in running dev mode
+                    console.log('PINIA INSTALLING persist: ' + (piniaPersist ? true : false))
+                    pinia.use(piniaPersist)
+                }
                 console.log('PINIA CREATED: ' + JSON.stringify(pinia))
                 app.use (pinia)
                 console.log ('persisted pinia is now in use for: ' + name)

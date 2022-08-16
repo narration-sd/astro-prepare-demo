@@ -91,6 +91,20 @@ const source = '## Let\'s ***Vue*** some \n- freshly *own-module-formatted*\n' +
         li ul li {
             color: purple;
         }
+        @media (prefers-color-scheme: dark) {
+            body {
+                color: darkgray !important;
+            }
+            h2, h3 {
+                color: #61b9e8;
+            }
+            li ul li {
+                color: #fd04fd;
+            }
+            button {
+                background-color: #bdbcbc;
+            }
+        }
     </style>
 	<!-- *todo* x in or out depending if turbo works on this page w/astro -->
 </head>
@@ -115,7 +129,7 @@ const source = '## Let\'s ***Vue*** some \n- freshly *own-module-formatted*\n' +
             </article>
 
             <article>
-              <MdTwo source={source} client:only="vue" />
+              <MdTwo source={source} client:load />
             </article>
         </main>
     </MenuLayout>

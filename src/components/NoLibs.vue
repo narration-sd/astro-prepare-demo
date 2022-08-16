@@ -17,9 +17,23 @@ export default {
 
 <style scoped>
 h3 {
-  color: darkblue !important;
+  color: darkblue;
 }
 .indenta {
   margin-left: 15px;
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    color: darkgray !important;
+  }
+  h2, h3 {
+    color: #61b9e8;
+  }
+  li ul li {
+    color: #fd04fd;
+  }
+  button {
+    background-color: #bdbcbc;
+  }
 }
 </style>
