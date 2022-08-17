@@ -74,7 +74,7 @@ export default {
 
 </style>
 
-<style lang="sass">
+<style lang="sass" scoped>
 
 h1
   font-size: larger !important
