@@ -17,13 +17,38 @@ body {
 	min-height: 100vh;
 	display: grid;
 	justify-content: center;
-	background: #f9fafb;
-	color: #111827;
+	color: #eeeeee;
+	background-color: #002852;
+}
+
+h2, h3 {
+	color: #61b9e8 !important;
+}
+
+p {
+	color: lightgoldenrodyellow;
+}
+
+li {
+	color: #d504d5 !important;
+}
+
+a {
+	color: red;
+}
+
+.menu li a {
+	color: #005380;
+}
+
+.logo-subtitle {
+	color: #8b0000 !important;
+	font-weight: 600 !important;
 }
 
 @media (prefers-color-scheme: dark) {
 	body {
-		background: #111827;
-		color: #fff;
+		color: #eeeeee;
+		background-color: #00253f;
 	}
 }

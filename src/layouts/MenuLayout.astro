@@ -2,13 +2,19 @@
 import Navbar from '../components/Navbar.astro'
 // import Navbar from '../components/Buttons.astro'
 ---
-  <div>
+<div>
     <Navbar></Navbar>
     <slot></slot>
-  </div>
+</div>
+
+<style>
+    /*
+    body {
+    }
+    */
+</style>
 
 <script>
-
 export default {
   name: "MenuLayout"
 }
