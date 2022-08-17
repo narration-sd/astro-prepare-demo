@@ -33,7 +33,7 @@ li {
 	color: #d504d5 !important;
 }
 
-a {
+a, h1 a {
 	color: red;
 }
 
