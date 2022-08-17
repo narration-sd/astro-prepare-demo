@@ -24,10 +24,30 @@ import Datepicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
 import NoLibs from "../components/NoLibs.vue";
 import { useDateStore } from "../stores/dateStore.ts"
-import { ref, onMounted } from 'vue'
+import { defineProps, computed, ref, onMounted } from 'vue'
+
+const props = defineProps({
+  source: {
+    type: String,
+    default: 'no source prop yet!'
+  },
+  date: {
+    type: Object,
+    // default: function () { return  ref(new Date()) }
+    default: function () { return  new Date() }
+  },
+  formatted: {
+    type: Boolean,
+    default: false,
+  }
+})
 
 const dateStore = useDateStore()
 const isMounted = ref(false)
+
+const dateStoreDate = computed (() => {
+  return new Date(dateStore.date).toString()
+})
 
 onMounted(() => {
   isMounted.value = true
@@ -39,40 +59,5 @@ onMounted(() => {
 
 export default {
   name: 'MdTwo',
-  props: {
-    source: {
-      type: String,
-      default: 'no source prop yet!'
-    },
-    date: {
-      type: Object,
-      // default: function () { return  ref(new Date()) }
-      default: function () { return  new Date() }
-    },
-    formatted: {
-      type: Boolean,
-      default: false,
-    }
-  },
-  // *todo* see MdThree about formatted out completely tbd
-  // data: function () {
-  //   return {
-  //     // *todd* n.b. doc why we use toString(), that the Date and String mismatch warns
-  //     // or is that actually it?
-  //     dateStore: (this.formatted ? useDateStore() : { date: new Date ().toString()} ),
-  //   }
-  // },
-  methods: {
-  },
-  computed: {
-    dateStoreDate: function () {
-      return new Date(this.dateStore.date).toString()
-    }
-  },
-  created: function () {
-
-  },
-  mounted() {
-  }
 }
 </script>
