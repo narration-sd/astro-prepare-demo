@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import vue from '@astrojs/vue';
 import vuetify from 'vite-plugin-vuetify'
+import  { readFile } from 'fs/promises'
 
 // note that in both uses, this works because arrays are passed by reference in JS
 // which puts a kind of funny cast on updateConfig, but where usable, that's clearer,
@@ -15,6 +16,32 @@ function clearVuetify(vite) {
   if (Array.isArray(vite.ssr.noExternal)) {
     vite.ssr.noExternal.push('vuetify');
   }
+}
+
+function fixPiniaPersist (vite) {
+  if (!vite.plugins) {
+    vite.plugins = [];
+  }
+
+  // we'll fool Vite into believing this is a proper module file
+
+  vite.plugins.push ({
+    name: 'fix-pinia-persist',
+    enforce: 'pre',
+    resolveId(id) {
+      if (id.includes('pinia-plugin-persist')) {
+        return 'pinia-plugin-persist.mjs'
+      }
+    },
+    async load(id) {
+      if (id === 'pinia-plugin-persist.mjs') {
+        return await readFile(
+            './node_modules/pinia-plugin-persist//dist/pinia-persist.es.js',
+            'utf-8',
+        )
+      }
+    }
+  })
 }
 
 function vuetifyIntegration (options) {
@@ -33,6 +60,7 @@ function vuetifyIntegration (options) {
             plugins: [vue(), vuetify({autoImport: true})],
           })
           clearVuetify(config.vite)
+          fixPiniaPersist(config.vite)
         }
       },
       'astro:build:setup': ({ vite, target, updateConfig }) => {
@@ -45,6 +73,7 @@ function vuetifyIntegration (options) {
         console.log('VITE.build.setup.target: ' + target)
         if (target === 'server') {
           clearVuetify(vite);
+          fixPiniaPersist(vite)
         }
       },
     },
