@@ -1,3 +1,5 @@
+/* *todo* there are by now a lot of overrides in here -- we can just strip out all the tuning in pages etc. */
+
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -18,7 +20,11 @@ body {
 	display: grid;
 	justify-content: center;
 	color: #eeeeee;
-	background-color: #002852;
+	background-color: #00253f; /* same as dark; we like it that way */
+}
+
+h1 {
+	color: darkgrey;
 }
 
 h2, h3 {
