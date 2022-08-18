@@ -21,7 +21,7 @@
   "dependencies": {
     "@hotwired/turbo": "^7.1.0",
     "@types/markdown-it": "^12.2.3",
-    "@vuepic/vue-datepicker": "3.4.1",
+    "@vuepic/vue-datepicker": "^3.4.5",
     "install-local": "^3.0.1",
     "markdown-it": "^13.0.1",
     "pinia": "^2.0.17",
