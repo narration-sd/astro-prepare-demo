@@ -123,6 +123,13 @@ const tailMsg = "...and, this works also, with its own color! Tailwind does not 
             </header>
 
             <article>
+                <h2>We present an <i>image</i> of Astro's Tailwind integration working here...because it does,
+                    just not without clearing base css used by Markdown, etc., which might like a plugin...</h2>
+                <img src="/tailwind-less.png" height="400" width="561">
+            </article>
+
+<!--
+            <article>
                 <h2>The idea here is to have Tailwind, article and then embedded component</h2>
                 <p>So let's have some Tailwind, first within the astro article...</p>
                 <div class="dark:bg-green-800 bg-blue-800 dark:text-amber-400 text-yellow-300 border-red-600 border-b p-4 m-4 rounded">
@@ -131,6 +138,7 @@ const tailMsg = "...and, this works also, with its own color! Tailwind does not 
                 <p>Now a Vue component simply using a similar block, no Vue additions...</p>
                 <NoTail msg={tailMsg} />
             </article>
+-->
 
             <article>
                 <FourContent />
