@@ -19,6 +19,7 @@
     "vue": "^3.2.37"
   },
   "dependencies": {
+    "@astrojs/tailwind": "^1.0.0",
     "@hotwired/turbo": "^7.1.0",
     "@types/markdown-it": "^12.2.3",
     "@vuepic/vue-datepicker": "^3.4.6",

@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import vue from '@astrojs/vue';
 import vuetify from 'vite-plugin-vuetify'
 import  { readFile } from 'fs/promises'
+import tailwind from '@astrojs/tailwind';
 
 // note that in both uses, this works because arrays are passed by reference in JS
 // which puts a kind of funny cast on updateConfig, but where usable, that's clearer,
@@ -57,7 +58,7 @@ function vuetifyIntegration (options) {
           console.log('dev, and is there ssr? : ' + JSON.stringify(config.vite.ssr))
           updateConfig ({
             // *todo* if we're going to do this, pass in vue and vuetify options...tbd
-            plugins: [vue(), vuetify({autoImport: true})],
+            plugins: [vue(), vuetify({autoImport: true}), tailwind()],
           })
           clearVuetify(config.vite)
           fixPiniaPersist(config.vite)
@@ -67,7 +68,7 @@ function vuetifyIntegration (options) {
         console.log('astro.config:VITE:TARGET: ' + target)
         updateConfig ({
           // *todo* same on args as above...
-          plugins: [ vue(), vuetify({autoImport: true}) ],
+          plugins: [ vue(), vuetify({autoImport: true}), tailwind() ],
         })
         console.log ('VITE.build.setup: ' + JSON.stringify(vite.build))
         console.log('VITE.build.setup.target: ' + target)
@@ -81,5 +82,5 @@ function vuetifyIntegration (options) {
 }
 
 export default defineConfig({
-  integrations: [vue(), vuetifyIntegration()]
+  integrations: [vue(), vuetifyIntegration(), tailwind()]
 })

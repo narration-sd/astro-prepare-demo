@@ -1,0 +1,142 @@
+---
+import {Content as FourContent} from '../content/Four.md';
+import '../styles/global.css';
+import '../styles/home.css';
+import MenuLayout from '../layouts/MenuLayout.astro'
+import MdTwo from '../components/MdTwo.vue'
+import NoTail from '../components/NoTail.vue'
+// import NsdMicroLogo from '../components/NsdMicroLogo.ce.vue'
+//import TurboSuspense from '../components/TurboSuspense.vue';
+// import MkDown from '../components/MkDown.vue'
+import NsdMarkdown from '../components/NsdMarkdown.vue'
+
+// following statement is confusion. imports need to be here, for component:load only...???
+// Component Script:
+// You can write any JavaScript/TypeScript that you'd like here.
+// It will run during the build, but never in the browser.
+// All variables are available to use in the HTML template below.
+console.error ('astroProps: ' + JSON.stringify(Astro.props))
+const astroProps = JSON.stringify(Astro.props)
+export async function getStaticPaths() {
+const post = { id: 23, text: 'something for a param' }
+return {
+  params: { id: post.id },
+  props: { post },
+};
+}
+const { id } = Astro.params
+const { post } = Astro.props
+
+let title = 'My Astro Four';
+const source = '## Let\'s ***Vue*** some \n- freshly *own-module-formatted*\n' +
+  '- **Markdown**,\n\nemphasis, bullet list and plain text as well...';
+const tailMsg = "...and, this works also, with its own color! Tailwind does not need to be use()d by the Vue app, " +
+    "so there's one less spot of work to do..."
+---
+<script setup>
+</script>
+
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>{title}</title>
+
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+	<style>
+		header {
+			display: flex;
+			flex-direction: column;
+			gap: 1em;
+			max-width: min(100%, 68ch);
+		}
+		article {
+			padding-top: 1.5em !important;
+			line-height: 1.5;
+			display: flex;
+			flex-direction: column;
+			gap: 1em;
+			max-width: 70ch;
+		}
+		.banner {
+			text-align: center;
+			font-size: 1.2rem;
+			background: var(--color-light);
+			padding: 1em 1.5em;
+			padding-left: 0.75em;
+			border-radius: 4px;
+		}
+		h3 {
+		    font-size: 11pt
+		}
+
+	</style>
+	<style is:global>
+		pre {
+			padding: 1rem;
+		}
+        h2 {
+            font-size: large !important;
+            color: darkblue;
+        }		.indenta {
+          margin-left: 15px;
+        }
+        .experiment-para {
+          margin-top: -12px;
+        }
+        strong, p a {
+            color: red;
+        }
+        em {
+            color: green;
+        }
+        li ul li {
+            color: purple;
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                color: darkgray !important;
+            }
+            h2, h3 {
+                color: #61b9e8;
+            }
+            li ul li {
+                color: #fd04fd;
+            }
+            button {
+                background-color: #bdbcbc;
+            }
+        }
+    </style>
+	<!-- *todo* x in or out depending if turbo works on this page w/astro -->
+</head>
+<body>
+    <div>
+    <MenuLayout>
+        <main>
+            <header>
+                <div>
+                    <h1>Welcome to <a href="https://astro.build/">Astro</a></h1>
+                    <h3>This is { title }</h3>
+                </div>
+            </header>
+
+            <article>
+                <h2>The idea here is to have Tailwind, article and then embedded component</h2>
+                <p>So let's have some Tailwind, first within the astro article...</p>
+                <div class="bg-blue-300 border-red-600 border-b p-4 m-4 rounded">
+                    Hello World, which by all its colors looks to work.
+                </div>
+                <p>Now a Vue component simply using a similar block, no Vue additions...</p>
+                <NoTail msg={tailMsg} />
+            </article>
+
+            <article>
+                <FourContent />
+            </article>
+        </main>
+    </MenuLayout>
+	</div>
+</body>
+</html>
