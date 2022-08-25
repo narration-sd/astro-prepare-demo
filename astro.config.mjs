@@ -45,6 +45,34 @@ function fixPiniaPersist (vite) {
   })
 }
 
+const fixMissingPrepare = (vite) => {
+  vite.plugins.push(
+      {
+        async buildEnd(error) {
+          console.log ('VITE-ROLLUP: build ends...')
+          if (error) {
+            // console.log ('VITE-ROLLUP: build error: ' + error.message + 'VITE-ROLLUP error ends...')
+            const errs = error.message.split('\n')
+            // *todo* of course we'll elaborate...
+            const ourMessage = 'We\'d rather handle this! ' + errs[0]
+            const ourError = new Error (ourMessage)
+            // ourError.cause = error
+            ourError.stack = error.stack
+            throw ourError
+            // does nothing. But our throw...! return false // 'VITE-ROLLUP: our error to handle...'
+          }
+          // ...do something on buildEnd: doesn't work!
+        },
+        // async buildStart() {
+        //   console.log ('VITE-ROLLUP: build starts...')
+        //   // ...do something on buildStart: works!
+        // }
+      }
+  )
+}
+
+// *todo* among many others, note the plugin functions above all go into thie eventual vue upgrade
+
 function vuetifyIntegration (options) {
   return {
     name: 'vuetify',
@@ -62,6 +90,7 @@ function vuetifyIntegration (options) {
           })
           clearVuetify(config.vite)
           fixPiniaPersist(config.vite)
+          fixMissingPrepare(config.vite)
         }
       },
       'astro:build:setup': ({ vite, target, updateConfig }) => {
@@ -75,6 +104,7 @@ function vuetifyIntegration (options) {
         if (target === 'server') {
           clearVuetify(vite);
           fixPiniaPersist(vite)
+          fixMissingPrepare(vite)
         }
       },
     },
