@@ -1,7 +1,7 @@
 <template>
 <h3>NoTail: I'm a Vue subcomponent, this time with some Tailwind...</h3>
 <!--  <p class="indenta">{{ msg }}</p>-->
-  <div class="indenta dark:bg-green-800 bg-blue-800 dark:text-amber-400 text-yellow-300 border-red-600 border-b p-4 m-4 rounded">
+  <div class="indenta dark:bg-green-500 bg-blue-800 dark:text-amber-400 text-yellow-300 border-red-600 border-b p-4 m-4 rounded">
     Hello World, {{ msg }}.
   </div>
 </template>

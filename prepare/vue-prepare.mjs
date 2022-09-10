@@ -149,7 +149,7 @@ const preparePinia = function (app, name) {
 
 // this version creates and returns the app, once the essentials are in place for it
 // mounting still takes place in client.mjs, so it can recover to basis if a prepare step fails
-const prepare = function (createProper, createArgs, isServer = false, name = 'not named') {
+const prepare = function (createProper, createArgs, name = 'not named', isClient = true) {
 
     console.log ('About to prepare for: ' + name)
 
@@ -160,9 +160,9 @@ const prepare = function (createProper, createArgs, isServer = false, name = 'no
             console.log ('props: ' + JSON.stringify(props))
             console.log ('slots: ' + JSON.stringify(slots))
 
-            const app = isServer  // no name for createSSRApp
-                ? createProper({ render: () => h(Component, props, slots) })
-                : createProper({ name, render: () => h(Component, props, slots) })
+            const app = isClient  // no name for createSSRApp
+                ? createProper({ name, render: () => h(Component, props, slots) })
+                : createProper({ render: () => h(Component, props, slots) })
 
             console.log ('created app for: ' + name)
             return app
@@ -174,7 +174,12 @@ const prepare = function (createProper, createArgs, isServer = false, name = 'no
         })
         .then (app => {
             console.log('resulting pinia\'d app, un-circularly: ' + app)
-            return prepareVuetify(app, name)
+            // don't add Vuetify if it's the SSR side -- avoid problems with
+            // css duplication being removed by vite css plugin in astro
+            console.log ('preparing Vuetify for: ' + name + ': ' + isClient)
+            return isClient
+                ? prepareVuetify(app, name)
+                : app
         })
         .then (app => {
             console.log('resulting vuetified app, un-circularly: ' + app)
