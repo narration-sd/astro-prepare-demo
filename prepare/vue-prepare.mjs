@@ -177,7 +177,7 @@ const prepare = function (createProper, createArgs, name = 'not named', isClient
             // don't add Vuetify if it's the SSR side -- avoid problems with
             // css duplication being removed by vite css plugin in astro
             console.log ('preparing Vuetify for: ' + name + ': ' + isClient)
-            return isClient
+            return true || isClient
                 ? prepareVuetify(app, name)
                 : app
         })
