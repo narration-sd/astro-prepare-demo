@@ -7,7 +7,7 @@ import tailwind from '@astrojs/tailwind';
 // note that in both uses, this works because arrays are passed by reference in JS
 // which puts a kind of funny cast on updateConfig, but where usable, that's clearer,
 // while this is careful, and very safe.
-function clearVuetify(vite) {
+function setVuetifyAsNoexternal(vite) {
   if (!vite.ssr) {
     vite.ssr = {};
   }
@@ -19,7 +19,7 @@ function clearVuetify(vite) {
   }
 }
 
-function fixPiniaPersist (vite) {
+function fixPiniaPersistModuleType (vite) {
   if (!vite.plugins) {
     vite.plugins = [];
   }
@@ -45,28 +45,19 @@ function fixPiniaPersist (vite) {
   })
 }
 
-const fixMissingPrepare = (vite) => {
+const ourReportingForMissingPrepares = (vite) => {
   vite.plugins.push(
       {
         async buildEnd(error) {
-          console.log ('VITE-ROLLUP: build ends...')
           if (error) {
-            // console.log ('VITE-ROLLUP: build error: ' + error.message + 'VITE-ROLLUP error ends...')
             const errs = error.message.split('\n')
-            // *todo* of course we'll elaborate...
+            // *todo* of course we'll elaborate...clean suggest of what they are missing & fix
             const ourMessage = 'We\'d rather handle this! ' + errs[0]
             const ourError = new Error (ourMessage)
-            // ourError.cause = error
             ourError.stack = error.stack
             throw ourError
-            // does nothing. But our throw...! return false // 'VITE-ROLLUP: our error to handle...'
           }
-          // ...do something on buildEnd: doesn't work!
-        },
-        // async buildStart() {
-        //   console.log ('VITE-ROLLUP: build starts...')
-        //   // ...do something on buildStart: works!
-        // }
+        }
       }
   )
 }
@@ -78,34 +69,32 @@ function vuetifyIntegration (options) {
     name: 'vuetify',
     hooks: {
       'astro:config:setup': ({ command, config, updateConfig }) => {
-        console.log('running astro:config:setup...')
-        console.log('command  is: ' + command)
-        console.log('config is: ' + JSON.stringify(config))
-        if (command === 'dev') {
+        if (command === 'dev' || command === 'build') {
           // though none of this helps the dev with ssr problem, so far
-          console.log('dev, and is there ssr? : ' + JSON.stringify(config.vite.ssr))
+          // console.log('dev, and is there ssr? : ' + JSON.stringify(config.vite.ssr))
           updateConfig ({
             // *todo* if we're going to do this, pass in vue and vuetify options...tbd
             plugins: [vue(), vuetify({autoImport: true})/*, tailwind()*/],
           })
-          clearVuetify(config.vite)
-          fixPiniaPersist(config.vite)
-          fixMissingPrepare(config.vite)
+          setVuetifyAsNoexternal(config.vite)
+          fixPiniaPersistModuleType(config.vite)
+          ourReportingForMissingPrepares(config.vite)
         }
+        console.log('ASTRO:config:setup:COMNAND is: ' + command)
+        console.log('ASTRO:config:setup:config is: ' + JSON.stringify(config))
       },
       'astro:build:setup': ({ vite, target, updateConfig }) => {
-        console.log('astro.config:VITE:TARGET: ' + target)
         updateConfig ({
           // *todo* same on args as above...
           plugins: [ vue(), vuetify({autoImport: true})/*, tailwind()*/ ],
         })
-        console.log ('VITE.build.setup: ' + JSON.stringify(vite.build))
-        console.log('VITE.build.setup.target: ' + target)
         if (target === 'server') {
-          clearVuetify(vite);
-          fixPiniaPersist(vite)
-          fixMissingPrepare(vite)
+          setVuetifyAsNoexternal(vite);
+          fixPiniaPersistModuleType(vite)
+          ourReportingForMissingPrepares(vite)
         }
+        console.log ('VITE.build.setup: ' + JSON.stringify(vite.build))
+        console.log('VITE.build.setup.TARGET: ' + target)
       },
     },
   }
