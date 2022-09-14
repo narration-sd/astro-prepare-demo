@@ -7,6 +7,9 @@
 //
 //   For example,  vue-prepare.mjs
 
+// you must have a prepare file for each integration using them, even if it's empty.
+// This is the one consequence of all the freedoms that we're building here.
+
 // prepares do the creation of the app, so that they can add plugins to it,
 // as for vue.use(). Of course, plugins may have their own enhancements,
 // shown with the pinia.use() here.
@@ -26,6 +29,7 @@ import * as components from 'vuetify/components'
 const { VApp, VMain, VContainer, VRow, VCol, VImg } = components
 // import { VApp, VMain, VContainer, VRow, VCol, VImg } from 'vuetify/components'
 import * as directives from 'vuetify/directives'
+import 'vuetify/styles'
 
 const prepareTurbo = function () {
     return new Promise ((resolve, reject) => {
@@ -60,41 +64,13 @@ const prepareVuetify = function (app, name) {
     return new Promise((resolve, reject) => {
             try {
                 const vuetify = createVuetify({
+                    // components,
                     components: {
                         // *todo* n.b. using this trick saves 200kB zipped over including all components
                         // we'll leave it in for now, at least to simplify investigating build structures.
                         VApp, VMain, VContainer, VRow, VCol, VImg
                     },
-                    // components,
                     directives,
-                    // theme: {
-                    //     themes: {
-                    //         JLightTheme: {
-                    //             dark: false,
-                    //             colors: {
-                    //                 background: '#e3e4e0',
-                    //                 surface: '#FFFFFF',
-                    //                 primary: '#5A392D',
-                    //                 'primary-darken-1': '#3700B3',
-                    //                 secondary: '#4D5A58',
-                    //                 'secondary-darken-1': '#018786',
-                    //                 accent: '#e3e4e0',
-                    //                 error: '#B00020',
-                    //                 info: '#2196F3',
-                    //                 success: '#4CAF50',
-                    //                 warning: '#FB8C00',
-                    //             }
-                    //         },
-                    //     }
-                    // },
-                    // // icons: {
-                    // //     defaults: 'fa',
-                    // //     aliases,
-                    // //     sets: {
-                    // //         fa,
-                    // //         mdi
-                    // //     }
-                    // // }
                 })
                 console.log('Vuetify CREATED: ' + JSON.stringify(vuetify))
                 /*

@@ -1,12 +1,16 @@
 import { defineConfig } from 'astro/config';
 import vue from '@astrojs/vue';
-import vuetify from 'vite-plugin-vuetify'
+import vuetifyPlugin from 'vite-plugin-vuetify'
 import  { readFile } from 'fs/promises'
 import tailwind from '@astrojs/tailwind';
 
 // note that in both uses, this works because arrays are passed by reference in JS
 // which puts a kind of funny cast on updateConfig, but where usable, that's clearer,
 // while this is careful, and very safe.
+
+const viteVuetifyOptions = { styles: { configFile: 'src/styles/vuetify-main.scss' }, autoImport: true }
+const integrations = [ vuetifyIntegration()/*, tailwind()*/, vue() ]
+
 function setVuetifyAsNoexternal(vite) {
   if (!vite.ssr) {
     vite.ssr = {};
@@ -52,7 +56,7 @@ const ourReportingForMissingPrepares = (vite) => {
           if (error) {
             const errs = error.message.split('\n')
             // *todo* of course we'll elaborate...clean suggest of what they are missing & fix
-            const ourMessage = 'We\'d rather handle this! ' + errs[0]
+            const ourMessage = 'We\'d rather handle this, just saying for now...! ' + errs[0]
             const ourError = new Error (ourMessage)
             ourError.stack = error.stack
             throw ourError
@@ -73,8 +77,8 @@ function vuetifyIntegration (options) {
           // though none of this helps the dev with ssr problem, so far
           // console.log('dev, and is there ssr? : ' + JSON.stringify(config.vite.ssr))
           updateConfig ({
-            // *todo* if we're going to do this, pass in vue and vuetify options...tbd
-            plugins: [vue(), vuetify({autoImport: true})/*, tailwind()*/],
+            // *todo* if we're going to do this, pass in vue and vuetifyPlugin options...tbd
+            plugins: integrations,
           })
           setVuetifyAsNoexternal(config.vite)
           fixPiniaPersistModuleType(config.vite)
@@ -86,7 +90,7 @@ function vuetifyIntegration (options) {
       'astro:build:setup': ({ vite, target, updateConfig }) => {
         updateConfig ({
           // *todo* same on args as above...
-          plugins: [ vue(), vuetify({autoImport: true})/*, tailwind()*/ ],
+          plugins: integrations,
         })
         if (target === 'server') {
           setVuetifyAsNoexternal(vite);
@@ -101,5 +105,5 @@ function vuetifyIntegration (options) {
 }
 
 export default defineConfig({
-  integrations: [vue(), vuetifyIntegration()/*, tailwind()*/]
+  integrations: integrations
 })
