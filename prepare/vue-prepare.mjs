@@ -21,15 +21,12 @@
 // in one integration -- this would be cleaner, and allow tracking its coming
 // capability releases.
 
-// import {createApp} from "vue";
 import { createPinia } from 'pinia'
 import piniaPersist from 'pinia-plugin-persist'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 const { VApp, VMain, VContainer, VRow, VCol, VImg } = components
-// import { VApp, VMain, VContainer, VRow, VCol, VImg } from 'vuetify/components'
 import * as directives from 'vuetify/directives'
-import 'vuetify/styles'
 
 const prepareTurbo = function () {
     return new Promise ((resolve, reject) => {

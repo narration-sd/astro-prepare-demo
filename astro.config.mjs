@@ -1,15 +1,10 @@
 import { defineConfig } from 'astro/config';
 import vue from '@astrojs/vue';
-import vuetifyPlugin from 'vite-plugin-vuetify'
+import viteVuetifyPlugin from 'vite-plugin-vuetify'
 import  { readFile } from 'fs/promises'
-import tailwind from '@astrojs/tailwind';
+// import tailwind from '@astrojs/tailwind';
 
-// note that in both uses, this works because arrays are passed by reference in JS
-// which puts a kind of funny cast on updateConfig, but where usable, that's clearer,
-// while this is careful, and very safe.
-
-const viteVuetifyOptions = { styles: { configFile: 'src/styles/vuetify-main.scss' }, autoImport: true }
-const integrations = [ vuetifyIntegration()/*, tailwind()*/, vue() ]
+const viteVuetifyOptions = {/* styles: { configFile: 'src/styles/vuetify-main.scss' }, */autoImport: true }
 
 function setVuetifyAsNoexternal(vite) {
   if (!vite.ssr) {
@@ -56,7 +51,7 @@ const ourReportingForMissingPrepares = (vite) => {
           if (error) {
             const errs = error.message.split('\n')
             // *todo* of course we'll elaborate...clean suggest of what they are missing & fix
-            const ourMessage = 'We\'d rather handle this, just saying for now...! ' + errs[0]
+            const ourMessage = 'We\'d rather handle this, just saying so for now...! ' + errs[0]
             const ourError = new Error (ourMessage)
             ourError.stack = error.stack
             throw ourError
@@ -66,44 +61,55 @@ const ourReportingForMissingPrepares = (vite) => {
   )
 }
 
-// *todo* among many others, note the plugin functions above all go into thie eventual vue upgrade
+// note that in both uses, this pattern works because arrays are passed by reference in JS
+// which puts a kind of funny cast on updateConfig, but where usable, that's clearer,
+// while this is careful, and very safe.
+// *todo* among many others, note the plugin functions above all go into the eventual vue upgrade
 
 function vuetifyIntegration (options) {
   return {
     name: 'vuetify',
     hooks: {
       'astro:config:setup': ({ command, config, updateConfig }) => {
-        if (command === 'dev' || command === 'build') {
+        if (command === 'dev') {
           // though none of this helps the dev with ssr problem, so far
-          // console.log('dev, and is there ssr? : ' + JSON.stringify(config.vite.ssr))
-          updateConfig ({
-            // *todo* if we're going to do this, pass in vue and vuetifyPlugin options...tbd
-            plugins: integrations,
-          })
+          console.log('PRE:ASTRO:config:setup:COMNAND is: ' + command)
+          console.log('PRE:ASTRO:config:setup:config is: ' + JSON.stringify(config))
+          console.log('PRE:ASTRO:config:setup:config.vite.plugins: ' + JSON.stringify(config.vite.plugins))
+          // updateConfig ({
+          //   // *todo* if we're going to do this, pass in vue and vuetifyPlugin options...tbd
+          //   plugins: [ vue(), viteVuetifyPlugin(viteVuetifyOptions)/*, tailwind()*/ ],
+          // })
           setVuetifyAsNoexternal(config.vite)
           fixPiniaPersistModuleType(config.vite)
           ourReportingForMissingPrepares(config.vite)
         }
-        console.log('ASTRO:config:setup:COMNAND is: ' + command)
-        console.log('ASTRO:config:setup:config is: ' + JSON.stringify(config))
+        console.log('POST:ASTRO:config:setup:COMNAND is: ' + command)
+        console.log('POST:ASTRO:config:setup:config is: ' + JSON.stringify(config))
+        console.log('POST:ASTRO:config:setup:config.vite.plugins: ' + JSON.stringify(config.vite.plugins))
       },
       'astro:build:setup': ({ vite, target, updateConfig }) => {
-        updateConfig ({
-          // *todo* same on args as above...
-          plugins: integrations,
-        })
+        console.log('PRE:VITE.build.setup.TARGET: ' + target)
+        console.log ('PRE: VITE.build.setup: ' + JSON.stringify(vite))
+        console.log ('PRE:VITE.build.setup: ' + JSON.stringify(vite))
+        // updateConfig ({
+        //   // *todo* same on args as above...
+        //   plugins: [ vue(), viteVuetifyPlugin(viteVuetifyOptions)/*, tailwind()*/ ],
+        // })
         if (target === 'server') {
           setVuetifyAsNoexternal(vite);
           fixPiniaPersistModuleType(vite)
           ourReportingForMissingPrepares(vite)
+          vite.plugins.push(viteVuetifyPlugin(viteVuetifyOptions))
         }
-        console.log ('VITE.build.setup: ' + JSON.stringify(vite.build))
-        console.log('VITE.build.setup.TARGET: ' + target)
+        console.log('POST:VITE.build.setup.TARGET: ' + target)
+        console.log ('POST:VITE.build.setup: ' + JSON.stringify(vite))
+        console.log ('POST:VITE.build.setup:vite.plugins: ' + JSON.stringify(vite.plugins))
       },
     },
   }
 }
 
 export default defineConfig({
-  integrations: integrations
+  integrations: [ vuetifyIntegration(), /*viteVuetifyPlugin(viteVuetifyOptions),*/ /* tailwind(), */ vue() ]
 })
