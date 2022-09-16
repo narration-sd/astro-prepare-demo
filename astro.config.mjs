@@ -4,9 +4,9 @@ import viteVuetifyPlugin from 'vite-plugin-vuetify'
 import  { readFile } from 'fs/promises'
 // import tailwind from '@astrojs/tailwind';
 
-const viteVuetifyOptions = {/* styles: { configFile: 'src/styles/vuetify-main.scss' }, */autoImport: true }
+const viteVuetifyOptions = { autoImport: true }
 
-function setVuetifyAsNoexternal(vite) {
+function setVuetifyAsNoExternal(vite) {
   if (!vite.ssr) {
     vite.ssr = {};
   }
@@ -78,9 +78,9 @@ function vuetifyIntegration (options) {
           console.log('PRE:ASTRO:config:setup:config.vite.plugins: ' + JSON.stringify(config.vite.plugins))
           // updateConfig ({
           //   // *todo* if we're going to do this, pass in vue and vuetifyPlugin options...tbd
-          //   plugins: [ vue(), viteVuetifyPlugin(viteVuetifyOptions)/*, tailwind()*/ ],
+          //   plugins: [ vue() /*, tailwind()*/ ],
           // })
-          setVuetifyAsNoexternal(config.vite)
+          setVuetifyAsNoExternal(config.vite)
           fixPiniaPersistModuleType(config.vite)
           ourReportingForMissingPrepares(config.vite)
         }
@@ -94,12 +94,14 @@ function vuetifyIntegration (options) {
         console.log ('PRE:VITE.build.setup: ' + JSON.stringify(vite))
         // updateConfig ({
         //   // *todo* same on args as above...
-        //   plugins: [ vue(), viteVuetifyPlugin(viteVuetifyOptions)/*, tailwind()*/ ],
+        //   plugins: [ vue()/*, tailwind()*/ ],
         // })
         if (target === 'server') {
-          setVuetifyAsNoexternal(vite);
+          setVuetifyAsNoExternal(vite);
           fixPiniaPersistModuleType(vite)
           ourReportingForMissingPrepares(vite)
+          // next is the required step for build to function, so vite/rollup
+          // will produce Vuetify's css. This is where that plugin goes.
           vite.plugins.push(viteVuetifyPlugin(viteVuetifyOptions))
         }
         console.log('POST:VITE.build.setup.TARGET: ' + target)
@@ -111,5 +113,8 @@ function vuetifyIntegration (options) {
 }
 
 export default defineConfig({
-  integrations: [ vuetifyIntegration(), /*viteVuetifyPlugin(viteVuetifyOptions),*/ /* tailwind(), */ vue() ]
+  // n.b. Order must be followed here: each platform first, then any related integrations
+  // this is so the added integration operates against its platform aready configured
+  // in the published example, vue(), then vuetifyIntegration()...
+  integrations: [ vue(), vuetifyIntegration(), /* tailwind(), */  ]
 })
