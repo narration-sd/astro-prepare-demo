@@ -91,7 +91,6 @@ const prepareVuetify = function (app, name) {
     )
 }
 
-
 // Pinia needs to be use()ed as a plugin by the Vue initial app,
 // while having its own plugins to be use()ed internally first.
 // there are issues here, all handled. The one that can't be
@@ -104,7 +103,8 @@ const preparePinia = function (app, name) {
                 const pinia = createPinia()
                 if (typeof window !== 'undefined') {
                     // allow for no SessionStorage, without a browser, as in running dev mode
-                    console.log('PINIA INSTALLING persist: ' + (piniaPersist ? true : false))
+                    // *todo* next goes out if we're sure not to dynamicimport
+                    console.log('PINIA INSTALLING persist: ' + (piniaPersist ? 'presntt' : 'missing'))
                     pinia.use(piniaPersist)
                 }
                 console.log('PINIA CREATED: ' + JSON.stringify(pinia))
@@ -149,6 +149,7 @@ const prepare = function (createProper, createArgs, name = 'not named', isClient
             console.log('resulting pinia\'d app, un-circularly: ' + app)
             // don't add Vuetify if it's the SSR side -- avoid problems with
             // css duplication being removed by vite css plugin in astro
+            // *todo* get rid of this once isClient along path is fully removed: just do the prepare...
             console.log ('preparing Vuetify for: ' + name + ': ' + isClient)
             return true || isClient
                 ? prepareVuetify(app, name)
@@ -164,4 +165,4 @@ const prepare = function (createProper, createArgs, name = 'not named', isClient
         })
 }
 
-export default prepare
+export { prepare as default }
