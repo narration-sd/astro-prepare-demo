@@ -40,10 +40,12 @@ const { VApp, VMain, VContainer, VRow, VCol, VImg } = components
 // prepareTurbo doesn't actually need to be done here, at present; could just replace
 // the old different-Turbo integration. The same handling would be used vs. window and presence.
 //
-// Also, though, there are more capabbilities in this Turbo, and to increase before long.
+// Also, though, there are more capabilities in this Turbo, and to increase before long.
 // So it's good enough to keep things here, and work with those extensions after this one.
 
-const prepareTurbo = function () {
+// we do, however, necessarily pass the app through so chain can use it, untouched in this case.
+
+const prepareTurbo = function (app) {
     return new Promise ((resolve, reject) => {
 
         // we don't want to multiple-create, per component or page...
@@ -55,7 +57,7 @@ const prepareTurbo = function () {
             return import ('@hotwired/turbo')
                 .then (result => {
                     console.log ('@hotwired/turbo installed')
-                    return resolve(result)
+                    return resolve(app)
                 })
                 .catch(err =>  {
                     const reason = 'import(@hotwired/turbo:failed: ' + err
@@ -64,7 +66,7 @@ const prepareTurbo = function () {
                 })
         }
         else {
-            resolve()
+            resolve(app)
         }
     })
 }
@@ -90,9 +92,7 @@ const prepareVuetify =  (app, name) => {
                     },
                     directives,
                 })
-                console.log('Vuetify CREATED: ' + JSON.stringify(vuetify))
                 app.use(vuetify)
-                console.log ('vuetify is now in use for: ' + name)
                 resolve(app)
             } catch (err) {
                 const reason = 'vuetify prepare failed: ' + err
@@ -137,23 +137,15 @@ const preparePinia = (app, name)  =>{
 // *todo* I'm not completely happy with isClient being needed -- some alternatives to try soon, as
 // the createArgs are already being passed. With the solution, we'll likely also handle the name.
 
-const prepare = function (createProper, createArgs, name = 'not named', isClient = true) {
+const prepare = function (appOnly, name = 'not named', isClient = true) {
 
-    console.log ('About to prepare for: ' + name)
+    // the first in the chain always gets the fresh appOnly, passing down its result
+    // Promises make this level short and simple, also allow inserting logging/comments
 
-    return prepareTurbo()
-        .then (() => {
-            const { h, Component, props, slots} = createArgs
-
-            const app = isClient  // no name for createSSRApp
-                ? createProper({ name, render: () => h(Component, props, slots) })
-                : createProper({ render: () => h(Component, props, slots) })
-
-            return app
-        })
+    return prepareTurbo(appOnly)
         .then (app => {
-            return preparePinia (app, name)
-            // *todo* we'll do uses from a list, perhaps, after validating on these
+            return preparePinia (appOnly, name)
+            // *todo* we'll perhaps do uses from a list, after validating on these
         })
         .then (app => {
            return prepareVuetify(app, name)
