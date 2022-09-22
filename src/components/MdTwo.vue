@@ -24,7 +24,7 @@ import Datepicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
 import NoLibs from "../components/NoLibs.vue";
 import { useDateStore } from "../stores/dateStore.ts"
-import { defineProps, computed, ref, onMounted } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 
 const props = defineProps({
   source: {

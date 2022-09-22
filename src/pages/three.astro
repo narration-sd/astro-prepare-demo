@@ -25,21 +25,16 @@ return [
 // You can write any JavaScript/TypeScript that you'd like here.
 // It will run during the build, but never in the browser.
 // All variables are available to use in the HTML template below.
-console.error ('astroProps: ' + JSON.stringify(Astro.props))
-const astroProps = JSON.stringify(Astro.props)
 
+// this little block prepares something interesting to assure capabilities of astro props,
+// in a small message on screen
+const astroProps = JSON.stringify(Astro.props)
 const { id } = Astro.params
 const { post } = Astro.props
-console.log('Astro.params: ' + JSON.stringify(Astro.params))
-console.log('Astro.props: ' + JSON.stringify(Astro.props))
-console.log('Astro.props.funk: ' + JSON.stringify(Astro.props.funk))
 const { doFunk = '"no funk!"' } = Astro.props
-console.log('doFunk is: ' + doFunk)
 // n.b. must have the return, or there isn't one, thus...boom
 const funkNow = new Function ('return ' +  doFunk)
-console.log('funkNow(): ' + funkNow())
 const { something } = Astro.props
-
 
 let title = 'My Astro Three';
 const source = '## Let\'s ***Vue*** some more, from\n- our entirely ' +

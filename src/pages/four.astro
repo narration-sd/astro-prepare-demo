@@ -5,9 +5,6 @@ import '../styles/home.css';
 import MenuLayout from '../layouts/MenuLayout.astro'
 import MdTwo from '../components/MdTwo.vue'
 import NoTail from '../components/NoTail.vue'
-// import NsdMicroLogo from '../components/NsdMicroLogo.ce.vue'
-//import TurboSuspense from '../components/TurboSuspense.vue';
-// import MkDown from '../components/MkDown.vue'
 import NsdMarkdown from '../components/NsdMarkdown.vue'
 
 // following statement is confusion. imports need to be here, for component:load only...???
@@ -15,8 +12,6 @@ import NsdMarkdown from '../components/NsdMarkdown.vue'
 // You can write any JavaScript/TypeScript that you'd like here.
 // It will run during the build, but never in the browser.
 // All variables are available to use in the HTML template below.
-console.error ('astroProps: ' + JSON.stringify(Astro.props))
-const astroProps = JSON.stringify(Astro.props)
 export async function getStaticPaths() {
 const post = { id: 23, text: 'something for a param' }
 return {

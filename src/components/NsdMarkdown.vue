@@ -4,7 +4,7 @@
 </template>
 
 <script setup>
-import { defineProps, computed } from 'vue'
+import { computed } from 'vue'
 import MarkdownIt from "markdown-it";
 
 const md = new MarkdownIt()

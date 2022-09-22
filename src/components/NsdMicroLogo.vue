@@ -1,4 +1,5 @@
 <template lang="pug">
+<!-- we were doing fixed Vuetify or not, during discovery on the Vuetify capability -->
 div(v-if="true")
   v-app.logo-spaced
     v-main
@@ -25,14 +26,10 @@ div(v-else)
 <script setup>
 import urlPath from '../static/avatar100.png'
 const iconUrl = urlPath
-// *todo* use this later, but must define all props. Match then question on formatted in client.js
-// defineProps ({
-//   thisWay: { type: Boolean, required: false, default: false },
+// import {onBeforeMount} from "vue";
+// onBeforeMount(() => {
+//   console.log('iconUrl is: '+ iconUrl)
 // })
-import {onBeforeMount} from "vue";
-onBeforeMount(() => {
-  console.log('iconUrl is: '+ iconUrl)
-})
 </script>
 
 <script>
