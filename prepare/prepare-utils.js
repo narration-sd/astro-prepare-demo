@@ -1,6 +1,9 @@
-// This would ike to be a generic utils module for extending integrationm but
-// at the moment still considering on it, as issues commented below are present.
-// Thus only the first routine is generic, and multiplexed, the way we'd like.
+// Intent here is to have some generic helpers which can make Prepare scripts feasible
+// within the rather tight requirements of ESBuild/Vite//Rolllup.
+
+// A first thought was to interface with lists of tasks, but better if multiple use is
+// programmed simply by providing an array of arguments, with [].forEach to apply
+// them to the needed utility.
 
 // n.b. A warning here: this script can't be imported into a named-persist.mjs file,
 // and that imported into astro-config-mjs to use their exports. Vite then gets terribly
@@ -26,45 +29,46 @@ const setPackagesAsNoExternal = (vite, packageNames) => {
     }
 }
 
-// the intention here would have been to make this routine generic and multiple-capable,
-// as with setPackagesAsExternal() above.  However, it looks it would get messy, as arguennts
-// would have different and specific form depending on what's acctually in the node module.
-// It could be done, but let's leave it a custom fix for the moment and see about the balances
-// of actual need. The form is shown, if only one or two others need to follow it.
+// as a utility, fixEsmModuleType is made so it can fit to target module paths, as these
+// differ widely for compiled npm modules. The action is to alias the problem file so that
+// it looks properly as a module to Vite/Rollup, no matter what may be missing, such as
+// proper extension, or lack of "type": "module" in the package.json originally.
 
-const fixPiniaPersistModuleType = (vite) => {
+const fixEsmModuleType = (vite, matchName, path) => {
     if (!vite.plugins) {
         vite.plugins = [];
     }
 
     // we'll fool Vite into believing this is a proper module file
 
+    const fixName = 'fix-' + matchName
+
     vite.plugins.push ({
-            name: 'fix-pinia-persist',
-            enforce: 'pre',
-            resolveId(id) {
-                if (id.includes('pinia-plugin-persist')) {
-                    return 'pinia-plugin-persist.mjs'
-                }
-            },
-            async load(id) {
-                if (id === 'pinia-plugin-persist.mjs') {
-                    return await readFile(
-                        './node_modules/pinia-plugin-persist//dist/pinia-persist.es.js',
-                        'utf-8',
-                    )
-                }
+        name: fixName,
+        enforce: 'pre',
+        resolveId(id) {
+            if (id.includes(matchName)) {
+                return fixName + '.mjs'
             }
-        })
+        },
+        async load(id) {
+            if (id === fixName + '.mjs') {
+                return await readFile(
+                    path,
+                    'utf-8',
+                )
+            }
+        }
+    })
 }
 
-// This routine needs two things: to of course have a proper message, and potentially also
+// This routine needs two things: to of course have a proper message, and to potentially also
 // multiple cases, for things that might turn up with identification that they are not actually
 // due to our possibility of a  missing prepare, if it's the case we've seen so far.
 
 // This is then a general method pattern, of intercepting Vite's sometimes quite vague and alarming
 // postings when it doesn't see what it needs. The alarming portion is  why we completely form our
-// own independent Error, but include the stack from the original, in case it's useful (not so far).
+// own independent Error, but include the stack from the original, in case it's useful (not mucch so far).
 
 const ourReportingForMissingElements = (vite) => {
     vite.plugins.push(
@@ -86,6 +90,6 @@ const ourReportingForMissingElements = (vite) => {
 
 export {
     setPackagesAsNoExternal,
-    fixPiniaPersistModuleType,
+    fixEsmModuleType,
     ourReportingForMissingElements
 }
