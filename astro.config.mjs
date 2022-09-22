@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 
 import vue from '@astrojs/vue';
-import { vuetifyIntegration } from "./prepare/vue-vuetify-utils.mjs";
+import { vuetifyIntegration } from "./prepare/vue-vuetify-integration.mjs";
 // import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
