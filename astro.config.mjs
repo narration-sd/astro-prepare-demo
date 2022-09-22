@@ -8,5 +8,5 @@ export default defineConfig({
   // n.b. Order must be followed here: each platform integration first, then any related integrations
   // This is so the added integration operates against its platform already configured
   // In this published example, vue(), then vuetifyIntegration()...
-  integrations: [ vue({ myOption: 'DO we see?'}), vuetifyIntegration(), /* tailwind(), */  ]
+  integrations: [ vue(), vuetifyIntegration(), /* tailwind(), */  ]
 })
