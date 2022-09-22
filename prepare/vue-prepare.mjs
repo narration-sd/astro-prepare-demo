@@ -56,7 +56,6 @@ const prepareTurbo = function (app) {
             && typeof window.Turbo === 'undefined') {
             return import ('@hotwired/turbo')
                 .then (result => {
-                    console.log ('@hotwired/turbo installed')
                     return resolve(app)
                 })
                 .catch(err =>  {
@@ -149,7 +148,7 @@ const prepare = function (appOnly, name = 'not named', isClient = true) {
         })
         .then (app => {
            return prepareVuetify(app, name)
-            // and with this prepare, we're done...
+            // and with this last this time, sans others,, we're done...
         })
         .catch ((err) => {
             console.error ('Prepare failed for: ' + name + ': ' + err)

@@ -1,5 +1,5 @@
 
-// these would be named integration add-on portions, making use of prep-utils as required
+// the oore of things vite etc. need to operate with vuetify, making use of prepare-utils as required
 
 import {
     setPackagesAsNoExternal,
@@ -34,7 +34,7 @@ function vuetifyIntegration (options) {
 
                     // next is the required step for build to function, so vite/rollup
                     // will produce Vuetify's css. This is where that plugin goes -- it is
-                    // Vite itself we need to modify, not the Vite-Astro integration.
+                    // Vite itself we need to influence, not the Vite-Astro integration.
                     vite.plugins.push(viteVuetifyPlugin(viteVuetifyOptions))
                 }
             },

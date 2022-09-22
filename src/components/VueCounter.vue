@@ -18,23 +18,6 @@ import {onBeforeMount, onBeforeUnmount, onMounted, onUnmounted} from "vue";
 
 export default {
   setup() {
-    console.log('setup() VueCounter')
-    // beforeCreate (() =>{
-    //   console.log('beforeCreate VueCounter')
-    // })
-    onBeforeMount (() =>{
-      console.log('onBeforeMount VueCounter')
-    })
-    onMounted (() =>{
-      console.log('onMounted VueCounter')
-    })
-    onBeforeUnmount (() =>{
-      console.log('onBeforeUnmount VueCounter')
-    })
-    onUnmounted (() =>{
-      console.log('onUnmounted VueCounter')
-    })
-
     const dataStore = useDateStore()
 
     return {
@@ -42,8 +25,5 @@ export default {
     }
   },
   name: 'VueCounter-plus',
-  created: function () {
-    console.log('created VueCounter')
-  }
 }
 </script>

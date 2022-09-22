@@ -11,7 +11,11 @@
     <div v-if="isMounted">
       <Datepicker v-model="dateStore.date3" />
     </div>
-    <h4>...and we're done here also 🌿</h4>
+<!--  *todo* fascinating that this line would cause a violent stack trace, besides not working for the leaf...  -->
+<!--    <p v-warning="false">This will not generate a warning, so we can have the leaf emoji sans natter</p>-->
+<!--    <h4>...and we're done here also 🌿</h4>-->
+<!--  even incluidng as Unicode constant doesn't get node to allow it...  -->
+    <h4>...and we're done here also {{ leaf }}</h4>
   </div>
 </template>
 
@@ -31,6 +35,7 @@ import NoLibs from "../components/NoLibs.vue";
 import { useDateStore } from "../stores/dateStore.ts"
 import { ref, onMounted } from 'vue'
 
+const leaf = '\u{1F33F}'
 const dateStore = useDateStore()
 const isMounted = ref(false)
 
