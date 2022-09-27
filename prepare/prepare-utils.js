@@ -70,18 +70,38 @@ const fixEsmModuleType = (vite, matchName, path) => {
 // postings when it doesn't see what it needs. The alarming portion is  why we completely form our
 // own independent Error, but include the stack from the original, in case it's useful (not mucch so far).
 
-const ourReportingForMissingElements = (vite) => {
+// what we really want here is the abiltiy to add suitable catches as often as needed.
+// so we will stack them up, keeping a local list that can build as cases are encountered
+
+const errMatches = [
+    { match: /xx/, msg: 'nono'}
+    // { match: /not resolve/, msg: 'how about a message'},
+    // { match: /\-prepare/, msg: 'how about a message'}
+]
+
+// we use unshift() here, so that later set matches will over-ride. This allows setting
+// a generic message in the astro.config, but a more specific one in an integration or adjuster
+const addBuildErrorReportingCase = (matcher ) => {
+    errMatches.unshift (matcher)
+}
+
+// what we're doing here is improving on the largely misleading reporting that Vite/rollup  do,
+// for example when there's a missing file. The mechanism allows us to cover sme ground on things
+// that could be recognized as happening, putting our own messagee in place while keeping the stack.
+const addToBuildErrorReporting = (vite) => {
     vite.plugins.push(
         {
             async buildEnd(error) {
                 if (error) {
                     const errs = error.message.split('\n')
-                    // *todo* of course we'll elaborate...clean suggest of what they are missing & fix
-                    const ourMessage = 'If developing configuration for Vue, you are probably missing, \n' +
-                        'or have misnamed, a Prepare file: \n' + errs[0]
-                    const ourError = new Error (ourMessage)
-                    ourError.stack = error.stack
-                    throw ourError
+                    const matcher = errMatches.find (el => errs[0].match(el.match) )
+                    if (!matcher) {
+                        throw error // just rethrow
+                    } else {
+                        const ourError = new Error (matcher.msg)
+                        ourError.stack = error.stack
+                        throw ourError
+                    }
                 }
             }
         }
@@ -91,5 +111,6 @@ const ourReportingForMissingElements = (vite) => {
 export {
     setPackagesAsNoExternal,
     fixEsmModuleType,
-    ourReportingForMissingElements
+    addBuildErrorReportingCase,
+    addToBuildErrorReporting
 }

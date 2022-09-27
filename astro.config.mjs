@@ -3,7 +3,11 @@ import { defineConfig } from 'astro/config';
 import vue from '@astrojs/vue';
 import { vuetifyIntegration } from "./prepare/vue-vuetify-integration.mjs";
 import { piniaIntegration } from "./prepare/vue-pinia-integration.mjs";
+import {addBuildErrorReportingCase} from "./prepare/prepare-utils.js";
 // import tailwind from '@astrojs/tailwind';
+
+
+addBuildErrorReportingCase( /\-prepare/, 'how about a message')
 
 export default defineConfig({
   // n.b. Order must be followed here: each platform integration first, then any related integrations
