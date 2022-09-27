@@ -18,18 +18,12 @@ function vuetifyIntegration (options) {
             'astro:config:setup': ({ command, config, updateConfig }) => {
                 if (command === 'dev') {
                     setPackagesAsNoExternal(config.vite, [ 'vuetify' ]);
-                    fixEsmModuleType(config.vite,
-                        'pinia-plugin-persist',
-                        './node_modules/pinia-plugin-persist//dist/pinia-persist.es.js')
                     ourReportingForMissingElements(config.vite)
                 }
             },
             'astro:build:setup': ({ vite, target, updateConfig }) => {
                 if (target === 'server') {
                     setPackagesAsNoExternal(vite, [ 'vuetify' ]);
-                    fixEsmModuleType(vite,
-                        'pinia-plugin-persist',
-                        './node_modules/pinia-plugin-persist//dist/pinia-persist.es.js')
                     ourReportingForMissingElements(vite)
 
                     // next is the required step for build to function, so vite/rollup
