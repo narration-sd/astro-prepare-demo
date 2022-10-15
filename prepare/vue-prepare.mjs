@@ -2,7 +2,7 @@
 // abilities without modification to the Vue integration itself. Thus an Astro app
 // can choose and freely add what it may need.
 
-// The needs for this to h appen in the ESBuild/Vite/Rollup environment are quite severe,
+// The needs for this to happen in the ESBuild/Vite/Rollup environment are quite severe,
 // to allow the script to be operable in all phases of deva dn build, thus in Node or the browser.
 // Those are all teken care of and demonstrated here, while it's useful to mention a few points;
 // probably some more to explain further in documentation
