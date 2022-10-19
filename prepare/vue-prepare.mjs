@@ -37,13 +37,14 @@ import * as components from 'vuetify/components'
 
 const { VApp, VMain, VContainer, VRow, VCol, VImg } = components
 
-// prepareTurbo doesn't actually need to be done here, at present; could just replace
-// the old different-Turbo integration. The same handling would be used vs. window and presence.
+// prepareTurbo seems to actually need to be done here, so it will see the Window object as needs.
+// *todo* unless there's something in the old different-Turbo integration which can cause it
+// to be called later. We have a branch out to look into this.
 //
-// Also, though, there are more capabilities in this Turbo, and to increase before long.
-// So it's good enough to keep things here, and work with those extensions after this one.
+// Meanwhile. the way here works, and the extra code of the promise may yet be useful in
+// achieving some of the promisinig futher features as they become available.
 
-// we do, however, necessarily pass the app through so chain can use it, untouched in this case.
+// we necessarily pass the app through so chain can use it, untouched in this case.
 
 const prepareTurbo = function (app) {
     return new Promise ((resolve, reject) => {
@@ -144,7 +145,6 @@ const prepare = function (appOnly, name = 'not named', isClient = true) {
     return prepareTurbo(appOnly)
         .then (app => {
             return preparePinia (appOnly, name)
-            // *todo* we'll perhaps do uses from a list, after validating on these
         })
         .then (app => {
             return prepareVuetify(app, name)

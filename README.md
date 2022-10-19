@@ -1,23 +1,27 @@
 # astroblog-beta-prepare
 
 ## Basis
-This begins in a fork of the stock astro blog starter, in its state about 3 months ago
+This begins in a fork of the stock astro blog starter, in its state about 3 months ago;
+however, we are now builidng and running it from the currently latest Astro 1.5.1
 
 ## Content
 
-As of 14 October 2022, we have a back-room demonstrator of Astro with Pinia, Pug, and Vuetify operating, 
-all at SPA speed via a working arrangement of Turbo.
+As of 14 October 2022, we had a public back-room demonstrator of Astro with Pinia, Pug, and Vuetify operating, 
+all at SPA speed via a working arrangement of a fresh source and method for Turbo.
 
-The key to this is a method of reflecting the Vue app root back to the Astro 
-client side code, which is contained in a matching fork of Astro 1.4.4.
+The original work showed a method of reflecting the Vue app root back to the Astro 
+client side code, contained in a matching fork of Astro 1.4.4. But we don't use 
+that now, 19 Oct 2020, as @natemoo-re has provided a Virtual Module connection 
+which does much the same thing, and much more nicely.
 
-The method is suitable for similar extensions on other framerwork integrations. 
-However, an even solider approach appears to have turned up just now, 
-via @natemoo-re 's patch employing an overlooked Vite feature,
-[Virtual Modules](https://vitejs.dev/guide/api-plugin.html#virtual-modules-convention).
+In fact, using Nate's pathway took approximately a one-line change, which 
+preserves all the value gained through the scripting and libraries in the 
+new /prepare folder -- as an organized alternative to dot-filenames in /pages.
 
-Virtual Modules appears to do much as was accomplished here, but in a visibly
-supported feature, which will thus stay reliable.
+This Prepare pattern is suitable for similar extensions on Vue, but 
+equally also for other framerworks' integrations. And it looks like
+a place for some intriguing future SPA-enhancing possibilities, always
+a win for Astro where possible.
 
 ## The Prepare system: Astro`Vue.use()`capability, and adding packages
 
@@ -109,12 +113,14 @@ The additonal speed, though, is for a purpose, and that is where a supported
 ## Conclusion
 
 As a person in a quite experienced, also unusual position, I don't know if 
-personally de-cloaking will be further appropriate for Astro, but I wish
-the project very well, and have been quite entertained by the degrees
-of individual enthusiam, the fresh natures of your workings together, 
-and the evident abilities appreciaated for each of the persons visible 
-in all you are doing. 
+personally de-cloaking will be further appropriate for Astro; we'll have 
+to see.  
 
-Best fortune, then, indeed.
+But I wish the project very well, and have been quite entertained by 
+the degrees of individual enthusiam, the fresh natures of your workings 
+together, and the evident abilities appreciated well, for each of the 
+persons I've chatted with, or who is otherwise visible in all you are doing. 
+
+Best fortune, indeed.
 
 Clive
