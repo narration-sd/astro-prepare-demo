@@ -64,6 +64,12 @@ const source = '## Let\'s ***Vue*** some more, from\n- our entirely ' +
 			gap: 1em;
 			max-width: 70ch;
 		}
+        @media (max-width: 639px) {
+            article {
+                padding-left: 11%;
+                padding-right: 7%;
+            }
+        }
 		.banner {
 			text-align: center;
 			font-size: 1.2rem;
@@ -78,6 +84,11 @@ const source = '## Let\'s ***Vue*** some more, from\n- our entirely ' +
         h3.props-talk {
             font-size: 9pt;
             color: #be833b
+        }
+        @media(max-width: 639px) {
+            main {
+                margin-left: 7%;
+            }
         }
 	</style>
 	<style is:global>
@@ -111,6 +122,10 @@ const source = '## Let\'s ***Vue*** some more, from\n- our entirely ' +
                 background-color: #bdbcbc;
             }
         }
+        .tiny-chat {
+            padding: 0 8% 5%;
+            font-size: xx-small !important;
+        }
     </style>
 	<!-- *todo* x in or out depending if turbo works on this page w/astro -->
 </head>
@@ -126,10 +141,12 @@ const source = '## Let\'s ***Vue*** some more, from\n- our entirely ' +
 <!--                    <NsdMicroLogo catchline="more fish with good bait..." client:only="vue" />-->
 <!--                    <NsdMicroLogo catchline="more fish with good bait..."  client:load />-->
                     <NsdMicroLogo catchline="more fish with good bait..."  />
-                    <h3 class="props-talk">Astro.props are { astroProps }</h3>
-                    <h3 class="props-talk">How we are now, is { funkNow },
-                        about { something }, on { title }</h3>
-                    <!-- <h3>id is { id }, post is { post }</h3> -->
+                    <div class="tiny-chat">
+                        <p class="props-talk">A.props { astroProps }</p>
+                        <p class="props-talk">How we are now, is { funkNow },
+                            about { something }, on { title }</p>
+                        <!-- <h3>id is { id }, post is { post }</h3> -->
+                    </div>
                 </div>
             </header>
 

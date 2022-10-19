@@ -42,6 +42,12 @@ const source = '## Let\'s ***Vue*** some \n- freshly *own-module-formatted*\n' +
 			gap: 1em;
 			max-width: 70ch;
 		}
+        @media (max-width: 639px) {
+            article {
+                padding-left: 11%;
+                padding-right: 7%;
+            }
+        }
 		.banner {
 			text-align: center;
 			font-size: 1.2rem;
@@ -53,6 +59,11 @@ const source = '## Let\'s ***Vue*** some \n- freshly *own-module-formatted*\n' +
 		h3 {
 		    font-size: 11pt
 		}
+        @media(max-width: 639px) {
+            main {
+                margin-left: 7% !important;
+            }
+        }
 
 	</style>
 	<style is:global>
