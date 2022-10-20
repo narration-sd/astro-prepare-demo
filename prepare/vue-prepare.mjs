@@ -46,7 +46,7 @@ const { VApp, VMain, VContainer, VRow, VCol, VImg } = components
 
 // we necessarily pass the app through so chain can use it, untouched in this case.
 
-const prepareTurbo = function (app) {
+const prepareTurbo = (app) => {
     return new Promise ((resolve, reject) => {
 
         // we don't want to multiple-create, per component or page...
@@ -79,7 +79,7 @@ const prepareTurbo = function (app) {
 // As the demo app shows, it's fine to put those on the individual components, rather than
 // in a top-level app as their instructions imply.
 
-const prepareVuetify =  (app, name) => {
+const prepareVuetify = (app, name) => {
 
     return new Promise((resolve, reject) => {
             try {
@@ -110,7 +110,7 @@ const prepareVuetify =  (app, name) => {
 // its use of prepare-utils.mjs. A pull request hasn't had response, so we fix this ourselves,
 // and gain a general solution for such things.
 
-const preparePinia = (app, name)  =>{
+const preparePinia = (app, name) => {
 
     return new Promise((resolve, reject) => {
             try {
@@ -137,7 +137,7 @@ const preparePinia = (app, name)  =>{
 // *todo* I'm not completely happy with isClient being needed -- some alternatives to try soon, as
 // the createArgs are already being passed. With the solution, we'll likely also handle the name.
 
-const prepare = function (appOnly, name = 'not named', isClient = true) {
+const prepare = (appOnly, name = 'not named', isClient = true) => {
 
     // the first in the chain always gets the fresh appOnly, passing down its result
     // Promises make this level short and simple, also allow inserting logging/comments

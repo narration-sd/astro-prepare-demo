@@ -13,9 +13,11 @@ import viteVuetifyPlugin from 'vite-plugin-vuetify'
 const viteVuetifyOptions = { autoImport: true }
 
 
-function vuetifyIntegration (options) {
+const vuetifyIntegration = (options) => {
 
-    // *todo* this anticipates functionality we intend but don't yet have in `astro add`
+    // *todo* This is our enhancer for Vite's sad messaging. It's probably still got
+    // the primary catch under natemoo-re's method, to be checked. Do we need more? Should
+    // such be moved into astro proper? Though it seems most targetable and flexible here.
     addBuildErrorReportingCase({
         match: /\-prepare/,
         msg: 'For the added-capability Vue integration, you are probably missing, \n' +

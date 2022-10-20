@@ -2,7 +2,7 @@ import {fixEsmModuleType} from "./prepare-utils.js";
 
 // we only need to ameliorate for someone not updating their plugin here, but it's crucial for Astro
 
-function piniaIntegration (options) {
+const piniaIntegration = (options) => {
     return {
         name: 'pinia',
         hooks: {

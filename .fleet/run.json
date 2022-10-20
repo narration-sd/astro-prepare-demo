@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+          "type": "command",
+          "name": "build",
+          "program": "c:\\Users\\narrationsd.DESKTOP-NU62DHV\\AppData\\Roaming\\npm\\yarn.cmd",
+          "args": [ "build" ]
+        },
+      {
+        "type": "command",
+        "name": "preview",
+        "program": "c:\\Users\\narrationsd.DESKTOP-NU62DHV\\AppData\\Roaming\\npm\\yarn.cmd",
+        "args": [ "preview" ]
+      },
+      {
+        "type": "command",
+        "name": "dev",
+        "program": "c:\\Users\\narrationsd.DESKTOP-NU62DHV\\AppData\\Roaming\\npm\\yarn.cmd",
+        "args": [ "dev" ]
+      },
+    ]
+}
