@@ -10,19 +10,19 @@
     "preview": "astro preview"
   },
   "devDependencies": {
-    "@astrojs/vue": "^1.2.0",
-    "astro": "^1.5.1",
+    "@astrojs/vue": "^1.2.1",
+    "astro": "^1.6.2",
     "sass": "^1.55.0",
     "sass-loader": "^13.1.0",
-    "vite": "^3.1.8",
+    "vite": "^3.2.2",
     "vite-plugin-vuetify": "^1.0.0",
     "vue": "^3.2.41"
   },
   "dependencies": {
     "@astrojs/tailwind": "^2.1.1",
-    "@hotwired/turbo": "^7.2.2",
+    "@hotwired/turbo": "^7.2.4",
     "@types/markdown-it": "^12.2.3",
-    "@vuepic/vue-datepicker": "^3.5.2",
+    "@vuepic/vue-datepicker": "^3.5.3",
     "install-local": "^3.0.1",
     "markdown-it": "^13.0.1",
     "pinia": "^2.0.23",
